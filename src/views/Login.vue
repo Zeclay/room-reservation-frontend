@@ -19,7 +19,7 @@
       </div>
       <div class="my-3">
         <button type="submit" class="btn btn-primary" style="width:100%">
-          Login
+          เข้าสู่ระบบ
         </button>
       </div>
     </form>

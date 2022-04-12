@@ -1,14 +1,14 @@
 <template>
   <div class="Menubar">
-    <button>ค้นหาห้อง</button><br>
-    <button>การจอง</button><br>
-    <button>ประวัติการจอง</button><br>
-    <button>พิจารณาการจอง</button><br>
-    <button>จัดการข้อมูลห้อง</button><br>
-    <button>จัดการข้อมูลผู้ใช้</button><br>
-    <button>จัดการผู้พิจารณา</button><br>
-    <button>จัดการหน่วยงาน</button><br>
-    <button>จัดการตึก</button>
+    <center><button class="button">ค้นหาห้อง</button></center>
+    <center><button class="button">การจอง</button></center>
+    <center><button class="button">ประวัติการจอง</button></center>
+    <center><button class="button">พิจารณาการจอง</button></center>
+    <center><button class="button">จัดการข้อมูลห้อง</button></center>
+   <center> <button class="button">จัดการข้อมูลผู้ใช้</button></center>
+    <center><button class="button">จัดการผู้พิจารณา</button></center>
+    <center><button class="button">จัดการหน่วยงาน</button></center>
+    <center><button class="button">จัดการตึก</button></center>
 
   </div>
 </template>
@@ -35,5 +35,27 @@ export default {
 }
 .nav-link:hover {
   color: gold;
+}
+.button {
+  background-color: rgba(249, 249, 249, 0.993); /* Green */
+  border: 1px solid rgba(0, 0, 0, 0.993);
+  color: rgb(0, 0, 0);
+  padding: 33px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  width: 308.5px;
+  display: block;
+}
+
+.button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+.button:hover {
+ background-color: #FBAB7E;
+background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+
 }
 </style>

@@ -3,14 +3,14 @@
     <b-row>
       <!-- <b-col cols="2" class="Menubar"><Menu />
         </b-col> -->
-      <b-col>
+      <b-col class="border border-dark">
         <NavBar />
       </b-col>
     </b-row>
     <b-row>
       <b-col>
         <b-row>
-          <b-col cols="2" class="border border-dark" v-if="isLogin">
+          <b-col cols="2%" class="border border-dark" v-if="isLogin">
             <Menu />
           </b-col>
           <b-col>

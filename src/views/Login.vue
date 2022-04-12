@@ -22,7 +22,7 @@
         <input type="password" class="form-control" placeholder="Password" name="password" v-model="form.password" required>
       </div>
       <div class="my-3">
-        <button type="submit" class="button" style="width:100%"  required>
+        <button type="submit" class="button-login" style="width:100%"  required>
           เข้าสู่ระบบ
         </button>
       </div>
@@ -72,7 +72,7 @@ export default {
     border: 1px solid rgb(0, 0, 0);
     margin: 1px;
 }
-.button {
+.button-login {
   display: inline-block;
   padding: 10px;
   font-size: 20px;
@@ -86,7 +86,7 @@ export default {
   border-radius: 20px;
 }
 
-.button:active {
+.button-login:active {
   background-color: #506050;
   box-shadow: 0 5px #666;
   transform: translateY(4px);

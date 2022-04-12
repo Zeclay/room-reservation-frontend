@@ -7,11 +7,9 @@
         <b-col  >
           <NavBar />
        </b-col>
-
       </b-row>
       <hr style="width:100%">
       <b-row>
-
       <b-col ><router-view /></b-col>
       </b-row>
     </b-container>

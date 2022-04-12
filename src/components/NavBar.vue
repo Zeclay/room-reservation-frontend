@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <b-navbar toggleable="lg"  class="">
     <img src="../assets/buu1.png" width="100px" height="100 px">&emsp;
-    <b-navbar-brand href="#" class="far fa-calendar-alt">   Buu E-Booking <br><br>เข้าสู่ระบบมหาวิทยาลัยบูรพา</b-navbar-brand>
+    <b-navbar-brand href="/" class="far fa-calendar-alt">   Buu E-Booking <br><br>เข้าสู่ระบบมหาวิทยาลัยบูรพา</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -23,10 +23,8 @@
           <b-dropdown-item href="#">คำแนะนำ</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item-dropdown text="เข้าสู่ระบบ" right>
-          <b-dropdown-item href="/login">เข้าสู่ระบบ</b-dropdown-item>
-          <b-dropdown-item href="#">สมัครสมาชิก</b-dropdown-item>
-        </b-nav-item-dropdown>
+          <b-dropdown-item href="/login" v-if="!isLogin">เข้าสู่ระบบ</b-dropdown-item>
+          <b-dropdown-item @click="logout()" href="/" v-if="isLogin">ออกจากระบบ</b-dropdown-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -35,7 +33,16 @@
 </template>
 <script>
 export default {
-
+  computed: {
+    isLogin () {
+      return this.$store.getters['auth/isLogin']
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('auth/logout')
+    }
+  }
 }
 
 </script>

@@ -1,15 +1,6 @@
 <template>
-  <div class="app-menu min-vh-100">
-    <!-- <b-img
-      src="../assets/buu.png"
-      width="150%"
-      center
-      class="pt-2 pb-2"
-    ></b-img> -->
-    <b-nav vertical>
-      <b-nav-item to="/">Home</b-nav-item>
-      <b-nav-item to="/about">About</b-nav-item>
-    </b-nav>
+  <div class="Menubar" >
+    <h1 >BUU E-Booking</h1>
   </div>
 </template>
 <script>
@@ -23,7 +14,7 @@ export default {
 </script>
 <style>
 .app-menu {
-  background-color: grey;
+  background-color: rgb(136, 134, 134);
   font-size: 15pt;
 }
 .sub-menu {

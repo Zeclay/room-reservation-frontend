@@ -1,27 +1,28 @@
 <template>
-  <div id="app">
-    <b-container fluid>
+  <div id="app" >
+    <b-container fluid  >
+      <b-row >
+        <!-- <b-col cols="2" class="Menubar"><Menu />
+        </b-col> -->
+        <b-col  >
+          <NavBar />
+       </b-col>
+
+      </b-row>
+      <hr style="width:100%">
       <b-row>
-        <b-col cols="2" class="app-menu min-vh-100"><Menu /></b-col>
-        <b-col cols="10">
-          <b-container>
-            <NavBar />
-            <b-row class="text-justify">
-              <b-col><router-view /></b-col>
-            </b-row>
-          </b-container>
-        </b-col>
+
+      <b-col ><router-view /></b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 <script>
 import NavBar from './components/NavBar.vue'
-import Menu from './components/Menu.vue'
+// import Menu from './components/Menu.vue'
 export default {
   components: {
-    NavBar,
-    Menu
+    NavBar
   }
 }
 </script>
@@ -31,7 +32,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
 }
 
 #nav {
@@ -40,11 +41,11 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ce0606;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #bd0000;
 }
 
 </style>

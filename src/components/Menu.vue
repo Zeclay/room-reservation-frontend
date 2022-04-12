@@ -1,23 +1,46 @@
 <template>
   <div class="Menubar">
-    <center><button class="button">ค้นหาห้อง</button></center>
-    <center><button class="button">การจอง</button></center>
-    <center><button class="button">ประวัติการจอง</button></center>
-    <center><button class="button">พิจารณาการจอง</button></center>
-    <center><button class="button">จัดการข้อมูลห้อง</button></center>
-   <center> <button class="button">จัดการข้อมูลผู้ใช้</button></center>
-    <center><button class="button">จัดการผู้พิจารณา</button></center>
-    <center><button class="button">จัดการหน่วยงาน</button></center>
-    <center><button class="button">จัดการตึก</button></center>
+    <button class="button">
+      <i class="fa fa-search" style="font-size: 30px"></i>&nbsp; ค้นหาห้อง
+    </button>
 
+    <button class="button">
+      <i class="fa fa-calendar" style="font-size: 30px"></i>&nbsp; การจอง
+    </button>
+
+    <button class="button">
+      <i class="fas fa-clipboard-list" style="font-size: 30px"></i>&nbsp;
+      ประวัติการจอง
+    </button>
+    <button class="button">
+      <i class="fas fa-clipboard-check" style="font-size: 30px"></i>&nbsp;
+      พิจารณาการจอง
+    </button>
+    <button class="button">
+      <i class="fas fa-door-closed" style="font-size: 30px"></i>&nbsp;
+      จัดการข้อมูลห้อง
+    </button>
+    <button class="button">
+      <i class="fas fa-user-cog" style="font-size: 30px"></i>&nbsp;
+      จัดการข้อมูลผู้ใช้
+    </button>
+    <button class="button">
+      <i class="fas fa-file-alt" style="font-size: 30px"></i>&nbsp;
+      จัดการผู้พิจารณา
+    </button>
+    <button class="button">
+      <i class="fas fa-briefcase" style="font-size: 30px"></i>&nbsp;
+      จัดการหน่วยงาน
+    </button>
+    <button class="button">
+      <i class="fas fa-building" style="font-size: 30px"></i>&nbsp; จัดการตึก
+    </button>
   </div>
 </template>
 <script>
 export default {
   data () {
-    return {
-
-    }
+    return {}
   }
 }
 </script>
@@ -37,13 +60,12 @@ export default {
   color: gold;
 }
 .button {
-  background-color: rgb(235, 224, 13); /* Green */
+  background-color: rgba(215, 200, 39, 0.993); /* Green */
   border: 1px solid rgba(0, 0, 0, 0.993);
   color: rgb(0, 0, 0);
-  padding: 33px 32px;
-  text-align: center;
+  padding: 28px 32px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   width: 308.5px;
   display: block;
@@ -54,6 +76,6 @@ export default {
 }
 
 .button:hover {
- background-color: rgb(199, 189, 15);
+  background-color: rgb(170, 162, 21);
 }
 </style>

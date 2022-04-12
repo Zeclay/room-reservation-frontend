@@ -34,7 +34,7 @@ export default {
 .background-search{
   background-color: gray;
   height: 370px;
-  width: 1560px;
+  width: 1400px;
 }
 .position-buttonSelected{
   margin-left: 100% ;

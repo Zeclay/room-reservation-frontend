@@ -37,7 +37,7 @@ export default {
   color: gold;
 }
 .button {
-  background-color: rgba(249, 249, 249, 0.993); /* Green */
+  background-color: rgb(235, 224, 13); /* Green */
   border: 1px solid rgba(0, 0, 0, 0.993);
   color: rgb(0, 0, 0);
   padding: 33px 32px;
@@ -54,8 +54,6 @@ export default {
 }
 
 .button:hover {
- background-color: #FBAB7E;
-background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
-
+ background-color: rgb(199, 189, 15);
 }
 </style>

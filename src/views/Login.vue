@@ -33,7 +33,7 @@
     </div>
   </div>
   <div  style="margin-left:-84.5%">
-    <a  href="#" class="fa fa-question-circle ">ลืมรหัสผ่านของฉัน</a>
+    <a  @click="goToLoginBuu()" href="#" class="fa fa-question-circle ">ลืมรหัสผ่านของฉัน</a>
   </div>
   </div>
 </div></div>
@@ -57,6 +57,9 @@ export default {
 
       // alert(JSON.stringify(this.form))
       this.$store.dispatch('auth/login', this.form)
+    },
+    goToLoginBuu () {
+      window.location.href = 'https://myid.buu.ac.th/'
     }
   }
 }

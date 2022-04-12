@@ -1,6 +1,15 @@
 <template>
-  <div class="Menubar" >
-    <h1 >BUU E-Booking</h1>
+  <div class="Menubar">
+    <button>ค้นหาห้อง</button><br>
+    <button>การจอง</button><br>
+    <button>ประวัติการจอง</button><br>
+    <button>พิจารณาการจอง</button><br>
+    <button>จัดการข้อมูลห้อง</button><br>
+    <button>จัดการข้อมูลผู้ใช้</button><br>
+    <button>จัดการผู้พิจารณา</button><br>
+    <button>จัดการหน่วยงาน</button><br>
+    <button>จัดการตึก</button>
+
   </div>
 </template>
 <script>

@@ -1,6 +1,5 @@
 <template>
   <div id="app" >
-    <b-container fluid  >
       <b-row >
         <!-- <b-col cols="2" class="Menubar"><Menu />
         </b-col> -->
@@ -8,19 +7,27 @@
           <NavBar />
        </b-col>
       </b-row>
-      <hr style="width:100%">
       <b-row>
-      <b-col ><router-view /></b-col>
+      <b-col >
+          <b-row>
+            <b-col cols="2" class="border border-dark">
+              <Menu />
+            </b-col>
+            <b-col>
+              <router-view />
+            </b-col>
+          </b-row>
+      </b-col>
       </b-row>
-    </b-container>
   </div>
 </template>
 <script>
 import NavBar from './components/NavBar.vue'
-// import Menu from './components/Menu.vue'
+import Menu from './components/Menu.vue'
 export default {
   components: {
-    NavBar
+    NavBar,
+    Menu
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <button class="button" v-if="isUser" @click="$router.push('/')">
       <i class="fa fa-search" style="font-size: 30px"></i>&nbsp; ค้นหาห้อง
     </button>
-    <button class="button" v-if="isUser">
+    <button class="button" v-if="isUser" @click="$router.push('/Booking1')">
       <i class="fa fa-calendar" style="font-size: 30px"></i>&nbsp; การจอง
     </button>
 
@@ -31,7 +31,7 @@
       <i class="fas fa-briefcase" style="font-size: 30px"></i>&nbsp;
       จัดการหน่วยงาน
     </button>
-    <button class="button" v-if="isSystemAdmin" @click="$router.push('/ManageBuilding.vue')">
+    <button class="button" v-if="isSystemAdmin" @click="$router.push('/ManageBuilding')">
       <i class="fas fa-building" style="font-size: 30px"></i>&nbsp; จัดการตึก
     </button>
   </div>

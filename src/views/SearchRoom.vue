@@ -22,13 +22,31 @@
   <option>select</option>
 </select>
 </div>
-<button style="margin-left:1000px;margin-top:60px;width:10%;background-color:greenyellow">ค้นหา</button><br><br>
-</div></center>
+<b-button style="margin-left:1000px;margin-top:60px;width:10%;" variant="success">ค้นหา</b-button><br><br>
+</div>
+
+</center>
 <br>
 <center>
- <div class="background-table">
-    <b-table striped hover :items="items" style="width: 85%"></b-table>
-    <br><br><br>
+<div class="background-search">
+    <b-container fluid>
+      <b-row>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-table :items="productItems" :fields="fields">
+            <template #cell(operators)>
+              <b-button variant="warning">แก้ไข</b-button
+              ><b-button
+                class="ml-3"
+                variant="danger"
+                >ลบ</b-button
+              >
+            </template>
+          </b-table>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </center>
   </div>
@@ -46,11 +64,15 @@ export default {
   },
   data () {
     return {
-      items: [
-        { age: 40, first_name: 'Dickerson', last_name: 'Macdonald', data: '-' },
-        { age: 21, first_name: 'Larsen', last_name: 'Shaw', data: '- ' },
-        { age: 89, first_name: 'Geneva', last_name: 'Wilson', data: '-' },
-        { age: 38, first_name: 'Jami', last_name: 'Carney', data: '-' }
+      fields: [
+        { key: 'BuildingId', label: 'ไอดี' },
+        { key: 'BuildingCode', label: 'รหัสตึก' },
+        { key: 'BuildingName', label: 'ชื่อตึก' },
+        { key: 'operators', label: 'การจัดการ' }
+      ],
+      productItems: [
+        { BuildingId: 1, BuildingCode: 'IF', BuildingName: 'Informatics' }
+
       ]
     }
   }
@@ -68,7 +90,7 @@ export default {
 
 .background-search{
   background-color: gray;
-    padding-top:5% ;
+  padding-top: 1%;
   height: 90%;
   width: 90%;
 }

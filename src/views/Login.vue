@@ -89,9 +89,6 @@ export default {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-.font-color{
-  font-color:black;
-}
 a:link {
   color: rgb(0, 0, 0);
   background-color: transparent;

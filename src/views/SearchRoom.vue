@@ -1,7 +1,8 @@
 <template>
 <Auth> <div class="background.menu">
   <div class="home" >
-<center><h5>ค้นหาห้อง</h5></center>
+<center><h3 style="padding-top:2%">ค้นหาห้อง</h3></center>
+<br>
 <center><div class="background-search" style="font-size:120%">ตึก :
 <select style="margin-right:63%;margin-top: 20px;width:200px;height:40px;font-size:80%" >
  <option >select</option>
@@ -24,43 +25,34 @@
 <button style="margin-left:1000px;margin-top:60px;width:10%;background-color:greenyellow">ค้นหา</button><br><br>
 </div></center>
 <br>
-<center><div class="background-table" >
-  <table style="margin-top:-25%;width:80%">
-  <tr >
-    <th>ตึก</th>
-    <th>ห้อง</th>
-    <th>ประเภท</th>
-    <th>ความจุ(ที่นั่ง)</th>
-  </tr>
-  <tr>
-    <td>***</td>
-    <td>***</td>
-    <td>***</td>
-    <td>***</td>
-  </tr>
-  <tr>
-    <td>***</td>
-    <td>***</td>
-    <td>***</td>
-    <td>***</td>
-
-  </tr>
-</table>
-
-</div></center>
+<center>
+ <div class="background-table">
+    <b-table striped hover :items="items" style="width: 85%"></b-table>
+    <br><br><br>
+  </div>
+</center>
   </div>
   </div>
   </Auth>
 </template>
 
 <script>
-
 import Auth from '../components/Auth.vue'
 export default {
   name: 'Home',
   components: {
 
     Auth
+  },
+  data () {
+    return {
+      items: [
+        { age: 40, first_name: 'Dickerson', last_name: 'Macdonald', data: '-' },
+        { age: 21, first_name: 'Larsen', last_name: 'Shaw', data: '- ' },
+        { age: 89, first_name: 'Geneva', last_name: 'Wilson', data: '-' },
+        { age: 38, first_name: 'Jami', last_name: 'Carney', data: '-' }
+      ]
+    }
   }
 }
 
@@ -68,7 +60,7 @@ export default {
 <style>
 .background-table{
   background-color: gray;
-  padding-top:25% ;
+  padding-top:5% ;
   width: 90%;
   height: 90%;
 
@@ -91,6 +83,7 @@ export default {
 }
 table {
     border-collapse: collapse;
+
 }
 
 table, td, th {

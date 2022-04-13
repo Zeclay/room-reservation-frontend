@@ -51,14 +51,13 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
+          <b-table :items="productItems" :fields="fields" style="text-align: center;">
             <template #cell(operators)>
               <b-button variant="warning">แก้ไข</b-button
               ><b-button
                 class="ml-3"
                 variant="danger"
-                >ลบ</b-button
-              >
+                >ลบ</b-button>
             </template>
           </b-table>
         </b-col>
@@ -127,12 +126,6 @@ table {
 
 table, td, th {
     border: 1px solid black;
-}
-.center {
-  margin: auto;
-  width: 100%;
-  padding: 1%;
-  background-color: white;
 }
 .p {
   position: absolute;

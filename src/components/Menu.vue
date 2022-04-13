@@ -15,15 +15,15 @@
       <i class="fas fa-clipboard-check" style="font-size: 30px"></i>&nbsp;
       พิจารณาการจอง
     </button>
-    <button class="button" v-if="isLocalAdmin || isSystemAdmin">
+    <button class="button" v-if="isLocalAdmin || isSystemAdmin" @click="$router.push('/ManageRoom')">
       <i class="fas fa-door-closed" style="font-size: 30px"></i>&nbsp;
       จัดการข้อมูลห้อง
     </button>
-    <button class="button" v-if="isLocalAdmin || isSystemAdmin">
+    <button class="button" v-if="isLocalAdmin || isSystemAdmin" @click="$router.push('/ManageUser')">
       <i class="fas fa-user-cog" style="font-size: 30px"></i>&nbsp;
       จัดการข้อมูลผู้ใช้
     </button>
-    <button class="button" v-if="isLocalAdmin || isSystemAdmin">
+    <button class="button" v-if="isLocalAdmin || isSystemAdmin" @click="$router.push('ManageApprove')">
       <i class="fas fa-file-alt" style="font-size: 30px"></i>&nbsp;
       จัดการผู้พิจารณา
     </button>

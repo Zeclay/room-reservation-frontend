@@ -7,7 +7,7 @@
       <i class="fa fa-calendar" style="font-size: 30px"></i>&nbsp; การจอง
     </button>
 
-    <button class="button" v-if="isUser">
+    <button class="button" v-if="isUser" @click="$router.push('/History')">
       <i class="fas fa-clipboard-list" style="font-size: 30px"></i>&nbsp;
       ประวัติการจอง
     </button>

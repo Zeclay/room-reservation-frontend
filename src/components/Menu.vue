@@ -1,6 +1,6 @@
 <template>
   <div class="Menubar">
-    <button class="button" v-if="isUser">
+    <button class="button" v-if="isUser" >
       <i class="fa fa-search" style="font-size: 30px"></i>&nbsp; ค้นหาห้อง
     </button>
 
@@ -32,12 +32,13 @@
       <i class="fas fa-briefcase" style="font-size: 30px"></i>&nbsp;
       จัดการหน่วยงาน
     </button>
-    <button class="button" v-if="isSystemAdmin" @click="this.$route.push('/ManageBuilding')">
+    <button class="button" v-if="isSystemAdmin" @click="$router.push('/ManageBuilding.vue')">
       <i class="fas fa-building" style="font-size: 30px"></i>&nbsp; จัดการตึก
     </button>
   </div>
 </template>
 <script>
+
 export default {
   data () {
     return {}
@@ -81,6 +82,7 @@ export default {
     }
   }
 }
+
 </script>
 <style>
 .app-menu {

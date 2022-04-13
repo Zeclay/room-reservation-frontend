@@ -11,7 +11,7 @@
       <i class="fas fa-clipboard-list" style="font-size: 30px"></i>&nbsp;
       ประวัติการจอง
     </button>
-    <button class="button" v-if="isApprover">
+    <button class="button" v-if="isApprover" @click="$router.push('/Approver')">
       <i class="fas fa-clipboard-check" style="font-size: 30px"></i>&nbsp;
       พิจารณาการจอง
     </button>

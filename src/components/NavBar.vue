@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <b-navbar toggleable="lg"  class="bg-color">
     <img src="../assets/buu1.png" width="100px" height="100 px">&emsp;
-    <b-navbar-brand href="/" class="far fa-calendar-alt">   Studyroom Reservation System <br><br>ระบบการจองห้องศึกษาค้นคว้ากลุ่ม มหาวิทยาลัยบูรพา</b-navbar-brand>
+    <b-navbar-brand href="/" class="far fa-calendar-alt" style="font-size:150%">   Studyroom Reservation System <br><br>ระบบการจองห้องศึกษาค้นคว้ากลุ่ม มหาวิทยาลัยบูรพา</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -49,7 +49,7 @@ export default {
 </script>
 <style>
 .gg {
-   margin-top:-50px ;
+   width: 100%;
 }
 .navcolor{
   background-color: #da0000;

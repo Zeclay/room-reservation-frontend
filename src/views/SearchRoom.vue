@@ -1,32 +1,49 @@
 <template>
 <Auth> <div class="background.menu">
   <div class="home" >
-<center><h3 style="padding-top:2%">ค้นหาห้อง</h3></center>
-<br>
-<center><div class="background-search" style="font-size:120%">ตึก :
-<select style="margin-right:63%;margin-top: 20px;width:200px;height:40px;font-size:80%" >
- <option >select</option>
-</select>
-<div style="margin-left:400px;margin-top:-40px">ประเภทห้อง :
-<select style="width:200px;height:40px;font-size:80%" >
-  <option>select</option>
-</select>
-</div>
-<div style="margin-right:65%;margin-top:50px">ชื่อห้อง :
-<select style="width:200px;height:40px;font-size:80%" >
-  <option>select</option>
-</select>
-</div>
-<div style="margin-left:360px;margin-top:-40px">จำนวนคนที่รองรับ :
-<select style="width:200px;height:40px;font-size:80%" >
-  <option>select</option>
-</select>
-</div>
-<b-button style="margin-left:1000px;margin-top:60px;width:10%;" variant="success">ค้นหา</b-button><br><br>
-</div>
-
+<center>
+  <div>
+  <h2 style="padding-top:2%">ค้นหาห้อง</h2>
+  </div>
 </center>
-<br>
+<br> <br>
+
+<div class="background-search " style="padding: 2%" >
+  <b-form inline>
+    <label class="mr-sm-2" for="inline-form-custom-select-pref" style="font-size: 20px">ตึก :</label>
+    <b-form-select
+      id="inline-form-custom-select-pref"
+      class="mb-2 mr-sm-2 mb-sm-0 p3"
+      :options="[{ text: 'Select Building... ', value: null }, 'One', 'Two', 'Three']"
+      :value="null"
+    ></b-form-select>
+     <label class="mr-sm-2 p" for="inline-form-custom-select-pref" style="font-size: 20px">ประเภทห้อง :</label>
+     <b-form-select
+      id="inline-form-custom-select-pref"
+      class="mb-2 mr-sm-2 mb-sm-0 p2"
+      :options="[{ text: 'Select Room Type...', value: null }, 'One', 'Two', 'Three']"
+      :value="null"
+    ></b-form-select>
+  </b-form>
+  <br> <br>
+  <b-form inline>
+    <label class="mr-sm-2" for="inline-form-custom-select-pref" style="font-size: 20px">ชื่อห้อง :</label>
+     <b-form-input
+      id="inline-form-input-name"
+      class="mb-2 mr-sm-2 mb-sm-0 p3"
+      placeholder=""
+    ></b-form-input>
+     <label class="mr-sm-2 p" for="inline-form-custom-select-pref" style="font-size: 20px">จำนวนคนที่รองรับ :</label>
+     <b-form-select
+      id="inline-form-custom-select-pref"
+      class="mb-2 mr-sm-2 mb-sm-0 p2"
+      :options="[{ text: 'Select Num of People..', value: null }, 'One', 'Two', 'Three']"
+      :value="null"
+    ></b-form-select>
+  </b-form>
+</div>
+<br> <br>
+
 <center>
 <div class="background-search">
     <b-container fluid>
@@ -91,8 +108,8 @@ export default {
 .background-search{
   background-color: gray;
   padding-top: 1%;
-  height: 90%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
 }
 .position-buttonSelected{
   margin-left: 100% ;
@@ -110,5 +127,23 @@ table {
 
 table, td, th {
     border: 1px solid black;
+}
+.center {
+  margin: auto;
+  width: 100%;
+  padding: 1%;
+  background-color: white;
+}
+.p {
+  position: absolute;
+  left: 40%;
+}
+.p2 {
+  position: absolute;
+  left: 51%;
+}
+.p3 {
+  position: absolute;
+  left: 10%;
 }
 </style>

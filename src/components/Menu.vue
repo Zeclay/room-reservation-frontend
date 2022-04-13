@@ -1,38 +1,38 @@
 <template>
   <div class="Menubar">
-    <button class="button">
+    <button class="button" v-if="isUser">
       <i class="fa fa-search" style="font-size: 30px"></i>&nbsp; ค้นหาห้อง
     </button>
 
-    <button class="button">
+    <button class="button" v-if="isUser">
       <i class="fa fa-calendar" style="font-size: 30px"></i>&nbsp; การจอง
     </button>
 
-    <button class="button">
+    <button class="button" v-if="isUser">
       <i class="fas fa-clipboard-list" style="font-size: 30px"></i>&nbsp;
       ประวัติการจอง
     </button>
-    <button class="button">
+    <button class="button" v-if="isApprover">
       <i class="fas fa-clipboard-check" style="font-size: 30px"></i>&nbsp;
       พิจารณาการจอง
     </button>
-    <button class="button">
+    <button class="button" v-if="isLocalAdmin || isSystemAdmin">
       <i class="fas fa-door-closed" style="font-size: 30px"></i>&nbsp;
       จัดการข้อมูลห้อง
     </button>
-    <button class="button">
+    <button class="button" v-if="isLocalAdmin || isSystemAdmin">
       <i class="fas fa-user-cog" style="font-size: 30px"></i>&nbsp;
       จัดการข้อมูลผู้ใช้
     </button>
-    <button class="button">
+    <button class="button" v-if="isLocalAdmin || isSystemAdmin">
       <i class="fas fa-file-alt" style="font-size: 30px"></i>&nbsp;
       จัดการผู้พิจารณา
     </button>
-    <button class="button">
+    <button class="button" v-if="isLocalAdmin || isSystemAdmin">
       <i class="fas fa-briefcase" style="font-size: 30px"></i>&nbsp;
       จัดการหน่วยงาน
     </button>
-    <button class="button">
+    <button class="button" v-if="isSystemAdmin">
       <i class="fas fa-building" style="font-size: 30px"></i>&nbsp; จัดการตึก
     </button>
   </div>
@@ -41,6 +41,44 @@
 export default {
   data () {
     return {}
+  },
+  computed: {
+    isUser () {
+      var user = JSON.parse(localStorage.getItem('user'))
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i] === 'USER') {
+          return true
+        }
+      }
+      return false
+    },
+    isApprover () {
+      var user = JSON.parse(localStorage.getItem('user'))
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i] === 'APPROVER') {
+          return true
+        }
+      }
+      return false
+    },
+    isLocalAdmin () {
+      var user = JSON.parse(localStorage.getItem('user'))
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i] === 'LOCAL_ADMIN') {
+          return true
+        }
+      }
+      return false
+    },
+    isSystemAdmin () {
+      var user = JSON.parse(localStorage.getItem('user'))
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i] === 'SYSTEM') {
+          return true
+        }
+      }
+      return false
+    }
   }
 }
 </script>
@@ -78,4 +116,5 @@ export default {
 .button:hover {
   background-color: rgb(170, 162, 21);
 }
+
 </style>

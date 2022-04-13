@@ -32,7 +32,7 @@
       <i class="fas fa-briefcase" style="font-size: 30px"></i>&nbsp;
       จัดการหน่วยงาน
     </button>
-    <button class="button" v-if="isSystemAdmin" @click="this.$route.push('/ManageBuilding')">
+    <button class="button" v-if="isSystemAdmin">
       <i class="fas fa-building" style="font-size: 30px"></i>&nbsp; จัดการตึก
     </button>
   </div>

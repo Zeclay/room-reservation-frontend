@@ -9,7 +9,7 @@
     <b-form-input
       id="inline-form-input-BuildingCode"
       class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="ค้นหา"
+      placeholder="ค้นหาตึก"
       style="width: 25% "
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;

@@ -27,7 +27,6 @@ import Menu from './components/Menu.vue'
 export default {
   data () {
     return {
-      login: this.isLogin()
     }
   },
   components: {

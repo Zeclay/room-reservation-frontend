@@ -25,6 +25,7 @@
 
           <b-dropdown-item href="/login" v-if="!isLogin">เข้าสู่ระบบ</b-dropdown-item>
           <b-dropdown-item @click="logout()" href="/" v-if="isLogin">ออกจากระบบ</b-dropdown-item>
+
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

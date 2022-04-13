@@ -15,7 +15,7 @@
     <form action="" @submit="onSubmit" >
       <div class="from-group">
         <!-- <label>Username</label> -->
-        <input type="email" class=" form-control " placeholder="Username" name="username" v-model="form.email" required>
+        <input type="username" class=" form-control " placeholder="Username" name="username" v-model="form.email" required>
       </div> <br>
       <div class="from-group">
         <!-- <label>Password</label> -->
@@ -52,9 +52,7 @@ export default {
   },
   methods: {
     onSubmit (event) {
-      console.log(this.form)
       event.preventDefault()
-
       // alert(JSON.stringify(this.form))
       this.$store.dispatch('auth/login', this.form)
     },

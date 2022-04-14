@@ -1,6 +1,6 @@
 <template>
   <div >
-    <b-button pill @click="addNew" variant="primary" class="p">เพิ่มตึก</b-button>
+    <b-button  @click="addNew" variant="success" >เพิ่มตึก</b-button>
     <b-modal
       id="modal-building"
       ref="modalBuilding"
@@ -115,7 +115,7 @@ export default {
 }
 </script>
 <style>
-.p {
+.addButton {
   position: absolute;
   top: 10px;
   right: 138px;

@@ -4,7 +4,7 @@
       <center> <h3 style="padding-top: 2%">จัดการตึก</h3></center>
       <br>
       <div style="padding-left: 1%">
-  <b-form inline>
+ <span> <b-form inline>
     <label class="sr-only" for="inline-form-input-BuildingCode">Name</label>
     <b-form-input
       id="inline-form-input-BuildingCode"
@@ -14,20 +14,21 @@
       v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
-  </b-form>
+    <!-- <b-button variant="success" >เพิ่มข้อมูล</b-button> -->
+  </b-form></span>
+        <span><b-col class="text-right">
+                <BuildingForm
+                  :building="selectedItem"
+                  ref="BuildingForm"
+                  @save="savebuilding"
+                ></BuildingForm>
+              </b-col></span>
       </div>
     </div>
     <br>
     <div class="background-search">
     <b-container fluid>
       <b-row>
-        <b-col class="text-right">
-                <BuildingForm
-                  :building="selectedItem"
-                  ref="BuildingForm"
-                  @save="savebuilding"
-                ></BuildingForm>
-              </b-col>
       </b-row>
       <b-row>
         <b-col>

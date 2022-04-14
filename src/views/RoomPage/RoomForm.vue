@@ -4,7 +4,7 @@
     <b-modal
       id="modal-approve"
       ref="modalApprove"
-      title="จัดการผู้พิจารณา"
+      title="จัดการห้อง"
       @show="showModal"
       @hidden="resetModal"
       @ok="handleOk"

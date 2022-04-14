@@ -12,43 +12,68 @@
 
     <table>
       <tr>
-        <td>
-          <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+        <td style="width: 50%">
+      <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
          <b-form-group
           id="form-group-name"
           label="ชุดผู้พิจารณา :"
-          label-for="approve-name"
+          label-for="users-aprrove_num"
         >
           <b-form-input
             type="text"
-            id="name"
-            placeholder="ชุดผู้พิจารณา"
+            id="approvenum"
+            placeholder=""
             v-model="form.approve_num"
-            style="width: 50%;"
-            autofocus
           >
           </b-form-input>
         </b-form-group>
       </b-form>
-        </td>
-      </tr>
-      <tr>
-        <td>
-           <b-form-group
-          id="form-group-code"
-          label="ผู้พิจารณาที่1"
-          label-for="approve-name1"
+       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+         <b-form-group
+          id="form-group-name"
+          label="ผู้พิจารณาที่ 1 :"
+          label-for="users-approve"
         >
-          <b-form-input
-            type="text"
-            id="num"
-            placeholder="ผู้พิจารณาที่1"
-            v-model="form.name_approve1"
-            autofocus
-          >
-          </b-form-input>
+         <b-form-select
+        id="inline-form-custom-select-pref"
+          class="mb-2 mr-sm-2 mb-sm-0"
+          :options="[{ text: 'Select Approve 1...', value: null }, 'One', 'Two', 'Three']"
+          :value="null"
+    ></b-form-select>
         </b-form-group>
-        </td>
+      </b-form>
+      </td>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <td style="width: 50%">
+        <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+         <b-form-group
+          id="form-group-name"
+          label="สังกัด :"
+          label-for="users-roles"
+        >
+          <b-form-select
+        id="inline-form-custom-select-pref"
+          class="mb-2 mr-sm-2 mb-sm-0"
+          :options="[{ text: 'Select Role...', value: null }, 'One', 'Two', 'Three']"
+          :value="null"
+    ></b-form-select>
+        </b-form-group>
+      </b-form>
+       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+         <b-form-group
+          id="form-group-name"
+          label="ผู้พิจารณาที่ 2 :"
+          label-for="users-approve1"
+        >
+          <b-form-select
+        id="inline-form-custom-select-pref"
+          class="mb-2 mr-sm-2 mb-sm-0"
+          :options="[{ text: 'Select Approve 2...', value: null }, 'One', 'Two', 'Three']"
+          :value="null"
+    ></b-form-select>
+        </b-form-group>
+      </b-form>
+      </td>
       </tr>
     </table>
       <b-card>

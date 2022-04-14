@@ -1,7 +1,7 @@
 <template>
   <Auth>
     <div class="home">
-      <center> <h3 style="padding-top: 2%">การจัดการข้อมูลห้อง</h3></center>
+      <center><h3 style="padding-top: 2%">การจัดการข้อมูลห้อง</h3></center>
       <br>
       <div style="padding-left: 1%">
   <b-form inline>
@@ -35,25 +35,18 @@
                 <th>ไอดี</th>
                 <th>เลขห้อง</th>
                 <th>รายละเอียดห้อง</th>
-<<<<<<< HEAD
                 <th>ชั้น</th>
                 <th>ความจุที่นั่ง</th>
                 <th>ประเภท</th>
                 <th>ไอดีผู้พิจารณา</th>
                 <th>ไอดีตึก</th>
                 <th>ไอดีหน่วยงาน</th>
-=======
-                <th>เลขตึก</th>
-                <th>ความจุที่นั่ง</th>
-                <th>ไอดีผู้พิจารณา</th>
->>>>>>> ab6974600bdfa04eb83b6efc5d1ce3c81e2bd42a
                 <th>การจัดการ</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="Room in filteredRooms" :key="Room.id">
                 <td>{{Room._id}}</td>
-<<<<<<< HEAD
                 <td>{{Room.code}}</td>
                 <td>{{Room.description}}</td>
                 <td>{{Room.floor}}</td>
@@ -62,11 +55,6 @@
                 <td>{{Room.approve_id}}</td>
                 <td>{{Room.building_id}}</td>
                 <td>{{Room.agency_id}}</td>
-=======
-                <td>{{Room.description}}</td>
-                <td>{{Room.order_Room[0].name}} {{Room.order_Room[0].surname}}</td>
-                <td>{{Room.order_Room[1].name}} {{Room.order_Room[1].surname}}</td>
->>>>>>> ab6974600bdfa04eb83b6efc5d1ce3c81e2bd42a
                 <td><b-button variant="warning" @click="editRoom(Room)">แก้ไข</b-button
               ><b-button
                 @click="deleteRoom(Room)"

@@ -24,16 +24,34 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
-            <template #cell(operators)>
-              <b-button variant="warning">แก้ไข</b-button
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ไอดี</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>ชื่อผู้ใช้</th>
+                <th>ตำแหน่ง</th>
+                <th>Roles</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="user in users" :key="user.id">
+                <td>{{user._id}}</td>
+                <td>{{user.name}} {{user.surname}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.position}}</td>
+                <td>{{user.roles}}</td>
+                <td><b-button variant="warning" @click="editUser(user)">แก้ไข</b-button
               ><b-button
+                @click="deleteUser(user)"
                 class="ml-3"
                 variant="danger"
                 >ลบ</b-button
-              >
-            </template>
-          </b-table>
+              ></td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -43,6 +61,7 @@
 
 <script>
 import Auth from '../components/Auth.vue'
+import axios from 'axios'
 export default {
   BuildingCode: 'Home',
   components: {
@@ -50,22 +69,36 @@ export default {
   },
   data () {
     return {
-      fields: [
-        { key: 'UserId', label: 'ไอดี' },
-        { key: 'UserName', label: 'ยูสเซอร์เนม' },
-        { key: 'PassWord', label: 'พาสเวิด' },
-        { key: 'Name', label: 'ชื่อ' },
-        { key: 'Surname', label: 'นาม' },
-        { key: 'Position', label: 'ตำแหน่ง' },
-        { key: 'Affiliation', label: 'สังกัด' },
-        { key: 'Role', label: 'แรงค์' },
-        { key: 'operators', label: 'การจัดการ' }
-      ],
-      productItems: [
-        { UserId: 1, UserName: 'suigai', PassWord: 'qw123', Name: 'สุขใจ', Surname: 'ไทยเดิม', Position: 'นิสิต', Affiliation: 'Informatics', Role: 'User' }
-
-      ]
+      users: []
     }
+  },
+  methods: {
+    getUser () {
+      const self = this
+      axios.get('http://localhost:3000/users', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.users = response.data
+      })
+    },
+    deleteUser (item) {
+      if (confirm(`คุณต้องการจะลบผู้ใช้ ${item.name} หรือไม่`)) {
+        axios.delete('http://localhost:3000/users/' + item._id, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }).then(
+          console.log('Delete ' + item.name)
+        )
+      }
+      this.$router.go(0)
+    }
+  },
+  mounted () {
+    this.getUser()
   }
 }
 </script>

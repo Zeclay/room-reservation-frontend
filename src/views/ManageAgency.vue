@@ -63,7 +63,7 @@ export default {
   methods: {
     getAgency () {
       const self = this
-      axios.get('http://localhost:3000/agency', {
+      axios.get('http://localhost:3000/agencys', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
@@ -73,8 +73,8 @@ export default {
       })
     },
     deleteAgency (item) {
-      if (confirm(`คุณต้องการจะลบตึก ${item.name} หรือไม่`)) {
-        axios.delete('http://localhost:3000/agency/' + item._id, {
+      if (confirm(`คุณต้องการจะลบหน่วยงาน ${item.name} หรือไม่`)) {
+        axios.delete('http://localhost:3000/agencys/' + item._id, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token')
           }

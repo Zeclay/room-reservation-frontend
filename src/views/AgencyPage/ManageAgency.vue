@@ -5,16 +5,20 @@
       <br>
       <div style="padding-left: 1%">
   <b-form inline>
-    <label class="sr-only" for="inline-form-input-BuildingCode">Name</label>
+    <label class="sr-only" for="inline-form-input-AgencyCode">Name</label>
     <b-form-input
-      id="inline-form-input-BuildingCode"
+      id="inline-form-input-AgencyCode"
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="ค้นหาหน่วยงาน"
       style="width: 25% "
       v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
-       <b-button variant="success">เพิ่มข้อมูล</b-button>
+       <AgencysForm
+                  :agency="selectedItem"
+                  ref="AgencysForm"
+                  @save="save"
+                ></AgencysForm>
   </b-form>
       </div>
     </div>
@@ -56,17 +60,20 @@
 </template>
 
 <script>
-import Auth from '../components/Auth.vue'
+import Auth from '../../components/Auth.vue'
 import axios from 'axios'
+import AgencysForm from './AgencyForm.vue'
 export default {
-  BuildingCode: 'Home',
+  AgencyCode: 'Home',
   components: {
-    Auth
+    Auth,
+    AgencysForm
   },
   data () {
     return {
       searchString: '',
-      agencys: []
+      agencys: [],
+      selectedItem: null
     }
   },
   computed: {
@@ -100,6 +107,47 @@ export default {
         )
       }
       this.$router.go(0)
+    },
+    save (agency) {
+      console.log('Submit', agency)
+      if (agency._id === '') {
+      // Add New
+        axios
+          .post('http://localhost:3000/agencys', agency, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
+          .then(
+            function (response) {
+              this.getAgency()
+            }.bind(this)
+          )
+          .catch(() => {
+          }
+          )
+      } else {
+      // Update
+        axios
+          .put('http://localhost:3000/agencys/' + agency._id, agency, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
+          .then(
+            function (response) {
+              this.getAgencys()
+            }.bind(this)
+          )
+          .catch(() => {
+          })
+      }
+    },
+    editAgency (item) {
+      this.selectedItem = JSON.parse(JSON.stringify(item))
+      this.$nextTick(() => {
+        this.$refs.AgencysForm.show()
+      })
     }
   },
   mounted () {

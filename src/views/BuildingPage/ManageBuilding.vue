@@ -1,7 +1,7 @@
 <template>
   <Auth>
     <div class="home">
-      <center> <h3 style="padding-top: 2%">จัดการตึก</h3></center>
+      <center> <h3 style="padding-top: 2%">จัดการอาคาร</h3></center>
       <br>
       <div style="padding-left: 1%">
 
@@ -10,7 +10,7 @@
     <b-form-input
       id="inline-form-input-BuildingCode"
       class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="ค้นหาตึก"
+      placeholder="ค้นหาอาคาร"
       style="width: 25% "
       v-model="searchString"
     ></b-form-input>
@@ -37,16 +37,16 @@
             <thead>
               <tr>
                 <th>ไอดี</th>
-                <th>รหัสตึก</th>
-                <th>ชื่อตึก</th>
+                <th>รหัสอาคาร</th>
+                <th>ชื่ออาคาร</th>
                 <th>การจัดการ</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="building in filteredBuildings" :key="building.id">
                 <td>{{building._id}}</td>
-                <td>{{building.name_build}}</td>
                 <td>{{building.code}}</td>
+                <td>{{building.name_build}}</td>
                 <td><b-button variant="warning" @click="editBuilding(building)">แก้ไข</b-button
               ><b-button
                 @click="deleteBuilding(building)"
@@ -103,7 +103,7 @@ export default {
       })
     },
     deleteBuilding (item) {
-      if (confirm(`คุณต้องการจะลบตึก ${item.code} หรือไม่`)) {
+      if (confirm(`คุณต้องการจะลบอาคาร ${item.code} หรือไม่`)) {
         axios.delete('http://localhost:3000/buildings/' + item._id, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token')

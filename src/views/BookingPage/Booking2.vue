@@ -6,13 +6,13 @@
       <div style="padding-left: 1%">
   <b-form inline>
     <label class="sr-only" for="inline-form-input-BuildingCode">Name</label>
+    <b-button>ค้นหาห้อง :</b-button>&nbsp;&nbsp;
     <b-form-input
       id="inline-form-input-BuildingCode"
       class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="ค้นหาตึกที่ต้องการ"
+      placeholder="ค้นหาห้องที่ต้องการได้ที่นี่..."
       style="width: 25% "
     ></b-form-input>
-    <b-button>SEARCH</b-button>
   </b-form>
       </div>
     </div>
@@ -25,7 +25,7 @@
         <b-col>
           <b-table :items="productItems" :fields="fields">
             <template #cell(operators)>
-              <b-button variant="info" style="width:30%;">  VIEWS  </b-button>
+              <b-button variant="info" style="width:50%;" @click="$router.push('/booking3')"> ดูรายละเอียด </b-button>
             </template>
           </b-table>
         </b-col>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Auth from '../components/Auth.vue'
+import Auth from '../../components/Auth.vue'
 export default {
   BuildingCode: 'Home',
   components: {
@@ -45,13 +45,14 @@ export default {
   data () {
     return {
       fields: [
-        { key: 'BuildingId', label: 'ไอดี' },
-        { key: 'BuildingCode', label: 'รหัสตึก' },
-        { key: 'BuildingName', label: 'ชื่อตึก' },
+        { key: 'RoomId', label: 'ชื่อห้อง' },
+        { key: 'RoomDetail', label: 'ประเภทห้อง' },
+        { key: 'Amount', label: 'ความจุ(ที่นั่ง)' },
+        { key: 'ApproveId', label: 'ผู้ดูแล' },
         { key: 'operators', label: 'การจัดการ' }
       ],
       productItems: [
-        { BuildingId: 1, BuildingCode: 'IF', BuildingName: 'Informatics' }
+        { RoomId: 1, RoomDetail: 'IF', Amount: '50', ApproveId: 'ชุดที่1' }
 
       ]
     }

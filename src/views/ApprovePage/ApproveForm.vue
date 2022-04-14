@@ -29,7 +29,12 @@
           >
           </b-form-input>
         </b-form-group>
-       <b-form-group
+      </b-form>
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <b-form-group
           id="form-group-code"
           label="ผู้พิจารณาที่1"
           label-for="approve-name1"
@@ -43,7 +48,6 @@
           >
           </b-form-input>
         </b-form-group>
-      </b-form>
         </td>
       </tr>
     </table>
@@ -59,18 +63,16 @@
 <script>
 export default {
   props: {
-    room: Object
+    approve: Object
   },
   data () {
     return {
       form: {
         _id: '',
-        code: '',
-        floor: '',
-        seat: '',
-        approve_id: '',
-        building_id: '',
-        agency_id: ''
+        approve_num: '',
+        institution: '',
+        name_approve1: '',
+        name_approve2: ''
       },
       isAddNew: false
     }
@@ -93,24 +95,20 @@ export default {
       })
     },
     show () {
-      this.$refs.modalRoom.show()
+      this.$refs.modalApprove.show()
     },
     submit () {
-      const room = JSON.parse(JSON.stringify(this.form))
-      this.$emit('save', room)
+      const approve = JSON.parse(JSON.stringify(this.form))
+      this.$emit('save', approve)
       this.reset()
     },
     reset () {
       this.form = {
         _id: '',
-        code: '',
-        description: '',
-        floor: '',
-        seat: '',
-        type: '',
-        approve_id: '',
-        building_id: '',
-        agency_id: ''
+        approve_num: '',
+        institution: '',
+        name_approve1: '',
+        name_approve2: ''
       }
     },
     showModal () {
@@ -118,15 +116,11 @@ export default {
         this.reset()
       } else {
         // Edit
-        this.form._id = this.room._id
-        this.form.code = this.room.code
-        this.form.description = this.room.description
-        this.form.floor = this.room.floor
-        this.form.seat = this.room.seat
-        this.form.type = this.room.type
-        this.form.approve_id = this.room.approve_id
-        this.form.building_id = this.room.building_id
-        this.form.agency_id = this.room.agency_id
+        this.form._id = this.approve._id
+        this.form.approve_num = this.approve.approve_num
+        this.form.institution = this.approve.institution
+        this.form.name_approve1 = this.approve.name_approve1
+        this.form.name_approve2 = this.approve.name_approve2
       }
     },
     resetModal (evt) {
@@ -136,7 +130,7 @@ export default {
       evt.preventDefault()
       this.submit()
       this.$nextTick(() => {
-        this.$bvModal.hide('modal-room')
+        this.$bvModal.hide('modal-approve')
       })
     }
   }

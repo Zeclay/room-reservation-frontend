@@ -84,6 +84,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/RoomPage/ManageRoom.vue')
 >>>>>>> ab6974600bdfa04eb83b6efc5d1ce3c81e2bd42a
   },
+  {
+    path: '/ManageUser',
+    name: 'ManageUser',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ManageUser.vue')
+  },
   // {
   //   path: '/ManageUser',
   //   name: 'ManageUser',
@@ -98,7 +106,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ManageApprove.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/ApprovePage/ManageApprove.vue')
   },
   {
     path: '/ManageAgency',
@@ -114,7 +122,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Approver.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views//Approver.vue')
   },
   {
     path: '/BuildingForm',
@@ -123,6 +131,22 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/BuildingPage/BuildingForm.vue')
+  },
+  {
+    path: '/ApproveForm',
+    name: 'ApproveForm',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/ApprovePage/ApproveForm.vue')
+  },
+  {
+    path: '/RoomForm',
+    name: 'RoomForm',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/RoomPage/RoomForm.vue')
   }
 
 ]

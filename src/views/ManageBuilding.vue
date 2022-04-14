@@ -25,10 +25,11 @@
       <b-row>
         <b-col>
           <b-table :items="buildings" :fields="fields">
-            <template #cell(operators)>
-              <b-button variant="warning">แก้ไข</b-button
+            <template #cell(operators)="{ item }">
+              <b-button @click="editProduct(item)">แก้ไข</b-button
               ><b-button
-                class="ml-3"
+                @click="deleteProduct(item)"
+                class="ml-1"
                 variant="danger"
                 >ลบ</b-button
               >
@@ -72,6 +73,18 @@ export default {
         console.log(response)
         self.buildings = response.data
       })
+    },
+    deleteProduct (item) {
+      if (confirm(`คุณต้องการจะลบตึก ${item.code} หรือไม่`)) {
+        axios.delete('http://localhost:3000/buildings/' + item._id, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }).then(
+          console.log('Delete ' + item.code)
+        )
+      }
+      this.$router.go(0)
     }
   },
   mounted () {

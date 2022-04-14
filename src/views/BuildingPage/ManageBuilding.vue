@@ -45,8 +45,8 @@
             <tbody>
               <tr v-for="building in filteredBuildings" :key="building.id">
                 <td>{{building._id}}</td>
-                <td>{{building.name_build}}</td>
                 <td>{{building.code}}</td>
+                <td>{{building.name_build}}</td>
                 <td><b-button variant="warning" @click="editBuilding(building)">แก้ไข</b-button
               ><b-button
                 @click="deleteBuilding(building)"

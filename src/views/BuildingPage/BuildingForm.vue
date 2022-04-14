@@ -1,10 +1,10 @@
 <template>
   <div >
     <b-button  @click="addNew" variant="success" >เพิ่มตึก</b-button>
-    <b-modal
+    <b-modal style="text-align:center;"
       id="modal-building"
       ref="modalBuilding"
-      title="จัดการตึก"
+      title="การจัดการตึก"
       @show="showModal"
       @hidden="resetModal"
       @ok="handleOk"

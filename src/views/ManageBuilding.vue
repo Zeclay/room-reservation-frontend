@@ -26,10 +26,10 @@
         <b-col>
           <b-table :items="buildings" :fields="fields">
             <template #cell(operators)="{ item }">
-              <b-button @click="editProduct(item)">แก้ไข</b-button
+              <b-button variant="warning" @click="editBuilding(item)">แก้ไข</b-button
               ><b-button
-                @click="deleteProduct(item)"
-                class="ml-1"
+                @click="deleteBuilding(item)"
+                class="ml-3"
                 variant="danger"
                 >ลบ</b-button
               >
@@ -58,8 +58,7 @@ export default {
         { key: 'code', label: 'ชื่อตึก' },
         { key: 'operators', label: 'การจัดการ' }
       ],
-      buildings: [],
-      selectedItem: null
+      buildings: []
     }
   },
   methods: {
@@ -74,7 +73,7 @@ export default {
         self.buildings = response.data
       })
     },
-    deleteProduct (item) {
+    deleteBuilding (item) {
       if (confirm(`คุณต้องการจะลบตึก ${item.code} หรือไม่`)) {
         axios.delete('http://localhost:3000/buildings/' + item._id, {
           headers: {

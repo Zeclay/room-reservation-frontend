@@ -24,10 +24,11 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
-            <template #cell(operators)>
-              <b-button variant="warning">แก้ไข</b-button
+          <b-table :items="agencys" :fields="fields">
+            <template #cell(operators)="{ item }">
+              <b-button variant="warning" @click="editAgency(item)">แก้ไข</b-button
               ><b-button
+                @click="deleteAgency(item)"
                 class="ml-3"
                 variant="danger"
                 >ลบ</b-button
@@ -43,6 +44,7 @@
 
 <script>
 import Auth from '../components/Auth.vue'
+import axios from 'axios'
 export default {
   BuildingCode: 'Home',
   components: {
@@ -51,15 +53,40 @@ export default {
   data () {
     return {
       fields: [
-        { key: 'AgencyId', label: 'ไอดี' },
-        { key: 'AgencyName', label: 'หน่วยงาน' },
+        { key: '_id', label: 'ไอดี' },
+        { key: 'name', label: 'หน่วยงาน' },
         { key: 'operators', label: 'การจัดการ' }
       ],
-      productItems: [
-        { AgencyId: 1, AgencyName: 'วิทยาการสารสนเทศ' }
-
-      ]
+      agencys: []
     }
+  },
+  methods: {
+    getAgency () {
+      const self = this
+      axios.get('http://localhost:3000/agency', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.agencys = response.data
+      })
+    },
+    deleteAgency (item) {
+      if (confirm(`คุณต้องการจะลบตึก ${item.name} หรือไม่`)) {
+        axios.delete('http://localhost:3000/agency/' + item._id, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }).then(
+          console.log('Delete ' + item.name)
+        )
+      }
+      this.$router.go(0)
+    }
+  },
+  mounted () {
+    this.getAgency()
   }
 }
 </script>

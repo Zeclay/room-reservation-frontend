@@ -24,12 +24,15 @@
       </b-row>
       <b-row>
         <b-col>
+          <br>
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
                 <th>ไอดี</th>
                 <th>ชื่อ-นามสกุล</th>
                 <th>ชื่อผู้ใช้</th>
+                <th>อีเมล</th>
+                <th>สังกัดหน่วยงาน</th>
                 <th>ตำแหน่ง</th>
                 <th>Roles</th>
                 <th>การจัดการ</th>
@@ -40,6 +43,8 @@
                 <td>{{user._id}}</td>
                 <td>{{user.name}} {{user.surname}}</td>
                 <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.agency.name}}</td>
                 <td>{{user.position}}</td>
                 <td>{{user.roles}}</td>
                 <td><b-button variant="warning" @click="editUser(user)">แก้ไข</b-button

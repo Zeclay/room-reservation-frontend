@@ -24,17 +24,31 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="buildings" :fields="fields">
-            <template #cell(operators)="{ item }">
-              <b-button variant="warning" @click="editBuilding(item)">แก้ไข</b-button
+          <br>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ไอดี</th>
+                <th>รหัสตึก</th>
+                <th>ชื่อตึก</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="building in buildings" :key="building.id">
+                <td>{{building._id}}</td>
+                <td>{{building.name_build}}</td>
+                <td>{{building.code}}</td>
+                <td><b-button variant="warning" @click="editBuilding(building)">แก้ไข</b-button
               ><b-button
-                @click="deleteBuilding(item)"
+                @click="deleteBuilding(building)"
                 class="ml-3"
                 variant="danger"
                 >ลบ</b-button
-              >
-            </template>
-          </b-table>
+              ></td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>

@@ -24,17 +24,29 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="agencys" :fields="fields">
-            <template #cell(operators)="{ item }">
-              <b-button variant="warning" @click="editAgency(item)">แก้ไข</b-button
+          <br>
+         <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ไอดี</th>
+                <th>หน่วยงาน</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="agency in agencys" :key="agency.id">
+                <td>{{agency._id}}</td>
+                <td>{{agency.name}}</td>
+                <b-button variant="warning" @click="editAgency(agency)" class="mt-1">แก้ไข</b-button
               ><b-button
-                @click="deleteAgency(item)"
-                class="ml-3"
+                @click="deleteAgency(agency)"
+                class="ml-3 mt-1"
                 variant="danger"
                 >ลบ</b-button
               >
-            </template>
-          </b-table>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -52,11 +64,6 @@ export default {
   },
   data () {
     return {
-      fields: [
-        { key: '_id', label: 'ไอดี' },
-        { key: 'name', label: 'หน่วยงาน' },
-        { key: 'operators', label: 'การจัดการ' }
-      ],
       agencys: []
     }
   },

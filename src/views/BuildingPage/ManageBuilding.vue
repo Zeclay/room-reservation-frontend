@@ -14,7 +14,6 @@
       v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
-       <b-button variant="success">เพิ่มข้อมูล</b-button>
   </b-form>
       </div>
     </div>
@@ -22,6 +21,13 @@
     <div class="background-search">
     <b-container fluid>
       <b-row>
+        <b-col class="text-right">
+                <BuildingForm
+                  :building="selectedItem"
+                  ref="BuildingForm"
+                  @save="savebuilding"
+                ></BuildingForm>
+              </b-col>
       </b-row>
       <b-row>
         <b-col>
@@ -58,17 +64,20 @@
 </template>
 
 <script>
-import Auth from '../components/Auth.vue'
+import Auth from '../../components/Auth.vue'
+import BuildingForm from './BuildingForm.vue'
 import axios from 'axios'
 export default {
   BuildingCode: 'Home',
   components: {
-    Auth
+    Auth,
+    BuildingForm
   },
   data () {
     return {
       searchString: '',
-      buildings: []
+      buildings: [],
+      selectedItem: null
     }
   },
   computed: {
@@ -106,6 +115,66 @@ export default {
   },
   mounted () {
     this.getBuilding()
+  },
+  saveBuilding (building) {
+    console.log('Submit', building)
+    if (building._id === '') {
+      // Add New
+      axios
+        .post('http://localhost:3000/buildings', building, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+        .then(
+          function (response) {
+            const newbuilding = response.data
+            this.getBuilding()
+            this.makeToast(
+              'เพิ่มสำเร็จ',
+              'อาคาร ' + newbuilding._id + ' ถูกเพิ่มแล้ว'
+            )
+          }.bind(this)
+        )
+        .catch(() => {
+          this.makeToast(
+            'เพิ่มไม่เสร็จ',
+            'ไม่สามารถเพิ่ม ' + building._id,
+            'danger'
+          )
+        })
+    } else {
+      // Update
+      axios
+        .put('http://localhost:3000/buildings/' + building._id, building, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+        .then(
+          function (response) {
+            const updatebuilding = response.data
+            this.getBuildings()
+            this.makeToast(
+              'แก้ไขสำเร็จ',
+              'สินค้า ' + updatebuilding._id + ' ถูกแก้ไขแล้ว'
+            )
+          }.bind(this)
+        )
+        .catch(() => {
+          this.makeToast(
+            'แก้ไม่เสร็จ',
+            'ไม่สามารถแก้ไข ' + building._id,
+            'danger'
+          )
+        })
+    }
+  },
+  editBuilding (item) {
+    this.selectedItem = JSON.parse(JSON.stringify(item))
+    this.$nextTick(() => {
+      this.$refs.BuildingForm.show()
+    })
   }
 }
 </script>

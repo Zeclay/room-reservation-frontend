@@ -28,7 +28,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ManageBuilding.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/BuildingPage/ManageBuilding.vue')
   },
   {
     path: '/Booking1',
@@ -85,7 +85,16 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Approver.vue')
+  },
+  {
+    path: '/BuildingForm',
+    name: 'BuildingForm',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/BuildingPage/BuildingForm.vue')
   }
+
 ]
 
 const router = new VueRouter({

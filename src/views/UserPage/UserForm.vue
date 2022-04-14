@@ -101,10 +101,21 @@
           label="สังกัดคณะ :"
           label-for="users-institution"
         >
-        <select class="form-control" v-model="selected" :required @change="changeLocation">
-        <option>Choose Province</option>
-        <option v-for="option in options" v-bind:value="option.id" >{{ option.name }}</option>
-        </select>
+        <v-container fluid>
+        <v-row align="center">
+        <v-col
+          class="d-flex"
+          cols="12"
+          sm="6"
+      >
+        <v-select
+          :items="items"
+          label="Solo field"
+          solo
+        ></v-select>
+        </v-col>
+        </v-row>
+        </v-container>
         </b-form-group>
       </b-form>
       </td>
@@ -146,7 +157,7 @@ export default {
         roles: ''
       },
       isAddNew: false,
-      selected: 'Choose Province'
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
     }
   },
   computed: {

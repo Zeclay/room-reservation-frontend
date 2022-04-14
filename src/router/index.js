@@ -62,7 +62,6 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-<<<<<<< HEAD
     component: () => import(/* webpackChunkName: "about" */ '../views/ManageRoom.vue')
   },
   {
@@ -80,9 +79,6 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/UserPage/UserForm.vue')
-=======
-    component: () => import(/* webpackChunkName: "about" */ '../views/RoomPage/ManageRoom.vue')
->>>>>>> ab6974600bdfa04eb83b6efc5d1ce3c81e2bd42a
   },
   {
     path: '/ManageUser',

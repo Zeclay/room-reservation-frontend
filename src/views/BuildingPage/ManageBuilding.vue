@@ -22,7 +22,6 @@
                   @save="save"
                 ></BuildingForm>
   </b-form>
-
       </div>
     </div>
     <br>

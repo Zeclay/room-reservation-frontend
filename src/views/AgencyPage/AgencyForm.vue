@@ -1,10 +1,10 @@
 <template>
   <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มอาคาร</b-button>
+    <b-button  @click="addNew" variant="success" >เพิ่มหน่วยงาน</b-button>
     <b-modal
-      id="modal-building"
-      ref="modalBuilding"
-      title="การจัดการอาคาร"
+      id="modal-agency"
+      ref="modalAgency"
+      title="จัดการหน่วยงาน"
       @show="showModal"
       @hidden="resetModal"
       @ok="handleOk"
@@ -13,28 +13,14 @@
 
          <b-form-group
           id="form-group-name"
-          label="ชื่ออาคาร"
-          label-for="building-name"
+          label="ชื่อหน่วยงาน"
+          label-for="agency-name"
         >
           <b-form-input
             type="text"
             id="name"
-            placeholder="ชื่ออาคาร"
-            v-model="form.name_build"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-       <b-form-group
-          id="form-group-code"
-          label="รหัสอาคาร"
-          label-for="building-code"
-        >
-          <b-form-input
-            type="text"
-            id="code"
-            placeholder="รหัสอาคาร"
-            v-model="form.code"
+            placeholder="ชื่อหน่วยงาน"
+            v-model="form.name"
             autofocus
           >
           </b-form-input>
@@ -52,26 +38,25 @@
 <script>
 export default {
   props: {
-    building: Object
+    agency: Object
   },
   data () {
     return {
       form: {
         _id: '',
-        name_build: '',
-        code: ''
+        name: ''
 
       },
       isAddNew: false
     }
   },
   computed: {
-    // validateNamebuilding () {
+    // validateNameagency () {
     //   return this.form.name.length >= 3
     // },
 
     // validateForm () {
-    //   return this.validateNamebuilding
+    //   return this.validateNameagency
     // }
   },
   methods: {
@@ -83,18 +68,18 @@ export default {
       })
     },
     show () {
-      this.$refs.modalBuilding.show()
+      this.$refs.modalAgency.show()
     },
     submit () {
-      const building = JSON.parse(JSON.stringify(this.form))
-      this.$emit('save', building)
+      const agency = JSON.parse(JSON.stringify(this.form))
+      this.$emit('save', agency)
       this.reset()
     },
     reset () {
       this.form = {
         _id: '',
-        name_build: '',
-        code: ''
+        name: ''
+
       }
     },
     showModal () {
@@ -102,9 +87,8 @@ export default {
         this.reset()
       } else {
         // Edit
-        this.form._id = this.building._id
-        this.form.name_build = this.building.name_build
-        this.form.code = this.building.code
+        this.form._id = this.agency._id
+        this.form.name = this.agency.name
       }
     },
     resetModal (evt) {
@@ -114,7 +98,7 @@ export default {
       evt.preventDefault()
       this.submit()
       this.$nextTick(() => {
-        this.$bvModal.hide('modal-building')
+        this.$bvModal.hide('modal-agency')
       })
     }
   }

@@ -32,7 +32,7 @@
       จัดการหน่วยงาน
     </button>
     <button class="button" v-if="isSystemAdmin" @click="$router.push('/ManageBuilding')">
-      <i class="fas fa-building" style="font-size: 30px"></i>&nbsp; จัดการตึก
+      <i class="fas fa-building" style="font-size: 30px"></i>&nbsp; จัดการอาคาร
     </button>
   </div>
 </template>

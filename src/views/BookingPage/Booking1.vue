@@ -25,7 +25,7 @@
         <b-col>
           <b-table :items="productItems" :fields="fields">
             <template #cell(operators)>
-              <b-button variant="info" style="width:30%;">  VIEWS  </b-button>
+              <b-button variant="info" style="width:30%;">  ดูห้อง </b-button>
             </template>
           </b-table>
         </b-col>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Auth from '../components/Auth.vue'
+import Auth from '../../components/Auth.vue'
 export default {
   BuildingCode: 'Home',
   components: {

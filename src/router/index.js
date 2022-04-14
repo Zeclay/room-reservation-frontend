@@ -5,8 +5,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'SearchRoom',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SearchRoom.vue')
+    name: 'SearchRoom1',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SearchRoomPage/SearchRoom1.vue')
   },
   {
     path: '/about',
@@ -35,7 +35,15 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Booking1.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/BookingPage/Booking1.vue')
+  },
+  {
+    path: '/booking2',
+    name: 'Booking2',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/BookingPage/Booking2.vue')
   },
   {
     path: '/History',

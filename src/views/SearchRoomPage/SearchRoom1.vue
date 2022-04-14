@@ -53,11 +53,7 @@
         <b-col>
           <b-table :items="productItems" :fields="fields" style="text-align: center;">
             <template #cell(operators)>
-              <b-button variant="warning">แก้ไข</b-button
-              ><b-button
-                class="ml-3"
-                variant="danger"
-                >ลบ</b-button>
+               <b-button variant="info" style="width:40%;">ดูรายละเอียด</b-button>
             </template>
           </b-table>
         </b-col>
@@ -71,7 +67,7 @@
 </template>
 
 <script>
-import Auth from '../components/Auth.vue'
+import Auth from '../../components/Auth.vue'
 export default {
   name: 'Home',
   components: {
@@ -133,7 +129,7 @@ table, td, th {
 }
 .p2 {
   position: absolute;
-  left: 51%;
+  left: 57%;
 }
 .p3 {
   position: absolute;

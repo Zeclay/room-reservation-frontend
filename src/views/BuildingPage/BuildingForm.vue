@@ -1,16 +1,17 @@
 <template>
   <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มข้อมูล</b-button>
+    <b-button  @click="addNew" variant="success" >เพิ่มตึก</b-button>
     <b-modal
       id="modal-building"
       ref="modalBuilding"
-      title="ตึก"
+      title="จัดการตึก"
       @show="showModal"
       @hidden="resetModal"
       @ok="handleOk"
     >
       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-        <b-form-group
+
+         <b-form-group
           id="form-group-name"
           label="ชื่อตึก"
           label-for="building-name"
@@ -18,22 +19,25 @@
           <b-form-input
             type="text"
             id="name"
-            placeholder="ชื่อหน่วยงาน"
-            v-model="form.name"
-            :state="validateNamebuilding"
+            placeholder="ชื่อตึก"
+            v-model="form.name_build"
             autofocus
           >
           </b-form-input>
-          <b-form-invalid-feedback :state="validateNamebuilding">
-            ชื่อหน่วยงานต้องมีความยาวอย่างน้อย 3 ตัวอักษร
-          </b-form-invalid-feedback>
         </b-form-group>
-        <b-form-group
-          id="form-group-name-building"
-          label="Name"
-          label-for="name-building"
+       <b-form-group
+          id="form-group-code"
+          label="รหัสตึก"
+          label-for="building-code"
         >
-
+          <b-form-input
+            type="text"
+            id="code"
+            placeholder="รหัสตึก"
+            v-model="form.code"
+            autofocus
+          >
+          </b-form-input>
         </b-form-group>
       </b-form>
       <b-card>
@@ -54,20 +58,21 @@ export default {
     return {
       form: {
         _id: '',
-        name: ''
+        name_build: '',
+        code: ''
 
       },
       isAddNew: false
     }
   },
   computed: {
-    validateNamebuilding () {
-      return this.form.name.length >= 3
-    },
+    // validateNamebuilding () {
+    //   return this.form.name.length >= 3
+    // },
 
-    validateForm () {
-      return this.validateNamebuilding
-    }
+    // validateForm () {
+    //   return this.validateNamebuilding
+    // }
   },
   methods: {
     addNew () {
@@ -81,14 +86,15 @@ export default {
       this.$refs.modalBuilding.show()
     },
     submit () {
-      const product = JSON.parse(JSON.stringify(this.form))
-      this.$emit('save', product)
+      const building = JSON.parse(JSON.stringify(this.form))
+      this.$emit('save', building)
       this.reset()
     },
     reset () {
       this.form = {
         _id: '',
-        name: ''
+        name_build: '',
+        code: ''
       }
     },
     showModal () {
@@ -97,7 +103,8 @@ export default {
       } else {
         // Edit
         this.form._id = this.building._id
-        this.form.name = this.building.name
+        this.form.name_build = this.building.name_build
+        this.form.code = this.building.code
       }
     },
     resetModal (evt) {
@@ -105,7 +112,6 @@ export default {
     },
     handleOk (evt) {
       evt.preventDefault()
-      if (!this.validateForm) return
       this.submit()
       this.$nextTick(() => {
         this.$bvModal.hide('modal-building')

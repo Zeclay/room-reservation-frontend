@@ -19,7 +19,7 @@
     <BuildingForm
                   :building="selectedItem"
                   ref="BuildingForm"
-                  @save="savebuilding"
+                  @save="save"
                 ></BuildingForm>
   </b-form>
 
@@ -79,6 +79,7 @@ export default {
       searchString: '',
       buildings: [],
       selectedItem: null
+
     }
   },
   computed: {
@@ -112,70 +113,51 @@ export default {
         )
       }
       this.$router.go(0)
+    },
+    save (building) {
+      console.log('Submit', building)
+      if (building._id === '') {
+      // Add New
+        axios
+          .post('http://localhost:3000/buildings', building, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
+          .then(
+            function (response) {
+              this.getBuilding()
+            }.bind(this)
+          )
+          .catch(() => {
+          }
+          )
+      } else {
+      // Update
+        axios
+          .put('http://localhost:3000/buildings/' + building._id, building, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
+          .then(
+            function (response) {
+              this.getBuildings()
+            }.bind(this)
+          )
+          .catch(() => {
+          })
+      }
+    },
+    editBuilding (item) {
+      this.selectedItem = JSON.parse(JSON.stringify(item))
+      this.$nextTick(() => {
+        this.$refs.BuildingForm.show()
+      })
     }
   },
   mounted () {
     this.getBuilding()
-  },
-  saveBuilding (building) {
-    console.log('Submit', building)
-    if (building._id === '') {
-      // Add New
-      axios
-        .post('http://localhost:3000/buildings', building, {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('token')
-          }
-        })
-        .then(
-          function (response) {
-            const newbuilding = response.data
-            this.getBuilding()
-            this.makeToast(
-              'เพิ่มสำเร็จ',
-              'อาคาร ' + newbuilding._id + ' ถูกเพิ่มแล้ว'
-            )
-          }.bind(this)
-        )
-        .catch(() => {
-          this.makeToast(
-            'เพิ่มไม่เสร็จ',
-            'ไม่สามารถเพิ่ม ' + building._id,
-            'danger'
-          )
-        })
-    } else {
-      // Update
-      axios
-        .put('http://localhost:3000/buildings/' + building._id, building, {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('token')
-          }
-        })
-        .then(
-          function (response) {
-            const updatebuilding = response.data
-            this.getBuildings()
-            this.makeToast(
-              'แก้ไขสำเร็จ',
-              'สินค้า ' + updatebuilding._id + ' ถูกแก้ไขแล้ว'
-            )
-          }.bind(this)
-        )
-        .catch(() => {
-          this.makeToast(
-            'แก้ไม่เสร็จ',
-            'ไม่สามารถแก้ไข ' + building._id,
-            'danger'
-          )
-        })
-    }
-  },
-  editBuilding (item) {
-    this.selectedItem = JSON.parse(JSON.stringify(item))
-    this.$nextTick(() => {
-      this.$refs.BuildingForm.show()
-    })
   }
 }
 </script>

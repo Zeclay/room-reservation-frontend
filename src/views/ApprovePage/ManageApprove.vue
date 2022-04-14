@@ -8,14 +8,14 @@
           <label class="sr-only" for="inline-form-input-BuildingCode"
             >Name</label
           >
+          <b-button style="background-color:"><i class="fa fa-search"></i></b-button>&nbsp;
           <b-form-input
             id="inline-form-input-BuildingCode"
             class="mb-2 mr-sm-2 mb-sm-0"
-            placeholder="ค้นหาผู้พิจารณา"
+            placeholder="Search..."
             style="width: 25%"
             v-model="searchString"
           ></b-form-input>
-          <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
           <!-- <b-button variant="success">เพิ่มข้อมูล</b-button> -->
           <ApproveForm
             :approve="selectedItem"

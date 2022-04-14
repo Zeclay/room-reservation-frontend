@@ -53,7 +53,7 @@
         <b-col>
           <b-table :items="productItems" :fields="fields" style="text-align: center;">
             <template #cell(operators)>
-               <b-button variant="info" style="width:40%;">ดูรายละเอียด</b-button>
+               <b-button variant="info" style="width:40%;" @click="$router.push('/booking3')">ดูรายละเอียด</b-button>
             </template>
           </b-table>
         </b-col>

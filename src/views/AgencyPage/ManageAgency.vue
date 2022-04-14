@@ -6,14 +6,14 @@
       <div style="padding-left: 1%">
   <b-form inline>
     <label class="sr-only" for="inline-form-input-AgencyCode">Name</label>
-    <b-form-input
-      id="inline-form-input-AgencyCode"
-      class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="ค้นหาหน่วยงาน"
-      style="width: 25% "
-      v-model="searchString"
-    ></b-form-input>
-    <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
+    <b-button style="background-color:"><i class="fa fa-search"></i></b-button>&nbsp;
+          <b-form-input
+            id="inline-form-input-BuildingCode"
+            class="mb-2 mr-sm-2 mb-sm-0"
+            placeholder="Search..."
+            style="width: 25%"
+            v-model="searchString"
+          ></b-form-input>
        <AgencysForm
                   :agency="selectedItem"
                   ref="AgencysForm"

@@ -3,7 +3,7 @@
     <button class="button" v-if="isUser" @click="$router.push('/')">
       <i class="fa fa-search" style="font-size: 30px"></i>&nbsp; ค้นหาห้อง
     </button>
-    <button class="button" v-if="isUser" @click="$router.push('/Booking1')">
+    <button class="button" v-if="isUser" @click="$router.push('/booking1')">
       <i class="fa fa-calendar" style="font-size: 30px"></i>&nbsp; การจอง
     </button>
 

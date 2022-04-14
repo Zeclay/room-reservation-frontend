@@ -101,21 +101,12 @@
           label="สังกัดคณะ :"
           label-for="users-institution"
         >
-        <v-container fluid>
-        <v-row align="center">
-        <v-col
-          class="d-flex"
-          cols="12"
-          sm="6"
-      >
-        <v-select
-          :items="items"
-          label="Solo field"
-          solo
-        ></v-select>
-        </v-col>
-        </v-row>
-        </v-container>
+        <b-form-select
+        id="inline-form-custom-select-pref"
+          class="mb-2 mr-sm-2 mb-sm-0"
+          :options="[{ text: 'Select Role...', value: null }, 'One', 'Two', 'Three']"
+          :value="null"
+    ></b-form-select>
         </b-form-group>
       </b-form>
       </td>
@@ -156,8 +147,7 @@ export default {
         position: '',
         roles: ''
       },
-      isAddNew: false,
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
+      isAddNew: false
     }
   },
   computed: {

@@ -1,18 +1,19 @@
 <template>
   <Auth>
     <div class="home">
-      <center> <h3 style="padding-top: 2%">การจัดการข้อมูลห้อง</h3></center>
+      <center><h3 style="padding-top: 2%">การจัดการข้อมูลห้อง</h3></center>
       <br>
       <div style="padding-left: 1%">
   <b-form inline>
     <label class="sr-only" for="inline-form-input-roomCode">Name</label>
-    <b-form-input
-      id="inline-form-input-roomCode"
-      class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="ค้นหาผู้พิจารณา"
-      style="width: 25% "
-      v-model="searchString"
-    ></b-form-input>
+    <b-button style="background-color:"><i class="fa fa-search"></i></b-button>&nbsp;
+          <b-form-input
+            id="inline-form-input-BuildingCode"
+            class="mb-2 mr-sm-2 mb-sm-0"
+            placeholder="Search..."
+            style="width: 25%"
+            v-model="searchString"
+          ></b-form-input>
         <RoomForm
                   :room="selectedItem"
                   ref="RoomForm"

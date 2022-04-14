@@ -11,6 +11,7 @@
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="ค้นหาหน่วยงาน"
       style="width: 25% "
+      v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
        <b-button variant="success">เพิ่มข้อมูล</b-button>
@@ -34,7 +35,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="agency in agencys" :key="agency.id">
+              <tr v-for="agency in filteredAgencies" :key="agency.id">
                 <td>{{agency._id}}</td>
                 <td>{{agency.name}}</td>
                 <b-button variant="warning" @click="editAgency(agency)" class="mt-1">แก้ไข</b-button
@@ -64,7 +65,16 @@ export default {
   },
   data () {
     return {
+      searchString: '',
       agencys: []
+    }
+  },
+  computed: {
+    filteredAgencies () {
+      const filteredAgencies = this.searchString === ''
+        ? this.agencys
+        : this.agencys.filter(ag => Object.values(ag).join('').indexOf(this.searchString) !== -1)
+      return filteredAgencies
     }
   },
   methods: {

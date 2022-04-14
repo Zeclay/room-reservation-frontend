@@ -101,10 +101,10 @@
           label="สังกัดคณะ :"
           label-for="users-institution"
         >
-        <select class="form-control" v-model="selected" :required @change="changeLocation">
+        <!-- <select class="form-control" v-model="selected" :required @change="changeLocation">
         <option>Choose Province</option>
         <option v-for="option in options" v-bind:value="option.id" >{{ option.name }}</option>
-        </select>
+        </select> -->
         </b-form-group>
       </b-form>
       </td>

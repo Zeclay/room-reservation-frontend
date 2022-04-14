@@ -11,6 +11,7 @@
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="ค้นหาผู้ใช้"
       style="width: 25% "
+      v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
        <b-button variant="success">เพิ่มข้อมูล</b-button>
@@ -39,7 +40,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in users" :key="user.id">
+              <tr v-for="user in filteredUsers" :key="user.id">
                 <td>{{user._id}}</td>
                 <td>{{user.name}} {{user.surname}}</td>
                 <td>{{user.username}}</td>
@@ -74,7 +75,16 @@ export default {
   },
   data () {
     return {
+      searchString: '',
       users: []
+    }
+  },
+  computed: {
+    filteredUsers () {
+      const filteredUsers = this.searchString === ''
+        ? this.users
+        : this.users.filter(wo => Object.values(wo).join('').indexOf(this.searchString) !== -1)
+      return filteredUsers
     }
   },
   methods: {

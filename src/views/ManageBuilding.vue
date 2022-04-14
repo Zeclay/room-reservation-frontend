@@ -24,7 +24,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
+          <b-table :items="buildings" :fields="fields">
             <template #cell(operators)>
               <b-button variant="warning">แก้ไข</b-button
               ><b-button
@@ -43,6 +43,7 @@
 
 <script>
 import Auth from '../components/Auth.vue'
+import axios from 'axios'
 export default {
   BuildingCode: 'Home',
   components: {
@@ -51,16 +52,30 @@ export default {
   data () {
     return {
       fields: [
-        { key: 'BuildingId', label: 'ไอดี' },
-        { key: 'BuildingCode', label: 'รหัสตึก' },
-        { key: 'BuildingName', label: 'ชื่อตึก' },
+        { key: '_id', label: 'ไอดี' },
+        { key: 'name_build', label: 'รหัสตึก' },
+        { key: 'code', label: 'ชื่อตึก' },
         { key: 'operators', label: 'การจัดการ' }
       ],
-      productItems: [
-        { BuildingId: 1, BuildingCode: 'IF', BuildingName: 'Informatics' }
-
-      ]
+      buildings: [],
+      selectedItem: null
     }
+  },
+  methods: {
+    getBuilding () {
+      const self = this
+      axios.get('http://localhost:3000/buildings', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.buildings = response.data
+      })
+    }
+  },
+  mounted () {
+    this.getBuilding()
   }
 }
 </script>

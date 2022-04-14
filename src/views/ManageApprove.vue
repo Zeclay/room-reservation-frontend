@@ -11,6 +11,7 @@
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="ค้นหาผู้พิจารณา"
       style="width: 25% "
+      v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
        <b-button variant="success">เพิ่มข้อมูล</b-button>
@@ -36,7 +37,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="approve in approves" :key="approve.id">
+              <tr v-for="approve in filteredApproves" :key="approve.id">
                 <td>{{approve._id}}</td>
                 <td>{{approve.description}}</td>
                 <td>{{approve.order_Approve[0].name}} {{approve.order_Approve[0].surname}}</td>
@@ -68,7 +69,16 @@ export default {
   },
   data () {
     return {
+      searchString: '',
       approves: []
+    }
+  },
+  computed: {
+    filteredApproves () {
+      const filteredApproves = this.searchString === ''
+        ? this.approves
+        : this.approves.filter(ap => Object.values(ap).join('').indexOf(this.searchString) !== -1)
+      return filteredApproves
     }
   },
   methods: {

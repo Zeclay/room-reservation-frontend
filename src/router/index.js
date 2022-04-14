@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import ManageBuilding from '../views/BuildingPage/ManageBuilding.vue'
+import BuildingForm from '../views/BuildingPage/BuildingForm.vue'
 
 Vue.use(VueRouter)
 
@@ -28,7 +30,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/BuildingPage/ManageBuilding.vue')
+    component: () => ManageBuilding
   },
   {
     path: '/Booking1',
@@ -92,7 +94,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/BuildingPage/BuildingForm.vue')
+    component: () => BuildingForm
   }
 
 ]

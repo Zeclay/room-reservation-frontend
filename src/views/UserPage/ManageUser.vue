@@ -14,7 +14,11 @@
       v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
-       <b-button variant="success">เพิ่มข้อมูล</b-button>
+       <UserForm
+                  :users="selectedItem"
+                  ref="UserForm"
+                  @save="save"
+                ></UserForm>
   </b-form>
       </div>
     </div>
@@ -66,12 +70,14 @@
 </template>
 
 <script>
-import Auth from '../components/Auth.vue'
+import Auth from '../../components/Auth.vue'
 import axios from 'axios'
+import UserForm from './UserForm.vue'
 export default {
   BuildingCode: 'Home',
   components: {
-    Auth
+    Auth,
+    UserForm
   },
   data () {
     return {
@@ -110,6 +116,47 @@ export default {
         )
       }
       this.$router.go(0)
+    },
+    save (users) {
+      console.log('Submit', users)
+      if (users._id === '') {
+      // Add New
+        axios
+          .post('http://localhost:3000/users', users, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
+          .then(
+            function (response) {
+              this.getUser()
+            }.bind(this)
+          )
+          .catch(() => {
+          }
+          )
+      } else {
+      // Update
+        axios
+          .put('http://localhost:3000/users/' + users._id, users, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
+          .then(
+            function (response) {
+              this.getUser()
+            }.bind(this)
+          )
+          .catch(() => {
+          })
+      }
+    },
+    editUser (item) {
+      this.selectedItem = JSON.parse(JSON.stringify(item))
+      this.$nextTick(() => {
+        this.$refs.UserForm.show()
+      })
     }
   },
   mounted () {

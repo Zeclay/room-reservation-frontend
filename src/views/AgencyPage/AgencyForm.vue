@@ -13,7 +13,7 @@
 
          <b-form-group
           id="form-group-name"
-          label="ชื่อหน่วยงาน"
+          label="ชื่อหน่วยงาน :"
           label-for="agency-name"
         >
           <b-form-input

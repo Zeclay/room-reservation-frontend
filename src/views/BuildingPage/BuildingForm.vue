@@ -1,10 +1,10 @@
 <template>
   <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มตึก</b-button>
-    <b-modal style="text-align:center;"
+    <b-button  @click="addNew" variant="success" >เพิ่มอาคาร</b-button>
+    <b-modal
       id="modal-building"
       ref="modalBuilding"
-      title="การจัดการตึก"
+      title="การจัดการอาคาร"
       @show="showModal"
       @hidden="resetModal"
       @ok="handleOk"
@@ -13,13 +13,13 @@
 
          <b-form-group
           id="form-group-name"
-          label="ชื่อตึก"
+          label="ชื่ออาคาร"
           label-for="building-name"
         >
           <b-form-input
             type="text"
             id="name"
-            placeholder="ชื่อตึก"
+            placeholder="ชื่ออาคาร"
             v-model="form.name_build"
             autofocus
           >
@@ -27,13 +27,13 @@
         </b-form-group>
        <b-form-group
           id="form-group-code"
-          label="รหัสตึก"
+          label="รหัสอาคาร"
           label-for="building-code"
         >
           <b-form-input
             type="text"
             id="code"
-            placeholder="รหัสตึก"
+            placeholder="รหัสอาคาร"
             v-model="form.code"
             autofocus
           >

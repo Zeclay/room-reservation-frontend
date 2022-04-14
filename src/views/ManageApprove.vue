@@ -24,16 +24,32 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
-            <template #cell(operators)>
-              <b-button variant="warning">แก้ไข</b-button
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ไอดี</th>
+                <th>ชุดผู้พิจารณา</th>
+                <th>ผู้พิจารณาที่1</th>
+                <th>ผู้พิจารณาที่2</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="approve in approves" :key="approve.id">
+                <td>{{approve._id}}</td>
+                <td>{{approve.description}}</td>
+                <td>{{approve.order_Approve[0].name}} {{approve.order_Approve[0].surname}}</td>
+                <td>{{approve.order_Approve[1].name}} {{approve.order_Approve[1].surname}}</td>
+                <td><b-button variant="warning" @click="editApprove(approve)">แก้ไข</b-button
               ><b-button
+                @click="deleteApprove(approve)"
                 class="ml-3"
                 variant="danger"
                 >ลบ</b-button
-              >
-            </template>
-          </b-table>
+              ></td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -43,6 +59,7 @@
 
 <script>
 import Auth from '../components/Auth.vue'
+import axios from 'axios'
 export default {
   BuildingCode: 'Home',
   components: {
@@ -50,19 +67,37 @@ export default {
   },
   data () {
     return {
-      fields: [
-        { key: 'ApproveId', label: 'ไอดี' },
-        { key: 'ApproveSet', label: 'ชุดผู้พิจารณา' },
-        { key: 'Affiliation', label: 'สังกัด' },
-        { key: 'Approve1', label: 'ผู้พิจารณาที่1' },
-        { key: 'Approve2', label: 'ผู้พิจารณาที่2' },
-        { key: 'operators', label: 'การจัดการ' }
-      ],
-      productItems: [
-        { ApproveId: 1, ApproveSet: 'วิทยาการสารสนเทศ', Affiliation: 'วิทยาการสารสนเทศ', Approve1: 'สุขใจ', Approve2: 'มานี' }
-
-      ]
+      approves: []
     }
+  },
+  methods: {
+    getApprove () {
+      const self = this
+      axios.get('http://localhost:3000/approves', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.approves = response.data
+      })
+    },
+    deleteApprove (item) {
+      if (confirm(`คุณต้องการจะลบชุดผู้พิจารณา ${item.description} หรือไม่`)) {
+        axios.delete('http://localhost:3000/approves/' + item._id, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }).then(
+          console.log('Delete ' + item.description)
+        )
+      }
+      this.$router.go(0)
+    }
+
+  },
+  mounted () {
+    this.getApprove()
   }
 }
 </script>

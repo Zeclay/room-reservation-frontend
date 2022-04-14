@@ -1,6 +1,6 @@
 <template>
   <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มตึก</b-button>
+    <b-button  @click="addNew" variant="success" >เพิ่มข้อมูล</b-button>
     <b-modal
       id="modal-building"
       ref="modalBuilding"

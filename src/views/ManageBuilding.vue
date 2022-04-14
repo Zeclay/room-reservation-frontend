@@ -68,12 +68,6 @@ export default {
   data () {
     return {
       searchString: '',
-      fields: [
-        { key: '_id', label: 'ไอดี' },
-        { key: 'name_build', label: 'รหัสตึก' },
-        { key: 'code', label: 'ชื่อตึก' },
-        { key: 'operators', label: 'การจัดการ' }
-      ],
       buildings: []
     }
   },

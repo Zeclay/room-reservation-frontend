@@ -11,6 +11,7 @@
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="ค้นหาห้อง"
       style="width: 25% "
+      v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
        <b-button variant="success">เพิ่มข้อมูล</b-button>
@@ -50,6 +51,7 @@ export default {
   },
   data () {
     return {
+      searchString: '',
       fields: [
         { key: 'RoomId', label: 'ไอดี' },
         { key: 'RoomCode', label: 'เลขห้อง' },
@@ -60,9 +62,17 @@ export default {
         { key: 'operators', label: 'การจัดการ' }
       ],
       productItems: [
-        { RoomId: 1, RoomCode: '11IFM', RoomDetail: 'อุปกรณณ์ต่างๆ', BuildingID: '1IF', RoomSeat: '50', ApproveID: '1' }
+        { RoomId: 1, RoomCode: '11IFM', RoomDetail: 'อุปกรณ์ต่างๆ', BuildingID: '1IF', RoomSeat: '50', ApproveID: '1' }
 
       ]
+    }
+  },
+  computed: {
+    filteredRooms () {
+      const filteredRooms = this.searchString === ''
+        ? this.rooms
+        : this.rooms.filter(r => Object.values(r).join('').indexOf(this.searchString) !== -1)
+      return filteredRooms
     }
   }
 }

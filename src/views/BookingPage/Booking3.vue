@@ -18,11 +18,21 @@
         </b-col>
       </b-row>
     </b-container>
+     <b-button variant="warning" style="width:10%; margin-left: 88%" >ยืนยันการจอง</b-button>
+     <br><br>
   </div>
 </center>
 <br> <br>
 <div class="background-search " style="padding: 2%" >
-
+<b-container fluid>
+      <b-row>
+      </b-row>
+      <b-row>
+        <b-col>
+          <h1>ตารางเวลา</h1>
+        </b-col>
+      </b-row>
+    </b-container>
 </div>
   </div>
   </div>
@@ -40,14 +50,12 @@ export default {
   data () {
     return {
       fields: [
-        { key: 'BuildingId', label: 'ไอดี' },
-        { key: 'BuildingCode', label: 'รหัสตึก' },
-        { key: 'BuildingName', label: 'ชื่อตึก' },
-        { key: 'operators', label: 'การจัดการ' }
+        { key: 'RoomId', label: 'ตารางเวลา' },
+        { key: 'RoomDetail', label: 'รายละเอียด' },
+        { key: 'Amount', label: 'ความจุ' }
       ],
       productItems: [
-        { BuildingId: 1, BuildingCode: 'IF', BuildingName: 'Informatics' }
-
+        { RoomId: '3C02', RoomDetail: 'บริการคอมพิวเตอร์', Amount: '40' }
       ]
     }
   }
@@ -69,9 +77,6 @@ export default {
   height: 100%;
   width: 100%;
 }
-.position-buttonSelected{
-  margin-left: 100% ;
-}
 .background.menu{
   background-color: rgb(170, 162, 21);
 }
@@ -87,7 +92,7 @@ table, td, th {
     border: 1px solid black;
 }
 .p {
-  position: absolute;
+  position: relative;
   left: 40%;
 }
 .p2 {
@@ -98,4 +103,5 @@ table, td, th {
   position: absolute;
   left: 10%;
 }
+
 </style>

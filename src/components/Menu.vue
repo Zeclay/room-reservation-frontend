@@ -116,6 +116,7 @@ export default {
 
 .button:hover {
   background-color: rgb(170, 162, 21);
+  color: white;
 }
 
 </style>

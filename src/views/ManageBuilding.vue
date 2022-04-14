@@ -11,6 +11,7 @@
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="ค้นหาตึก"
       style="width: 25% "
+      v-model="searchString"
     ></b-form-input>
     <b-button>SEARCH</b-button>&nbsp;&nbsp;&nbsp;
        <b-button variant="success">เพิ่มข้อมูล</b-button>
@@ -35,7 +36,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="building in buildings" :key="building.id">
+              <tr v-for="building in filteredBuildings" :key="building.id">
                 <td>{{building._id}}</td>
                 <td>{{building.name_build}}</td>
                 <td>{{building.code}}</td>
@@ -66,6 +67,7 @@ export default {
   },
   data () {
     return {
+      searchString: '',
       fields: [
         { key: '_id', label: 'ไอดี' },
         { key: 'name_build', label: 'รหัสตึก' },
@@ -73,6 +75,14 @@ export default {
         { key: 'operators', label: 'การจัดการ' }
       ],
       buildings: []
+    }
+  },
+  computed: {
+    filteredBuildings () {
+      const filteredBuildings = this.searchString === ''
+        ? this.buildings
+        : this.buildings.filter(b => Object.values(b).join('').indexOf(this.searchString) !== -1)
+      return filteredBuildings
     }
   },
   methods: {

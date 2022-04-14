@@ -6,13 +6,13 @@
       <div style="padding-left: 1%">
   <b-form inline>
     <label class="sr-only" for="inline-form-input-BuildingCode">Name</label>
+    <b-button>ค้นหาตึก :</b-button>&nbsp;&nbsp;
     <b-form-input
       id="inline-form-input-BuildingCode"
       class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="ค้นหาตึกที่ต้องการ"
+      placeholder="ค้นหาตึกที่ต้องการได้ที่นี่..."
       style="width: 25% "
     ></b-form-input>
-    <b-button>SEARCH</b-button>
   </b-form>
       </div>
     </div>
@@ -25,7 +25,7 @@
         <b-col>
           <b-table :items="productItems" :fields="fields">
             <template #cell(operators)>
-              <b-button variant="info" style="width:30%;">  ดูห้อง </b-button>
+              <b-button variant="info" style="width:30%;" @click="$router.push('/booking2')">  ดูห้อง </b-button>
             </template>
           </b-table>
         </b-col>

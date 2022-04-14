@@ -83,7 +83,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ManageApprove.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/ApprovePage/ManageApprove.vue')
   },
   {
     path: '/ManageAgency',
@@ -99,7 +99,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Approver.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views//Approver.vue')
   },
   {
     path: '/BuildingForm',
@@ -108,6 +108,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/BuildingPage/BuildingForm.vue')
+  },
+  {
+    path: '/ApproveForm',
+    name: 'ApproveForm',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/ApprovePage/ApproveForm.vue')
   }
 
 ]

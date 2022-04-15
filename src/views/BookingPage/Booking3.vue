@@ -98,8 +98,22 @@ export default {
         self.rooms = response.data
       })
     },
-    save (room) {
-
+    save (booking) {
+      console.log(booking)
+      axios
+        .post('http://localhost:3000/booking/addBooking', booking, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+        .then(
+          function (response) {
+            this.getUser()
+          }.bind(this)
+        )
+        .catch(() => {
+        }
+        )
     }
   },
   mounted () {

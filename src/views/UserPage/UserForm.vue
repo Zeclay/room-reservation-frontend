@@ -140,7 +140,6 @@
         <label>Local Admin</label>&nbsp;&nbsp;&nbsp;
         <input type="radio" name="radio" value="SYSTEM" v-model="form.rank" :disabled="!isSystemAdmin"/>&nbsp;
         <label>System Admin</label>&nbsp;&nbsp;&nbsp;
-        <span class="checkmark"></span>
       </b-form>
       <b-card>
         <pre>

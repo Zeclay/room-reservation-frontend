@@ -156,6 +156,7 @@ export default {
           .catch(() => {
           })
       }
+      this.$router.go(0)
     },
     editRoom (item) {
       this.selectedItem = JSON.parse(JSON.stringify(item))

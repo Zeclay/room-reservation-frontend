@@ -151,6 +151,7 @@ export default {
           .catch(() => {
           })
       }
+      this.$router.go(0)
     },
     editAgency (item) {
       this.selectedItem = JSON.parse(JSON.stringify(item))

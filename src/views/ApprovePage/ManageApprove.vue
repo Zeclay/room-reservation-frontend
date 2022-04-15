@@ -162,6 +162,7 @@ export default {
           )
           .catch(() => {})
       }
+      this.$router.go(0)
     },
     editApprove (item) {
       this.selectedItem = JSON.parse(JSON.stringify(item))

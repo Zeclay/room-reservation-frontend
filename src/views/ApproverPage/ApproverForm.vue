@@ -7,9 +7,11 @@
       title="รายละเอียดคำร้องของจองห้อง"
       @show="showModal"
       @hidden="resetModal"
-      ok-title = "Accept"
+      ok-title = "อนุมัติการจอง"
       ok-variant="success"
+      cancel-title = "ไม่อนุมัติการจอง"
       cancel-variant="danger"
+      @ok="handleOk"
     >
       <table style="border: 0px solid white">
         <tr>

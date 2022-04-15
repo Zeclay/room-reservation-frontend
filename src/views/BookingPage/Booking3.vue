@@ -5,7 +5,7 @@
   <div class="home" >
 <center>
   <div>
-  <h2 style="padding-top:2%">การจอง {{rooms.code}}</h2>
+  <h2 style="padding-top:2%">ห้อง {{rooms.code}}</h2>
   </div>
 </center>
 <center>

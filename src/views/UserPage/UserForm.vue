@@ -86,7 +86,7 @@
                 label-for="users-password"
               >
                 <b-form-input
-                  type="text"
+                  type="password"
                   id="password"
                   placeholder="พิมพ์รหัสผ่าน"
                   v-model="form.password"

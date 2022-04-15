@@ -80,10 +80,11 @@ export default {
         { key: 'BuildingId', label: 'ไอดี' },
         { key: 'BuildingCode', label: 'รหัสตึก' },
         { key: 'BuildingName', label: 'ชื่อตึก' },
+        { key: 'RoomName', label: 'ชื่อห้อง' },
         { key: 'operators', label: 'การจัดการ' }
       ],
       productItems: [
-        { BuildingId: 1, BuildingCode: 'IF', BuildingName: 'Informatics' }
+        { BuildingId: 1, BuildingCode: 'IF', BuildingName: 'Informatics', RoomName: 'IF3c01' }
 
       ]
     }

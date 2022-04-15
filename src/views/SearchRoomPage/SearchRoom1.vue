@@ -3,7 +3,7 @@
   <div class="home" >
 <center>
   <div>
-  <h2 style="padding-top:2%">ค้นหาห้อง</h2>
+  <h3 style="padding-top:2%">ค้นหาห้อง</h3>
   </div>
 </center>
 <br> <br>

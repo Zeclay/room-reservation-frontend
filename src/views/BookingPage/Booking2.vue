@@ -6,7 +6,7 @@
       <div style="padding-left: 1%">
   <b-form inline>
     <label class="sr-only" for="inline-form-input-BuildingCode">Name</label>
-    <b-button>ค้นหาห้อง :</b-button>&nbsp;&nbsp;
+    <b-button style="background-color:gray">ค้นหาห้อง :</b-button>&nbsp;&nbsp;
     <b-form-input
       id="inline-form-input-BuildingCode"
       class="mb-2 mr-sm-2 mb-sm-0"

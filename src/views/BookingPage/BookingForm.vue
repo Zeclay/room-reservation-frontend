@@ -7,8 +7,9 @@
       title="ฟอร์มยืนคำร้องการจองห้อง"
       @show="showModal"
       @hidden="resetModal"
-      ok-title = "Accept"
+      ok-title="ตกลง"
       ok-variant="success"
+      cancel-title="ยกเลิก"
       cancel-variant="danger"
     >
       <table style="border: 0px solid white">

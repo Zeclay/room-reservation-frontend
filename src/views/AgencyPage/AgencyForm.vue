@@ -7,6 +7,9 @@
       title="จัดการหน่วยงาน"
       @show="showModal"
       @hidden="resetModal"
+      ok-title="ตกลง"
+      ok-variant="success"
+      cancel-title="ยกเลิก"
       @ok="handleOk"
     >
       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">

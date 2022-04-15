@@ -7,6 +7,9 @@
       title="จัดการผู้ใช้งาน"
       @show="showModal"
       @hidden="resetModal"
+      ok-title="ตกลง"
+      ok-variant="success"
+      cancel-title="ยกเลิก"
       @ok="handleOk"
     >
       <table style="border: 0px solid white">

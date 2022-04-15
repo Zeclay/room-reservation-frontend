@@ -35,7 +35,11 @@
         </b-col>
       </b-row>
     </b-container>
-     <b-button variant="warning" style="width:10%; margin-left: 88%" >ยืนยันการจอง</b-button>
+          <BookingForm
+                  ref="BookingForm"
+                  @save="save"
+                ></BookingForm>
+     <!-- <b-button variant="warning" style="width:10%; margin-left: 88%" @click="confirmBooking()">ยืนยันการจอง</b-button> -->
      <br><br>
   </div>
 </center>
@@ -63,11 +67,13 @@ import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
 import th from '../../locale/th'
 import axios from 'axios'
+import BookingForm from './BookingForm.vue'
 export default {
   name: 'Home',
   components: {
     VueCal,
-    Auth
+    Auth,
+    BookingForm
   },
   computed: {
     th () {
@@ -77,12 +83,13 @@ export default {
   data () {
     return {
       rooms: []
+
     }
   },
   methods: {
     getRoom () {
       const self = this
-      axios.get('http://localhost:3000/Rooms/' + localStorage.getItem('lastRoom'), {
+      axios.get('http://localhost:3000/rooms/' + localStorage.getItem('lastRoom'), {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
@@ -90,6 +97,9 @@ export default {
         console.log(response)
         self.rooms = response.data
       })
+    },
+    save (room) {
+
     }
   },
   mounted () {

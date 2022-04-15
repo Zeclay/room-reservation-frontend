@@ -1,13 +1,16 @@
 <template>
-<Auth> <div class="background.menu">
+<Auth>
+
+   <div class="background.menu">
   <div class="home" >
 <center>
   <div>
-  <h2 style="padding-top:2%">การจอง</h2>
+  <h2 style="padding-top:2%">การจอง {{rooms.code}}</h2>
   </div>
 </center>
 <center>
 <div class="background-search">
+
     <b-container fluid>
       <b-row>
       </b-row>

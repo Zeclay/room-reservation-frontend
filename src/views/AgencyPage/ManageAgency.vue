@@ -82,6 +82,15 @@ export default {
         ? this.agencys
         : this.agencys.filter(ag => Object.values(ag).join('').indexOf(this.searchString) !== -1)
       return filteredAgencies
+    },
+    isLocalAdmin () {
+      var user = JSON.parse(localStorage.getItem('user'))
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i] === 'LOCAL_ADMIN') {
+          return true
+        }
+      }
+      return false
     }
   },
   methods: {

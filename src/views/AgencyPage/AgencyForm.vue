@@ -13,15 +13,17 @@
 
          <b-form-group
           id="form-group-name"
-          label="ชื่อหน่วยงาน :"
-          label-for="agency-name"
+          label="ชื่อหน่วยงาน"
+          label-for="building-name"
         >
-          <b-form-select
-        id="inline-form-custom-select-pref"
-          class="mb-2 mr-sm-2 mb-sm-0"
-          :options="[{ text: 'Select Agency...', value: null }, 'One', 'Two', 'Three']"
-          :value="null"
-    ></b-form-select>
+          <b-form-input
+            type="text"
+            id="name"
+            placeholder="กรอกชื่อหน่วยงาน"
+            v-model="form.name"
+            autofocus
+          >
+          </b-form-input>
         </b-form-group>
       </b-form>
       <b-card>

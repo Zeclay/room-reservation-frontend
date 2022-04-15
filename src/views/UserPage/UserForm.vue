@@ -138,7 +138,7 @@
         <label>ผู้พิจารณา</label>&nbsp;&nbsp;
         <input type="radio" name="radio" value="LOCAL_ADMIN" v-model="form.rank"/>&nbsp;
         <label>Local Admin</label>&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="radio" value="SYSTEM" v-model="form.rank"/>&nbsp;
+        <input type="radio" name="radio" value="SYSTEM" v-model="form.rank" :disabled="!isSystemAdmin"/>&nbsp;
         <label>System Admin</label>&nbsp;&nbsp;&nbsp;
         <span class="checkmark"></span>
       </b-form>
@@ -182,6 +182,15 @@ export default {
     // validateForm () {
     //   return this.validateNameusers
     // }
+    isSystemAdmin () {
+      var user = JSON.parse(localStorage.getItem('user'))
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i] === 'SYSTEM') {
+          return true
+        }
+      }
+      return false
+    }
   },
   methods: {
     addNew () {

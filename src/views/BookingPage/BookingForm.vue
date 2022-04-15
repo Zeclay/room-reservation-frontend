@@ -68,19 +68,18 @@
           <td style="width:50%  ; border: 0px solid white">
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-seat"
-                label="ความจุ :"
-                label-for="users-seat"
+                id="form-group-surname"
+                label="นามสกุล :"
+                label-for="users-surname"
               >
-               <b-form-select v-model="form.seat">
-                  <option
-                    v-for="(option, idx) in options"
-                    :key="idx"
-                    :value="option._id"
-                  >
-                    {{ option.name }}
-                  </option>
-                </b-form-select>
+                <b-form-input
+                  type="text"
+                  id="surname"
+                  placeholder=""
+                  v-model="form.surname"
+                  autofocus
+                >
+                </b-form-input>
               </b-form-group>
             </b-form>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">

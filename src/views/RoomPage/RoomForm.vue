@@ -1,52 +1,160 @@
 <template>
   <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มข้อมูล</b-button>
+    <b-button  @click="addNew" variant="success" >เพิ่มอาคาร</b-button>
     <b-modal
-      id="modal-approve"
-      ref="modalApprove"
-      title="จัดการห้อง"
+      id="modal-room"
+      ref="modalRoom"
+      title="การจัดการอาคาร"
       @show="showModal"
       @hidden="resetModal"
       @ok="handleOk"
     >
+      <table>
+        <tr>
+          <td style="width:50%">
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-code"
+                label="รหัสห้อง :"
+                label-for="users-code"
+              >
+                <b-form-input
+                  type="text"
+                  id="code"
+                  placeholder=""
+                  v-model="form.code"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
 
-    <table>
-      <tr>
-        <td>
-          <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-         <b-form-group
-          id="form-group-name"
-          label="ชุดผู้พิจารณา :"
-          label-for="approve-name"
-        >
-          <b-form-input
-            type="text"
-            id="name"
-            placeholder="ชุดผู้พิจารณา"
-            v-model="form.approve_num"
-            style="width: 50%;"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-       <b-form-group
-          id="form-group-code"
-          label="ผู้พิจารณาที่1"
-          label-for="approve-name1"
-        >
-          <b-form-input
-            type="text"
-            id="num"
-            placeholder="ผู้พิจารณาที่1"
-            v-model="form.name_approve1"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-      </b-form>
-        </td>
-      </tr>
-    </table>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-floor"
+                label="ชั้น :"
+                label-for="users-floor"
+              >
+                <b-form-input
+                  type="text"
+                  id="floor"
+                  placeholder=""
+                  v-model="form.floor"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-type"
+                label="ประเภทห้อง :"
+                label-for="users-type"
+              >
+                <b-form-select v-model="form.type">
+                  <option
+                    v-for="(option, idx) in options"
+                    :key="idx"
+                    :value="option._id"
+                  >
+                    {{ option.name }}
+                  </option>
+                </b-form-select>
+              </b-form-group>
+            </b-form>
+          </td>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <td style="width:50%">
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-seat"
+                label="ความจุ :"
+                label-for="users-seat"
+              >
+               <b-form-select v-model="form.seat">
+                  <option
+                    v-for="(option, idx) in options"
+                    :key="idx"
+                    :value="option._id"
+                  >
+                    {{ option.name }}
+                  </option>
+                </b-form-select>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-approve_id"
+                label="ผู้ดูแล :"
+                label-for="users-approve_id"
+              >
+                <b-form-select v-model="form.approve_id">
+                  <option
+                    v-for="(option, idx) in options"
+                    :key="idx"
+                    :value="option._id"
+                  >
+                    {{ option.name }}
+                  </option>
+                </b-form-select>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-agency_id"
+                label="หน่วยงาน :"
+                label-for="users-agency_id"
+              >
+                <b-form-select v-model="form.agency_id">
+                  <option
+                    v-for="(option, idx) in options"
+                    :key="idx"
+                    :value="option._id"
+                  >
+                    {{ option.name }}
+                  </option>
+                </b-form-select>
+              </b-form-group>
+            </b-form>
+
+          </td>
+        </tr>
+      </table>
+       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-building_id"
+                label="ตึก :"
+                label-for="users-building_id"
+              >
+                <b-form-select v-model="form.building_id">
+                  <option
+                    v-for="(option, idx) in options"
+                    :key="idx"
+                    :value="option._id"
+                  >
+                    {{ option.name }}
+                  </option>
+                </b-form-select>
+              </b-form-group>
+            </b-form>
+      <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-description"
+                label="รายละเอียด :"
+                label-for="users-description"
+              >
+                <b-form-textarea
+                  type="textfield"
+                  id="description"
+                  placeholder=""
+                  v-model="form.description"
+                  rows="5"
+                  autofocus
+                >
+                </b-form-textarea>
+              </b-form-group>
+            </b-form>
       <b-card>
         <pre>
         {{ form }}
@@ -64,10 +172,11 @@ export default {
   data () {
     return {
       form: {
-        _id: '',
         code: '',
+        description: '',
         floor: '',
         seat: '',
+        type: '',
         approve_id: '',
         building_id: '',
         agency_id: ''
@@ -76,12 +185,12 @@ export default {
     }
   },
   computed: {
-    // validateNamebuilding () {
+    // validateNameroom () {
     //   return this.form.name.length >= 3
     // },
 
     // validateForm () {
-    //   return this.validateNamebuilding
+    //   return this.validateNameroom
     // }
   },
   methods: {
@@ -102,7 +211,6 @@ export default {
     },
     reset () {
       this.form = {
-        _id: '',
         code: '',
         description: '',
         floor: '',
@@ -118,7 +226,6 @@ export default {
         this.reset()
       } else {
         // Edit
-        this.form._id = this.room._id
         this.form.code = this.room.code
         this.form.description = this.room.description
         this.form.floor = this.room.floor

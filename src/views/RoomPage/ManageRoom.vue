@@ -46,19 +46,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(Room,idx) in filteredRooms" :key="idx">
+              <tr v-for="(room,idx) in filteredRooms" :key="idx">
                 <td>{{idx+1}}</td>
-                <td>{{Room.code}}</td>
-                <td>{{Room.description}}</td>
-                <td>{{Room.floor}}</td>
-                <td>{{Room.seat}}</td>
-                <td>{{Room.type}}</td>
-                <td>{{Room.approve_id.description}}</td>
-                <td>{{Room.building_id.name_build}}</td>
-                <td>{{Room.agency_id.name}}</td>
-                <td><b-button variant="warning" @click="editRoom(Room)">แก้ไข</b-button
+                <td>{{room.code}}</td>
+                <td>{{room.description}}</td>
+                <td>{{room.floor}}</td>
+                <td>{{room.seat}}</td>
+                <td>{{room.type}}</td>
+                <td>{{room.approve_id.description}}</td>
+                <td>{{room.building_id.name_build}}</td>
+                <td>{{room.agency_id.name}}</td>
+                <td><b-button variant="warning" @click="editRoom(room)">แก้ไข</b-button
               ><b-button
-                @click="deleteRoom(Room)"
+                @click="deleteRoom(room)"
                 class="ml-3"
                 variant="danger"
                 >ลบ</b-button
@@ -86,15 +86,15 @@ export default {
   data () {
     return {
       searchString: '',
-      Rooms: [],
+      rooms: [],
       selectedItem: null
     }
   },
   computed: {
     filteredRooms () {
       const filteredRooms = this.searchString === ''
-        ? this.Rooms
-        : this.Rooms.filter(ap => Object.values(ap).join('').indexOf(this.searchString) !== -1)
+        ? this.rooms
+        : this.rooms.filter(ap => Object.values(ap).join('').indexOf(this.searchString) !== -1)
       return filteredRooms
     }
   },
@@ -107,7 +107,7 @@ export default {
         }
       }).then((response) => {
         console.log(response)
-        self.Rooms = response.data
+        self.rooms = response.data
       })
     },
     deleteRoom (item) {
@@ -134,7 +134,7 @@ export default {
           })
           .then(
             function (response) {
-              this.getroom()
+              this.getRoom()
             }.bind(this)
           )
           .catch(() => {

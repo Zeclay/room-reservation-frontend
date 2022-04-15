@@ -23,11 +23,39 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
-            <template #cell(operators)>
-              <b-button variant="info" style="width:50%;" @click="$router.push('/booking3')"> ดูรายละเอียด </b-button>
-            </template>
-          </b-table>
+          <br>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>เลขห้อง</th>
+                <th>รายละเอียดห้อง</th>
+                <th>ชั้น</th>
+                <th>ความจุที่นั่ง</th>
+                <th>ประเภท</th>
+                <th>ชุดผู้พิจารณา</th>
+                <th>ชื่อตึก</th>
+                <th>ชื่อหน่วยงาน</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(Room,idx) in filteredRooms" :key="idx">
+                <td>{{idx+1}}</td>
+                <td>{{Room.code}}</td>
+                <td>{{Room.description}}</td>
+                <td>{{Room.floor}}</td>
+                <td>{{Room.seat}}</td>
+                <td>{{Room.type}}</td>
+                <td>{{Room.approve_id.description}}</td>
+                <td>{{Room.building_id.name_build}}</td>
+                <td>{{Room.agency_id.name}}</td>
+                <td><b-button variant="primary" @click="gotoDetail(Room._id)">ดูรายละเอียด</b-button
+              >
+              </td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -37,25 +65,48 @@
 
 <script>
 import Auth from '../../components/Auth.vue'
+import axios from 'axios'
 export default {
   BuildingCode: 'Home',
+  props: ['items'],
   components: {
     Auth
   },
   data () {
     return {
-      fields: [
-        { key: 'RoomId', label: 'ชื่อห้อง' },
-        { key: 'RoomDetail', label: 'ประเภทห้อง' },
-        { key: 'Amount', label: 'ความจุ(ที่นั่ง)' },
-        { key: 'ApproveId', label: 'ผู้ดูแล' },
-        { key: 'operators', label: 'การจัดการ' }
-      ],
-      productItems: [
-        { RoomId: 1, RoomDetail: 'IF', Amount: '50', ApproveId: 'ชุดที่1' }
-
-      ]
+      searchString: '',
+      Rooms: [],
+      selectedItem: null
     }
+  },
+  methods: {
+    getRoom () {
+      const self = this
+      axios.get('http://localhost:3000/rooms/searchByBuilding/' + localStorage.getItem('lastBuilding'), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.Rooms = response.data
+      })
+    },
+    gotoDetail (item) {
+      localStorage.setItem('lastRoom', item) /// /////////////////////////
+      this.$router.push('/booking3')
+    }
+  },
+  computed: {
+    filteredRooms () {
+      const filteredRooms = this.searchString === ''
+        ? this.Rooms
+        : this.Rooms.filter(ap => Object.values(ap).join('').indexOf(this.searchString) !== -1)
+      return filteredRooms
+    }
+  },
+  mounted () {
+    console.log(localStorage.getItem('lastBuilding'))
+    this.getRoom()
   }
 }
 </script>

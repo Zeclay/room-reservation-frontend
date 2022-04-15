@@ -24,11 +24,26 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
-            <template #cell(operators)>
-              <b-button variant="info" style="width:30%;" @click="$router.push('/booking2')">  ดูห้อง </b-button>
-            </template>
-          </b-table>
+          <br>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>ลำดับ</th>
+                <th>รหัสอาคาร</th>
+                <th>ชื่ออาคาร</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(building,idx) in filteredBuildings" :key="idx">
+                <td>{{idx+1}}</td>
+                <td>{{building.code}}</td>
+                <td>{{building.name_build}}</td>
+                <td><b-button variant="primary" @click="seeRoom(building._id)">ดูห้อง >>></b-button
+              ></td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -38,6 +53,7 @@
 
 <script>
 import Auth from '../../components/Auth.vue'
+import axios from 'axios'
 export default {
   BuildingCode: 'Home',
   components: {
@@ -45,16 +61,37 @@ export default {
   },
   data () {
     return {
-      fields: [
-        { key: 'BuildingId', label: 'ไอดี' },
-        { key: 'BuildingCode', label: 'รหัสตึก' },
-        { key: 'BuildingName', label: 'ชื่อตึก' },
-        { key: 'operators', label: 'การจัดการ' }
-      ],
-      productItems: [
-        { BuildingId: 1, BuildingCode: 'IF', BuildingName: 'Informatics' }
-
-      ]
+      searchString: '',
+      buildings: [],
+      selectedItem: null
+    }
+  },
+  methods: {
+    getBuilding () {
+      const self = this
+      axios.get('http://localhost:3000/buildings', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.buildings = response.data
+      })
+    },
+    seeRoom (item) {
+      localStorage.setItem('lastBuilding', item) /// /////////////////////////
+      this.$router.push('/booking2')
+    }
+  },
+  mounted () {
+    this.getBuilding()
+  },
+  computed: {
+    filteredBuildings () {
+      const filteredBuildings = this.searchString === ''
+        ? this.buildings
+        : this.buildings.filter(b => Object.values(b).join('').indexOf(this.searchString) !== -1)
+      return filteredBuildings
     }
   }
 }

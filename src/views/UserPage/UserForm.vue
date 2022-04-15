@@ -9,7 +9,7 @@
       @hidden="resetModal"
       @ok="handleOk"
     >
-      <table>
+      <table border="0">
         <tr>
           <td>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
@@ -56,21 +56,6 @@
                   placeholder="พิมพ์ตำแหน่ง"
                   v-model="form.position"
                   autofocus
-                >
-                </b-form-input>
-              </b-form-group>
-            </b-form>
-            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-              <b-form-group
-                id="form-group-name"
-                label="Email :"
-                label-for="users-name"
-              >
-                <b-form-input
-                  type="text"
-                  id="email"
-                  placeholder="กรอกอีเมล"
-                  v-model="form.email"
                 >
                 </b-form-input>
               </b-form-group>
@@ -132,6 +117,21 @@
           </td>
         </tr>
       </table>
+       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="Email :"
+                label-for="users-name"
+              >
+                <b-form-input
+                  type="email"
+                  id="email"
+                  placeholder=""
+                  v-model="form.email"
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
       <b-form @submit.stop.prevent="submit" @reset.prevent="reset" inline>
         <label> Rank :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" name="radio" value="APPROVER" v-model="form.rank"/>&nbsp;

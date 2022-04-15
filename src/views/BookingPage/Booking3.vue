@@ -30,7 +30,7 @@
       <b-row>
         <b-col>
           <h1>ตารางเวลา</h1>
-          <vue-cal :locale="th" style="height: 500px" />
+          <vue-cal : locale='th' style="height: 500px" />
         </b-col>
       </b-row>
     </b-container>

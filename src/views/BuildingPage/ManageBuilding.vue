@@ -35,15 +35,15 @@
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>ไอดี</th>
+                <th>ลำดับ</th>
                 <th>รหัสอาคาร</th>
                 <th>ชื่ออาคาร</th>
                 <th>การจัดการ</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="building in filteredBuildings" :key="building.id">
-                <td>{{building._id}}</td>
+              <tr v-for="(building,idx) in filteredBuildings" :key="idx">
+                <td>{{idx+1}}</td>
                 <td>{{building.code}}</td>
                 <td>{{building.name_build}}</td>
                 <td><b-button variant="warning" @click="editBuilding(building)">แก้ไข</b-button

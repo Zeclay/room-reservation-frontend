@@ -33,29 +33,29 @@
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>ไอดี</th>
+                <th>ลำดับ</th>
                 <th>เลขห้อง</th>
                 <th>รายละเอียดห้อง</th>
                 <th>ชั้น</th>
                 <th>ความจุที่นั่ง</th>
                 <th>ประเภท</th>
-                <th>ไอดีผู้พิจารณา</th>
-                <th>ไอดีตึก</th>
-                <th>ไอดีหน่วยงาน</th>
+                <th>ชุดผู้พิจารณา</th>
+                <th>ชื่อตึก</th>
+                <th>ชื่อหน่วยงาน</th>
                 <th>การจัดการ</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="Room in filteredRooms" :key="Room.id">
-                <td>{{Room._id}}</td>
+              <tr v-for="(Room,idx) in filteredRooms" :key="idx">
+                <td>{{idx+1}}</td>
                 <td>{{Room.code}}</td>
                 <td>{{Room.description}}</td>
                 <td>{{Room.floor}}</td>
                 <td>{{Room.seat}}</td>
                 <td>{{Room.type}}</td>
-                <td>{{Room.approve_id}}</td>
-                <td>{{Room.building_id}}</td>
-                <td>{{Room.agency_id}}</td>
+                <td>{{Room.approve_id.description}}</td>
+                <td>{{Room.building_id.name_build}}</td>
+                <td>{{Room.agency_id.name}}</td>
                 <td><b-button variant="warning" @click="editRoom(Room)">แก้ไข</b-button
               ><b-button
                 @click="deleteRoom(Room)"

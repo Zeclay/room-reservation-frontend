@@ -44,8 +44,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in filteredUsers" :key="user.id">
-                <td>{{user._id}}</td>
+              <tr v-for="(user,idx) in filteredUsers" :key="idx">
+                <td>{{idx+1}}</td>
                 <td>{{user.name}} {{user.surname}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.email}}</td>

@@ -33,14 +33,14 @@
          <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>ไอดี</th>
+                <th>ลำดับ</th>
                 <th>หน่วยงาน</th>
                 <th>การจัดการ</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="agency in filteredAgencies" :key="agency.id">
-                <td>{{agency._id}}</td>
+              <tr v-for="(agency,idx) in filteredAgencies" :key="idx">
+                <td>{{idx+1}}</td>
                 <td>{{agency.name}}</td>
                 <b-button variant="warning" @click="editAgency(agency)" class="mt-1">แก้ไข</b-button
               ><b-button

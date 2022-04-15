@@ -35,17 +35,19 @@
             <table class="table table-striped table-bordered">
               <thead>
                 <tr>
-                  <th>ไอดี</th>
+                  <th>ลำดับ</th>
                   <th>ชุดผู้พิจารณา</th>
+                  <th>หน่วยงาน</th>
                   <th>ผู้พิจารณาที่1</th>
                   <th>ผู้พิจารณาที่2</th>
                   <th>การจัดการ</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="approve in filteredApproves" :key="approve.id">
-                  <td>{{ approve._id }}</td>
+                <tr v-for="(approve,idx) in filteredApproves" :key="idx">
+                  <td>{{ idx+1 }}</td>
                   <td>{{ approve.description }}</td>
+                  <td>{{ approve.agencys.name }}</td>
                   <td>
                     {{ approve.order_Approve[0].name }}
                     {{ approve.order_Approve[0].surname }}
@@ -87,7 +89,8 @@ export default {
   data () {
     return {
       searchString: '',
-      approves: []
+      approves: [],
+      selectedItem: null
     }
   },
   computed: {

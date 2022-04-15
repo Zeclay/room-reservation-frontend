@@ -14,7 +14,7 @@
           <td style="width:50%">
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-code"
+                id="form-group-room"
                 label="รหัสห้อง :"
                 label-for="users-code"
               >
@@ -31,7 +31,7 @@
 
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-floor"
+                id="form-group-room"
                 label="ชั้น :"
                 label-for="users-floor"
               >
@@ -47,17 +47,17 @@
             </b-form>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-type"
+                id="form-group-room"
                 label="ประเภทห้อง :"
                 label-for="users-type"
               >
                 <b-form-select v-model="form.type">
                   <option
-                    v-for="(option, idx) in options"
+                    v-for="(option, idx) in type"
                     :key="idx"
-                    :value="option._id"
+                    :value="option"
                   >
-                    {{ option.name }}
+                    {{ option}}
                   </option>
                 </b-form-select>
               </b-form-group>
@@ -68,47 +68,46 @@
           <td style="width:50%">
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-seat"
-                label="ความจุ :"
+                id="form-group-room"
+                label="ความจุที่นั่ง :"
                 label-for="users-seat"
               >
-               <b-form-select v-model="form.seat">
-                  <option
-                    v-for="(option, idx) in options"
-                    :key="idx"
-                    :value="option._id"
-                  >
-                    {{ option.name }}
-                  </option>
-                </b-form-select>
+                <b-form-input
+                  type="number"
+                  id="seat"
+                  placeholder=""
+                  v-model="form.seat"
+                  autofocus
+                >
+                </b-form-input>
               </b-form-group>
             </b-form>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-approve_id"
+                id="form-group-room"
                 label="ผู้ดูแล :"
                 label-for="users-approve_id"
               >
                 <b-form-select v-model="form.approve_id">
                   <option
-                    v-for="(option, idx) in options"
+                    v-for="(option, idx) in approves"
                     :key="idx"
                     :value="option._id"
                   >
-                    {{ option.name }}
+                    {{ option.description }}
                   </option>
                 </b-form-select>
               </b-form-group>
             </b-form>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-agency_id"
+                id="form-group-room"
                 label="หน่วยงาน :"
                 label-for="users-agency_id"
               >
                 <b-form-select v-model="form.agency_id">
                   <option
-                    v-for="(option, idx) in options"
+                    v-for="(option, idx) in agencys"
                     :key="idx"
                     :value="option._id"
                   >
@@ -123,24 +122,24 @@
       </table>
        <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-building_id"
+                id="form-group-room"
                 label="ตึก :"
                 label-for="users-building_id"
               >
                 <b-form-select v-model="form.building_id">
                   <option
-                    v-for="(option, idx) in options"
+                    v-for="(option, idx) in buildings"
                     :key="idx"
                     :value="option._id"
                   >
-                    {{ option.name }}
+                    {{ option.name_build }}
                   </option>
                 </b-form-select>
               </b-form-group>
             </b-form>
       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-description"
+                id="form-group-room"
                 label="รายละเอียด :"
                 label-for="users-description"
               >
@@ -165,6 +164,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   props: {
     room: Object
@@ -172,6 +172,7 @@ export default {
   data () {
     return {
       form: {
+        _id: '',
         code: '',
         description: '',
         floor: '',
@@ -181,7 +182,11 @@ export default {
         building_id: '',
         agency_id: ''
       },
-      isAddNew: false
+      isAddNew: false,
+      approves: [],
+      agencys: [],
+      buildings: [],
+      type: ['Meeting', 'Lab', 'Lecture', 'Classroom']
     }
   },
   computed: {
@@ -211,6 +216,7 @@ export default {
     },
     reset () {
       this.form = {
+        _id: '',
         code: '',
         description: '',
         floor: '',
@@ -226,6 +232,7 @@ export default {
         this.reset()
       } else {
         // Edit
+        this.form._id = this.room._id
         this.form.code = this.room.code
         this.form.description = this.room.description
         this.form.floor = this.room.floor
@@ -245,7 +252,47 @@ export default {
       this.$nextTick(() => {
         this.$bvModal.hide('modal-room')
       })
+    },
+    getApprove () {
+      const self = this
+      axios
+        .get('http://localhost:3000/approves', {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+        .then((response) => {
+          console.log(response)
+          self.approves = response.data
+        })
+    },
+    getAgency () {
+      const self = this
+      axios.get('http://localhost:3000/agencys', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.agencys = response.data
+      })
+    },
+    getBuilding () {
+      const self = this
+      axios.get('http://localhost:3000/buildings', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.buildings = response.data
+      })
     }
+  },
+  mounted () {
+    this.getApprove()
+    this.getAgency()
+    this.getBuilding()
   }
 }
 </script>

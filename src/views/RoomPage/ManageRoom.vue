@@ -101,7 +101,7 @@ export default {
   methods: {
     getRoom () {
       const self = this
-      axios.get('http://localhost:3000/Rooms', {
+      axios.get('http://localhost:3000/rooms', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
@@ -112,7 +112,7 @@ export default {
     },
     deleteRoom (item) {
       if (confirm(`คุณต้องการจะลบข้อมูลห้อง ${item.description} หรือไม่`)) {
-        axios.delete('http://localhost:3000/Rooms/' + item._id, {
+        axios.delete('http://localhost:3000/rooms/' + item._id, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token')
           }
@@ -123,7 +123,7 @@ export default {
       this.$router.go(0)
     },
     save (room) {
-      console.log('Submit', room)
+      console.log('Submit-------------', room)
       if (room._id === '') {
       // Add New
         axios
@@ -156,7 +156,6 @@ export default {
           .catch(() => {
           })
       }
-      this.$router.go(0)
     },
     editRoom (item) {
       this.selectedItem = JSON.parse(JSON.stringify(item))

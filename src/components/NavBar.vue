@@ -4,9 +4,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <b-navbar toggleable="lg"  class="bg-color">
-    <img src="../assets/buu1.png" width="100px" height="100 px">&emsp;
-    <b-navbar-brand href="/" class="far fa-calendar-alt" style="font-size:150%">   Studyroom Reservation System <br><br>ระบบการจองห้องศึกษาค้นคว้ากลุ่ม มหาวิทยาลัยบูรพา</b-navbar-brand>
-
+    <img src="../assets/buu1.png" width="110px" height="110 px">&emsp;&emsp;
+    <b-navbar-brand href="/" class="far fa-calendar-alt" style="font-size:150% ;">   Studyroom Reservation System</b-navbar-brand>
+    <b-navbar style="font-size:150%; right: 365px"> <br><br>ระบบการจองห้องศึกษาค้นคว้ากลุ่ม มหาวิทยาลัยบูรพา</b-navbar>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>

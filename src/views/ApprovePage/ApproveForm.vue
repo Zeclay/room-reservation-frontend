@@ -9,7 +9,7 @@
       @hidden="resetModal"
       @ok="handleOk"
     >
-      <table border="0">
+      <table style="border: 0px solid white">
         <tr>
           <td style="width: 50%  ; border: 0px solid white">
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">

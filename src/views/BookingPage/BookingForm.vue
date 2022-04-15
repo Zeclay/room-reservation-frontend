@@ -24,7 +24,7 @@
                   type="text"
                   id="name"
                   placeholder=""
-                  v-model="form.code"
+                  v-model="form.name"
                   autofocus
                 >
                 </b-form-input>
@@ -33,15 +33,15 @@
 
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-agency"
+                id="form-group-agency_id"
                 label="คณะ :"
-                label-for="booking-agency"
+                label-for="booking-agency_id"
               >
                 <b-form-input
                   type="text"
-                  id="agency"
+                  id="agency_id"
                   placeholder=""
-                  v-model="form.agency"
+                  v-model="form.agency_id"
                   autofocus
                 >
                 </b-form-input>
@@ -53,32 +53,17 @@
                 label="เวลาเริ่มต้น :"
                 label-for="booking-timestart"
               >
-                <b-form-input
+                <b-form-timepicker
                   type="text"
                   id="timestart"
                   placeholder=""
                   v-model="form.timestart"
                   autofocus
                 >
-                </b-form-input>
+                </b-form-timepicker>
               </b-form-group>
             </b-form>
-               <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-              <b-form-group
-                id="form-group-building_id"
-                label="ตึก :"
-                label-for="booking-building_id"
-              >
-              <b-form-input
-                  type="text"
-                  id="surname"
-                  placeholder=""
-                  v-model="form.surname"
-                  autofocus
-                >
-                </b-form-input>
-              </b-form-group>
-            </b-form>
+
           </td>
 
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -105,14 +90,14 @@
                 label="วันที่ :"
                 label-for="booking-date"
               >
-                <b-form-input
+                <b-form-datepicker
                   type="text"
                   id="date"
                   placeholder=""
                   v-model="form.date"
                   autofocus
                 >
-                </b-form-input>
+                </b-form-datepicker>
               </b-form-group>
             </b-form>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
@@ -121,31 +106,14 @@
                 label="เวลาสิ้นสุด :"
                 label-for="booking-timeStop"
               >
-              <b-form-input
+              <b-form-timepicker
                   type="text"
                   id="timeStop"
                   placeholder=""
                   v-model="form.timeStop"
                   autofocus
                 >
-                </b-form-input>
-              </b-form-group>
-            </b-form>
-              <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-              <b-form-group
-                id="form-group-room_id"
-                label="ห้อง :"
-                label-for="booking-room_id"
-              >
-                <b-form-input
-                  type="textfield"
-                  id="room_id"
-                  placeholder=""
-                  v-model="form.room_id"
-                  rows="5"
-                  autofocus
-                >
-                </b-form-input>
+                </b-form-timepicker>
               </b-form-group>
             </b-form>
 
@@ -175,8 +143,8 @@ export default {
         date: '',
         timeStart: '',
         timeStop: '',
-        building_id: '',
-        room_id: ''
+        building_id: localStorage.getItem('lastRoom'),
+        room_id: localStorage.getItem('lastBuilding')
       },
       isAddNew: false
     }
@@ -205,10 +173,10 @@ export default {
         surname: '',
         agency_id: '',
         date: '',
-        timeStart: '',
+        timestart: '',
         timeStop: '',
-        building_id: '',
-        room_id: ''
+        building_id: localStorage.getItem('lastRoom'),
+        room_id: localStorage.getItem('lastBuilding')
       }
     },
     showModal () {

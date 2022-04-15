@@ -13,22 +13,47 @@
             placeholder="Search..."
             style="width: 25%"
             v-model="searchString"
-          ></b-form-input>
+          >
+          </b-form-input>
   </b-form>
       </div>
     </div>
     <br>
-    <div class="background-grey">
+    <div class="background-gray">
     <b-container fluid>
       <b-row>
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
-            <template #cell(operators)>
-              <b-button variant="info" style="width:40%;"> รายละเอียด </b-button>
-            </template>
-          </b-table>
+          <table class="table table-striped table-bordered" style="text-align: center;">
+            <thead>
+              <tr>
+                <th>ไอดี</th>
+                <th>ชื่อ-สกุล</th>
+                <th>วัน</th>
+                <th>เวลาเริ่มต้น</th>
+                <th>เวลาสิ้นสุด</th>
+                <th>รหัสห้อง</th>
+                <th>รายละเอียด</th>
+                <th>การจัดการ</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><ApproverForm
+                  ref="Approver"
+                  @save="save"
+                ></ApproverForm></td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -38,35 +63,84 @@
 
 <script>
 import Auth from '../../components/Auth.vue'
+import ApproverForm from './ApproverForm.vue'
+import axios from 'axios'
 export default {
   BuildingCode: 'Home',
   components: {
-    Auth
+    Auth,
+    ApproverForm
+  },
+  computed: {
   },
   data () {
     return {
-      fields: [
-        { key: 'ApproverId', label: 'ไอดี' },
-        { key: 'Name', label: 'ชื่อ-นามสกุล' },
-        { key: 'Time', label: 'เวลา' },
-        { key: 'RoomCode', label: 'รหัสห้อง' },
-        { key: 'operators', label: 'การจัดการ' }
-      ],
-      productItems: [
-        { ApproverId: 1, Name: 'Mankhong Limprapaipong', Time: '12.00 01/01/2555', RoomCode: 'IF3C01' }
+      rooms: []
 
-      ]
     }
+  },
+  methods: {
+    getRoom () {
+      const self = this
+      axios.get('http://localhost:3000/rooms/' + localStorage.getItem('lastRoom'), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.rooms = response.data
+      })
+    },
+    save (room) {
+    }
+  },
+  mounted () {
+    this.getRoom()
+    console.log(this.rooms)
   }
 }
+
 </script>
 <style>
-.background-grey {
+.background-gray{
   background-color: gray;
+  padding-top:1% ;
+  width: 100%;
+  height: 100%;
+
+}
+
+.background-search{
+  background-color: gray;
+  padding-top: 1%;
   height: 100%;
   width: 100%;
 }
-.position-buttonSelected {
-  margin-left: 100%;
+.background.menu{
+  background-color: rgb(170, 162, 21);
 }
+.background-search-button{
+  background-color: greenyellow;
+}
+table {
+    border-collapse: collapse;
+
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+.p {
+  position: relative;
+  left: 40%;
+}
+.p2 {
+  position: absolute;
+  left: 57%;
+}
+.p3 {
+  position: absolute;
+  left: 10%;
+}
+
 </style>

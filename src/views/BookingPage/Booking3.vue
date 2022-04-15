@@ -30,6 +30,7 @@
       <b-row>
         <b-col>
           <h1>ตารางเวลา</h1>
+          <vue-cal :locale="th" style="height: 250px" />
         </b-col>
       </b-row>
     </b-container>
@@ -41,11 +42,19 @@
 
 <script>
 import Auth from '../../components/Auth.vue'
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
+import th from '../../locale/th'
 export default {
   name: 'Home',
   components: {
-
+    VueCal,
     Auth
+  },
+  computed: {
+    th () {
+      return th
+    }
   },
   data () {
     return {

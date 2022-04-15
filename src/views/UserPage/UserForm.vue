@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มผู้ใช้งาน</b-button>
+  <div>
+    <b-button @click="addNew" variant="success">เพิ่มผู้ใช้งาน</b-button>
     <b-modal
       id="modal-users"
       ref="modalusers"
@@ -9,117 +9,137 @@
       @hidden="resetModal"
       @ok="handleOk"
     >
-    <table>
-      <tr>
-        <td>
-      <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-         <b-form-group
-          id="form-group-name"
-          label="Username :"
-          label-for="users-name"
-        >
-          <b-form-input
-            type="text"
-            id="username"
-            placeholder="พิมพ์username"
-            v-model="form.username"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-      </b-form>
-       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-         <b-form-group
-          id="form-group-name"
-          label="ชื่อผู้ใช้งาน :"
-          label-for="users-name"
-        >
-          <b-form-input
-            type="text"
-            id="name"
-            placeholder="พิมพ์ชื่อ"
-            v-model="form.name"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-      </b-form>
-      <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-         <b-form-group
-          id="form-group-name"
-          label="ตำแหน่ง :"
-          label-for="users-name"
-        >
-          <b-form-input
-            type="text"
-            id="position"
-            placeholder="พิมพ์ตำแหน่ง"
-            v-model="form.position"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-      </b-form>
-      </td>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <td>
-        <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-         <b-form-group
-          id="form-group-name"
-          label="Password :"
-          label-for="users-password"
-        >
-          <b-form-input
-            type="text"
-            id="password"
-            placeholder="พิมพ์รหัสผ่าน"
-            v-model="form.password"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-      </b-form>
-       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-         <b-form-group
-          id="form-group-name"
-          label="ชื่อนามสกุล :"
-          label-for="users-surname"
-        >
-          <b-form-input
-            type="text"
-            id="surname"
-            placeholder="พิมพ์นามสกุล"
-            v-model="form.name"
-            autofocus
-          >
-          </b-form-input>
-        </b-form-group>
-      </b-form>
-      <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-         <b-form-group
-          id="form-group-name"
-          label="สังกัดคณะ :"
-          label-for="users-institution"
-        >
-        <b-form-select
-        id="inline-form-custom-select-pref"
-          class="mb-2 mr-sm-2 mb-sm-0"
-          :options="[{ text: 'Select Role...', value: null }, 'One', 'Two', 'Three']"
-          :value="null"
-    ></b-form-select>
-        </b-form-group>
-      </b-form>
-      </td>
-      </tr>
-    </table>
-     <b-form @submit.stop.prevent="submit" @reset.prevent="reset" inline>
+      <table>
+        <tr>
+          <td>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="Username :"
+                label-for="users-name"
+              >
+                <b-form-input
+                  type="text"
+                  id="username"
+                  placeholder="พิมพ์username"
+                  v-model="form.username"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="ชื่อ :"
+                label-for="users-name"
+              >
+                <b-form-input
+                  type="text"
+                  id="name"
+                  placeholder="กรอกชื่อ"
+                  v-model="form.name"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="ตำแหน่ง :"
+                label-for="users-name"
+              >
+                <b-form-input
+                  type="text"
+                  id="position"
+                  placeholder="พิมพ์ตำแหน่ง"
+                  v-model="form.position"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="Email :"
+                label-for="users-name"
+              >
+                <b-form-input
+                  type="text"
+                  id="email"
+                  placeholder="กรอกอีเมล"
+                  v-model="form.email"
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+          </td>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <td>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="Password :"
+                label-for="users-password"
+              >
+                <b-form-input
+                  type="text"
+                  id="password"
+                  placeholder="พิมพ์รหัสผ่าน"
+                  v-model="form.password"
+                  :disabled="hidePassword"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="นามสกุล :"
+                label-for="users-surname"
+              >
+                <b-form-input
+                  type="text"
+                  id="surname"
+                  placeholder="พิมพ์นามสกุล"
+                  v-model="form.surname"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+            <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-name"
+                label="สังกัดคณะ :"
+                label-for="users-institution"
+              >
+                <b-form-select v-model="form.agency">
+                  <option
+                    v-for="(option, idx) in options"
+                    :key="idx"
+                    :value="option._id"
+                  >
+                    {{ option.name }}
+                  </option>
+                </b-form-select>
+              </b-form-group>
+            </b-form>
+          </td>
+        </tr>
+      </table>
+      <b-form @submit.stop.prevent="submit" @reset.prevent="reset" inline>
         <label> Rank :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="radio">&nbsp;
-         <label>ผู้พิจารณา</label>&nbsp;&nbsp;
-         <input type="radio" name="radio">&nbsp;
-         <label>Local Admin</label>&nbsp;&nbsp;&nbsp;
-         <input type="radio" name="radio">&nbsp;
-         <label>System Admin</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="radio" value="APPROVER" v-model="form.rank"/>&nbsp;
+        <label>ผู้พิจารณา</label>&nbsp;&nbsp;
+        <input type="radio" name="radio" value="LOCAL_ADMIN" v-model="form.rank"/>&nbsp;
+        <label>Local Admin</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="radio" value="SYSTEM" v-model="form.rank"/>&nbsp;
+        <label>System Admin</label>&nbsp;&nbsp;&nbsp;
         <span class="checkmark"></span>
       </b-form>
       <b-card>
@@ -132,6 +152,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   props: {
     users: Object
@@ -141,20 +162,23 @@ export default {
       form: {
         _id: '',
         name: '',
+        surname: '',
         username: '',
+        password: '',
         email: '',
-        institution: '',
+        agency: '',
         position: '',
-        roles: ''
+        rank: ''
       },
-      isAddNew: false
+      isAddNew: false,
+      options: [],
+      hidePassword: false
     }
   },
   computed: {
     // validateNameusers () {
     //   return this.form.name.length >= 3
     // },
-
     // validateForm () {
     //   return this.validateNameusers
     // }
@@ -179,25 +203,31 @@ export default {
       this.form = {
         _id: '',
         name: '',
+        surname: '',
         username: '',
+        password: '',
         email: '',
-        institution: '',
+        agency: '',
         position: '',
-        roles: ''
+        rank: ''
       }
     },
     showModal () {
       if (this.isAddNew) {
         this.reset()
+        this.hidePassword = false
       } else {
         // Edit
         this.form._id = this.users._id
         this.form.name = this.users.name
+        this.form.surname = this.users.surname
         this.form.username = this.users.username
+        this.form.password = this.users.password
         this.form.email = this.users.email
-        this.form.institution = this.users.institution
+        this.form.agency = this.users.agency
         this.form.position = this.users.position
-        this.form.roles = this.users.roles
+        this.form.rank = this.users.rank
+        this.hidePassword = true
       }
     },
     resetModal (evt) {
@@ -209,7 +239,23 @@ export default {
       this.$nextTick(() => {
         this.$bvModal.hide('modal-users')
       })
+    },
+    getAgency () {
+      const self = this
+      axios
+        .get('http://localhost:3000/agencys', {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        })
+        .then((response) => {
+          console.log(response)
+          self.options = response.data
+        })
     }
+  },
+  mounted () {
+    this.getAgency()
   }
 }
 </script>
@@ -232,51 +278,50 @@ export default {
   border-radius: 50%;
 }
 .dropdown {
-    position: relative;
-    display: block;
-    margin: auto;
+  position: relative;
+  display: block;
+  margin: auto;
 }
 .dropdown-input {
-      background: #fff;
-      cursor: pointer;
-      border: 1px solid #e7ecf5;
-      border-radius: 3px;
-      color: #333;
-      display: block;
-      font-size: .8em;
-      padding: 6px;
-      min-width: 250px;
-      max-width: 250px;
+  background: #fff;
+  cursor: pointer;
+  border: 1px solid #e7ecf5;
+  border-radius: 3px;
+  color: #333;
+  display: block;
+  font-size: 0.8em;
+  padding: 6px;
+  min-width: 250px;
+  max-width: 250px;
 }
 .dropdown-input :hover {
-        background: #f8f8fa;
+  background: #f8f8fa;
 }
 
 .dropdown-content {
-      position: absolute;
-      background-color: #fff;
-      min-width: 248px;
-      max-width: 248px;
-      max-height: 248px;
-      border: 1px solid #e7ecf5;
-      box-shadow: 0px -8px 34px 0px rgba(0,0,0,0.05);
-      overflow: auto;
-      z-index: 1;
+  position: absolute;
+  background-color: #fff;
+  min-width: 248px;
+  max-width: 248px;
+  max-height: 248px;
+  border: 1px solid #e7ecf5;
+  box-shadow: 0px -8px 34px 0px rgba(0, 0, 0, 0.05);
+  overflow: auto;
+  z-index: 1;
 }
 .dropdown-item {
-        color: black;
-        font-size: .7em;
-        line-height: 1em;
-        padding: 8px;
-        text-decoration: none;
-        display: block;
-        cursor: pointer;
+  color: black;
+  font-size: 0.7em;
+  line-height: 1em;
+  padding: 8px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
 }
 .dropdown-item:hover {
-          background-color: #e7ecf5;
-        }
-.dropdown:hover .dropdowncontent {
-      display: block;
+  background-color: #e7ecf5;
 }
-
+.dropdown:hover .dropdowncontent {
+  display: block;
+}
 </style>

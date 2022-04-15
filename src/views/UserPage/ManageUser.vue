@@ -82,7 +82,8 @@ export default {
   data () {
     return {
       searchString: '',
-      users: []
+      users: [],
+      selectedItem: null
     }
   },
   computed: {

@@ -1,20 +1,37 @@
 <template>
-<Auth> <div class="background.menu">
+<Auth>
+
+   <div class="background.menu">
   <div class="home" >
 <center>
   <div>
-  <h2 style="padding-top:2%">การจอง</h2>
+  <h2 style="padding-top:2%">ห้อง {{rooms.code}}</h2>
   </div>
 </center>
 <center>
 <div class="background-search">
+
     <b-container fluid>
       <b-row>
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields" style="text-align: center;">
-          </b-table>
+          <table class="table table-striped table-bordered" style="text-align: center;">
+            <thead>
+              <tr>
+                <th>เลขห้อง</th>
+                <th>รายละเอียด</th>
+                <th>ความจุ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{rooms.code}}</td>
+                <td>{{rooms.description}}</td>
+                <td>{{rooms.seat}}</td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -45,6 +62,7 @@ import Auth from '../../components/Auth.vue'
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
 import th from '../../locale/th'
+import axios from 'axios'
 export default {
   name: 'Home',
   components: {
@@ -58,15 +76,25 @@ export default {
   },
   data () {
     return {
-      fields: [
-        { key: 'RoomId', label: 'ตารางเวลา' },
-        { key: 'RoomDetail', label: 'รายละเอียด' },
-        { key: 'Amount', label: 'ความจุ' }
-      ],
-      productItems: [
-        { RoomId: '3C02', RoomDetail: 'บริการคอมพิวเตอร์', Amount: '40' }
-      ]
+      rooms: []
     }
+  },
+  methods: {
+    getRoom () {
+      const self = this
+      axios.get('http://localhost:3000/Rooms/' + localStorage.getItem('lastRoom'), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.rooms = response.data
+      })
+    }
+  },
+  mounted () {
+    this.getRoom()
+    console.log(this.rooms)
   }
 }
 

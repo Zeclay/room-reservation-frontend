@@ -50,6 +50,7 @@ api.interceptors.response.use(
           break
         case 404:
           console.log('Status 404')
+          alert('รหัสผ่านไม่ถูกต้อง')
           break
         case 502:
           setTimeout(() => {

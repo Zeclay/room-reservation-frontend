@@ -9,9 +9,9 @@
       @hidden="resetModal"
       @ok="handleOk"
     >
-      <table border="0">
+      <table style="border: 0px solid white">
         <tr>
-          <td style="width:50%">
+          <td style="width:50%; border: 0px solid white">
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
                 id="form-group-code"
@@ -65,7 +65,7 @@
           </td>
 
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <td style="width:50%">
+          <td style="width:50%; border: 0px solid white">
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
                 id="form-group-seat"

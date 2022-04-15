@@ -16,7 +16,7 @@
               <b-form-group
                 id="form-group-name"
                 label="ชื่อ :"
-                label-for="name-booking"
+                label-for="booking-name"
               >
                 <b-form-input
                   type="text"
@@ -33,7 +33,7 @@
               <b-form-group
                 id="form-group-agency"
                 label="คณะ :"
-                label-for="users-agency"
+                label-for="booking-agency"
               >
                 <b-form-input
                   type="text"
@@ -47,15 +47,15 @@
             </b-form>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-type"
-                label="ประเภทห้อง :"
-                label-for="users-type"
+                id="form-group-timestart"
+                label="เวลาเริ่มต้น :"
+                label-for="booking-timestart"
               >
                 <b-form-input
                   type="text"
-                  id="surname"
+                  id="timestart"
                   placeholder=""
-                  v-model="form.surname"
+                  v-model="form.timestart"
                   autofocus
                 >
                 </b-form-input>
@@ -69,7 +69,7 @@
               <b-form-group
                 id="form-group-surname"
                 label="นามสกุล :"
-                label-for="users-surname"
+                label-for="booking-surname"
               >
                 <b-form-input
                   type="text"
@@ -85,7 +85,7 @@
               <b-form-group
                 id="form-group-date"
                 label="วันที่ :"
-                label-for="users-date"
+                label-for="booking-date"
               >
                 <b-form-input
                   type="text"
@@ -101,7 +101,7 @@
               <b-form-group
                 id="form-group-agency_id"
                 label="หน่วยงาน :"
-                label-for="users-agency_id"
+                label-for="booking-agency_id"
               >
               <b-form-input
                   type="text"
@@ -121,7 +121,7 @@
               <b-form-group
                 id="form-group-building_id"
                 label="ตึก :"
-                label-for="users-building_id"
+                label-for="booking-building_id"
               >
               <b-form-input
                   type="text"
@@ -137,7 +137,7 @@
               <b-form-group
                 id="form-group-description"
                 label="รายละเอียด :"
-                label-for="users-description"
+                label-for="booking-description"
               >
                 <b-form-textarea
                   type="textfield"

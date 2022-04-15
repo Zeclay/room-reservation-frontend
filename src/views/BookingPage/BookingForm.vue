@@ -11,6 +11,7 @@
       ok-variant="success"
       cancel-title="ยกเลิก"
       cancel-variant="danger"
+      @ok="handleOk"
     >
       <table style="border: 0px solid white">
         <tr>
@@ -43,7 +44,6 @@
                   id="agency_id"
                   placeholder=""
                   v-model="form.agency_id"
-                  autofocus
                 >
                 </b-form-input>
               </b-form-group>
@@ -59,7 +59,6 @@
                   id="timestart"
                   placeholder=""
                   v-model="form.timestart"
-                  autofocus
                 >
                 </b-form-timepicker>
               </b-form-group>
@@ -80,7 +79,6 @@
                   id="surname"
                   placeholder=""
                   v-model="form.surname"
-                  autofocus
                 >
                 </b-form-input>
               </b-form-group>
@@ -96,7 +94,6 @@
                   id="date"
                   placeholder=""
                   v-model="form.date"
-                  autofocus
                 >
                 </b-form-datepicker>
               </b-form-group>
@@ -112,7 +109,6 @@
                   id="timeStop"
                   placeholder=""
                   v-model="form.timeStop"
-                  autofocus
                 >
                 </b-form-timepicker>
               </b-form-group>
@@ -138,14 +134,15 @@ export default {
   data () {
     return {
       form: {
+        _id: '',
         name: '',
         surname: '',
         agency_id: '',
         date: '',
         timeStart: '',
         timeStop: '',
-        building_id: localStorage.getItem('lastRoom'),
-        room_id: localStorage.getItem('lastBuilding')
+        user_id: JSON.parse(localStorage.getItem('user'))._id,
+        room_id: localStorage.getItem('lastRoom')
       },
       isAddNew: false
     }
@@ -165,29 +162,34 @@ export default {
     },
     submit () {
       const booking = JSON.parse(JSON.stringify(this.form))
+      console.log(booking)
       this.$emit('save', booking)
       this.reset()
     },
     reset () {
       this.form = {
+        _id: '',
         name: '',
         surname: '',
         agency_id: '',
         date: '',
         timestart: '',
         timeStop: '',
-        building_id: localStorage.getItem('lastRoom'),
-        room_id: localStorage.getItem('lastBuilding')
+        user_id: JSON.parse(localStorage.getItem('user'))._id,
+        room_id: localStorage.getItem('lastRoom')
       }
     },
     showModal () {
-      this.reset()
+      if (this.isAddNew) {
+        this.reset()
+      }
     },
     resetModal (evt) {
       this.reset()
     },
     handleOk (evt) {
       evt.preventDefault()
+      console.log('show')
       this.submit()
       this.$nextTick(() => {
         this.$bvModal.hide('modal-booking')

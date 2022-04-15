@@ -1,13 +1,15 @@
 <template>
   <div >
-    <b-button @click="addNew" variant="success">ยืนยันการจอง</b-button>
+    <b-button @click="addNew" variant="warning" style="width:10%; margin-left: 88%">ยืนยันการจอง</b-button>
     <b-modal
       id="modal-booking"
       ref="modalBooking"
       title="ฟอร์มยืนคำร้องการจองห้อง"
       @show="showModal"
       @hidden="resetModal"
-      @ok="handleOk"
+      ok-title = "Accept"
+      ok-variant="success"
+      cancel-variant="danger"
     >
       <table style="border: 0px solid white">
         <tr>
@@ -61,6 +63,22 @@
                 </b-form-input>
               </b-form-group>
             </b-form>
+               <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-building_id"
+                label="ตึก :"
+                label-for="booking-building_id"
+              >
+              <b-form-input
+                  type="text"
+                  id="surname"
+                  placeholder=""
+                  v-model="form.surname"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
           </td>
 
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -99,15 +117,32 @@
             </b-form>
             <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
               <b-form-group
-                id="form-group-agency_id"
-                label="หน่วยงาน :"
-                label-for="booking-agency_id"
+                id="form-group-timeStop"
+                label="เวลาสิ้นสุด :"
+                label-for="booking-timeStop"
               >
               <b-form-input
                   type="text"
-                  id="surname"
+                  id="timeStop"
                   placeholder=""
-                  v-model="form.surname"
+                  v-model="form.timeStop"
+                  autofocus
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-form>
+              <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
+              <b-form-group
+                id="form-group-room_id"
+                label="ห้อง :"
+                label-for="booking-room_id"
+              >
+                <b-form-input
+                  type="textfield"
+                  id="room_id"
+                  placeholder=""
+                  v-model="form.room_id"
+                  rows="5"
                   autofocus
                 >
                 </b-form-input>
@@ -117,39 +152,6 @@
           </td>
         </tr>
       </table>
-       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-              <b-form-group
-                id="form-group-building_id"
-                label="ตึก :"
-                label-for="booking-building_id"
-              >
-              <b-form-input
-                  type="text"
-                  id="surname"
-                  placeholder=""
-                  v-model="form.surname"
-                  autofocus
-                >
-                </b-form-input>
-              </b-form-group>
-            </b-form>
-      <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
-              <b-form-group
-                id="form-group-description"
-                label="รายละเอียด :"
-                label-for="booking-description"
-              >
-                <b-form-textarea
-                  type="textfield"
-                  id="description"
-                  placeholder=""
-                  v-model="form.description"
-                  rows="5"
-                  autofocus
-                >
-                </b-form-textarea>
-              </b-form-group>
-            </b-form>
       <b-card>
         <pre>
         {{ form }}
@@ -174,7 +176,7 @@ export default {
         timeStart: '',
         timeStop: '',
         building_id: '',
-        room: ''
+        room_id: ''
       },
       isAddNew: false
     }
@@ -206,7 +208,7 @@ export default {
         timeStart: '',
         timeStop: '',
         building_id: '',
-        room: ''
+        room_id: ''
       }
     },
     showModal () {

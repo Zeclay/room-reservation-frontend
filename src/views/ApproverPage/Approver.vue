@@ -42,8 +42,8 @@
             <tbody>
               <tr v-for="(apr,idx) in approveRecipes" :key="idx">
                 <td>{{idx+1}}</td>
-                <td>{{booking.user_id.name+' '+booking.user_id.surname}}</td>
-                <td>{{booking.date}}<td>
+                <td>{{apr.user_id.name+' '+apr.user_id.surname}}</td>
+                <td>{{apr.booking_id}}<td>
                 <td>{{booking.start}}</td>
                 <td>booking.stop</td>
                 <td>booking.room_id.code</td>
@@ -75,14 +75,15 @@ export default {
   },
   data () {
     return {
-      approveRecipes: []
+      approveRecipes: [],
+      searchString: ''
 
     }
   },
   methods: {
     getApproveRecipes () {
       const self = this
-      axios.get('http://localhost:3000/booking/' + JSON.parse(localStorage.getItem('user'))._id, {
+      axios.get('http://localhost:3000/approveRecipe/' + JSON.parse(localStorage.getItem('user'))._id, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }

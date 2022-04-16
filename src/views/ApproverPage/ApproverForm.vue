@@ -158,6 +158,7 @@ export default {
   data () {
     return {
       form: {
+        _id: '',
         name: '',
         surname: '',
         date: '',
@@ -196,6 +197,7 @@ export default {
     },
     reset () {
       this.form = {
+        _id: '',
         name: '',
         surname: '',
         date: '',
@@ -208,6 +210,7 @@ export default {
       }
     },
     showModal () {
+      this.form._id = this.approver._id
       this.form.name = this.approver.booking_id.user_id.name
       this.form.surname = this.approver.booking_id.user_id.surname
       this.form.date = this.approver.booking_id.date

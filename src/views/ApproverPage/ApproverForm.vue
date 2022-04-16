@@ -5,6 +5,8 @@
       id="modal-approver"
       ref="modalApprover"
       title="รายละเอียดคำร้องของจองห้อง"
+      header = "test"
+      header-class ="justify-content-center"
       @show="showModal"
       @hidden="resetModal"
       ok-title = "อนุมัติการจอง"
@@ -13,6 +15,7 @@
       cancel-variant="danger"
       @ok="handleOk"
       @cancel="cancel"
+      hide-header-close
     >
       <table style="border: 0px solid white">
         <tr>

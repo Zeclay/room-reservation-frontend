@@ -51,7 +51,7 @@
       <b-row>
         <b-col>
           <h1>ตารางเวลา</h1>
-          <vue-cal :locale='th' style="height: 500px" />
+          <vue-cal :locale='th' style="height: 500px" :events="events" @ready="ready($event)" @view-change="viewChange($event)" />
         </b-col>
       </b-row>
     </b-container>
@@ -90,6 +90,50 @@ export default {
     }
   },
   methods: {
+    async ready (e) {
+      console.log('ready', e)
+      axios.get('http://localhost:3000/timeTable/' + localStorage.getItem('lastRoom'), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        self.timeTable = response.data
+        const nEvent = []
+        for (let i = 0; i < response.data.length; i++) {
+          const event = response.data[i]
+          nEvent.push({
+            start: new Date(event.checkIn),
+            end: new Date(event.checkOut),
+            title: '',
+            content: '',
+            class: ''
+          })
+        }
+        this.events = nEvent
+      })
+    },
+    async viewChange (e) {
+      console.log('ready', e)
+      axios.get('http://localhost:3000/timeTable/' + localStorage.getItem('lastRoom'), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        self.timeTable = response.data
+        const nEvent = []
+        for (let i = 0; i < response.data.length; i++) {
+          const event = response.data[i]
+          nEvent.push({
+            start: new Date(event.checkIn),
+            end: new Date(event.checkOut),
+            title: '',
+            content: '',
+            class: ''
+          })
+        }
+        this.events = nEvent
+      })
+    },
     getRoom () {
       const self = this
       axios.get('http://localhost:3000/rooms/' + localStorage.getItem('lastRoom'), {
@@ -108,20 +152,8 @@ export default {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       }).then((response) => {
-        console.log(response)
         self.timeTable = response.data
         const detail = { start: self.timeTable.checkIn, end: self.timeTable.checkOut }
-        const newEvents = res.data.map(function (detail) {
-        return {
-          start: new Date(self.timeTable.checkIn),
-          end: new Date(self.timeTable.checkOut),
-          title: '',
-          content: '',
-          class: ''
-        }
-      })
-      this.events = newEvents
-
         this.events.push(detail)
       })
     },

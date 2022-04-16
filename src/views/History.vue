@@ -11,11 +11,28 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-table :items="productItems" :fields="fields">
-            <template #cell(operators)>
-              <p class="text-warning">รอการอนุมัติ</p>
-            </template>
-          </b-table>
+          <table class="table table-striped table-bordered" style="text-align: center;">
+            <thead>
+              <th>ลำดับ</th>
+              <th>ตึก</th>
+              <th>เลขห้อง</th>
+              <th>วันที่จอง</th>
+              <th>เวลาเริ่มต้น</th>
+              <th>เวลาสิ้นสุด</th>
+              <th>สถานะ</th>
+            </thead>
+            <tbody>
+              <tr v-for="(book,idx) in booking" :key="idx">
+                <td>{{idx+1}}</td>
+                <td>{{book.room_id.building_id.code}}</td>
+                <td>{{book.room_id.code}}</td>
+                <td>{{book.date}}</td>
+                <td>{{book.start}}</td>
+                <td>{{book.end}}</td>
+                <td>{{book.result_status}}</td>
+              </tr>
+            </tbody>
+          </table>
         </b-col>
       </b-row>
     </b-container>
@@ -24,6 +41,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Auth from '../components/Auth.vue'
 export default {
   Date: 'Home',
@@ -42,6 +60,22 @@ export default {
       ],
       booking: []
     }
+  },
+  methods: {
+    getBooking () {
+      const self = this
+      axios.get('http://localhost:3000/booking/getbookbyuser/' + JSON.parse(localStorage.getItem('user'))._id, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.booking = response.data
+      })
+    }
+  },
+  mounted () {
+    this.getBooking()
   }
 }
 </script>

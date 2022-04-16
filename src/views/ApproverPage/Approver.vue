@@ -40,13 +40,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td><td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr v-for="(apr,idx) in approveRecipes" :key="idx">
+                <td>{{idx+1}}</td>
+                <td>{{booking.user_id.name+' '+booking.user_id.surname}}</td>
+                <td>{{booking.date}}<td>
+                <td>{{booking.start}}</td>
+                <td>booking.stop</td>
+                <td>booking.room_id.code</td>
                 <td><ApproverForm
                   ref="Approver"
                   @save="save"
@@ -75,28 +75,27 @@ export default {
   },
   data () {
     return {
-      rooms: []
+      approveRecipes: []
 
     }
   },
   methods: {
-    getRoom () {
+    getApproveRecipes () {
       const self = this
-      axios.get('http://localhost:3000/rooms/' + localStorage.getItem('lastRoom'), {
+      axios.get('http://localhost:3000/booking/' + JSON.parse(localStorage.getItem('user'))._id, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       }).then((response) => {
         console.log(response)
-        self.rooms = response.data
+        self.bookings = response.data
       })
     },
     save (room) {
     }
   },
   mounted () {
-    this.getRoom()
-    console.log(this.rooms)
+    this.getApproveRecipes()
   }
 }
 

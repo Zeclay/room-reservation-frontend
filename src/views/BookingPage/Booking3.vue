@@ -107,9 +107,12 @@ export default {
           }
         })
         .then(
-          function (response) {
-            this.getUser()
-          }.bind(this)
+
+          axios.post('http://localhost:3000/approveRecipe/addapproveRecipe', booking, {
+            headers: {
+              Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+          })
         )
         .catch(() => {
         }

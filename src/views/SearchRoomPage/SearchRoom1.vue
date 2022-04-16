@@ -41,6 +41,8 @@
       :value="null"
     ></b-form-select>
   </b-form>
+  <br>
+  <b-button variant="success" style="margin-left: 80%; width:15%;">ค้นหา</b-button>
 </div>
 <br> <br>
 

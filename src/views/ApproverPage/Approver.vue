@@ -104,6 +104,7 @@ export default {
       }).then((response) => {
         console.log(response)
       })
+      this.$router.go(0)
     },
     editBooking (item) {
       this.selectedItem = JSON.parse(JSON.stringify(item))
@@ -120,6 +121,7 @@ export default {
       }).then((response) => {
         console.log(response)
       })
+      this.$router.go(0)
     }
   },
   mounted () {

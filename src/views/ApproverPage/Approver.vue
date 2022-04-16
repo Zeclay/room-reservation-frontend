@@ -97,6 +97,13 @@ export default {
     },
     save (room) {
       console.log('save')
+      axios.post('http://localhost:3000/approveRecipe/pass', { _id: room._id }, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+      })
     },
     editBooking (item) {
       this.selectedItem = JSON.parse(JSON.stringify(item))
@@ -106,6 +113,13 @@ export default {
     },
     cancel (room) {
       console.log('cancel')
+      axios.post('http://localhost:3000/approveRecipe/cancel', { _id: room._id }, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+      })
     }
   },
   mounted () {

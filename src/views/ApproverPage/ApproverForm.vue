@@ -1,6 +1,6 @@
 <template>
   <div >
-        <b-button @click="addNew" variant="info" style="width:70%;"> รายละเอียด </b-button>
+
     <b-modal
       id="modal-approver"
       ref="modalApprover"
@@ -12,6 +12,7 @@
       cancel-title = "ไม่อนุมัติการจอง"
       cancel-variant="danger"
       @ok="handleOk"
+      @cancel="cancel"
     >
       <table style="border: 0px solid white">
         <tr>
@@ -26,8 +27,8 @@
                   type="text"
                   id="name"
                   placeholder=""
-                  v-model="form.code"
-                  autofocus
+                  v-model="form.name"
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -43,7 +44,7 @@
                   id="date"
                   placeholder=""
                   v-model="form.date"
-                  autofocus
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -59,8 +60,8 @@
                   type="text"
                   id="timestart"
                   placeholder=""
-                  v-model="form.timestart"
-                  autofocus
+                  v-model="form.timeStart"
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -81,7 +82,7 @@
                   id="surname"
                   placeholder=""
                   v-model="form.surname"
-                  autofocus
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -96,9 +97,9 @@
                   type="textfield"
                   id="room_id"
                   placeholder=""
-                  v-model="form.room_id"
+                  v-model="form.codeRoom"
                   rows="3"
-                  autofocus
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -115,7 +116,7 @@
                   id="timeStop"
                   placeholder=""
                   v-model="form.timeStop"
-                  autofocus
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -134,8 +135,8 @@
                   type="text"
                   id="type"
                   placeholder=""
-                  v-model="form.type"
-                  autofocus
+                  v-model="form.description"
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -163,6 +164,7 @@ export default {
         codeRoom: '',
         timeStart: '',
         timeStop: '',
+        building_id: '',
         room_id: '',
         description: ''
       },
@@ -187,20 +189,32 @@ export default {
       this.$emit('save', approver)
       this.reset()
     },
+    sayno () {
+      const approver = JSON.parse(JSON.stringify(this.form))
+      this.$emit('cancel', approver)
+      this.reset()
+    },
     reset () {
       this.form = {
         name: '',
         surname: '',
-        agency_id: '',
         date: '',
+        codeRoom: '',
         timeStart: '',
         timeStop: '',
         building_id: '',
-        room_id: ''
+        room_id: '',
+        description: ''
       }
     },
     showModal () {
-      this.reset()
+      this.form.name = this.approver.booking_id.user_id.name
+      this.form.surname = this.approver.booking_id.user_id.surname
+      this.form.date = this.approver.booking_id.date
+      this.form.codeRoom = this.approver.booking_id.room_id.code
+      this.form.timeStart = this.approver.booking_id.start
+      this.form.timeStop = this.approver.booking_id.end
+      this.form.description = this.approver.booking_id.room_id.description
     },
     resetModal (evt) {
       this.reset()
@@ -208,6 +222,13 @@ export default {
     handleOk (evt) {
       evt.preventDefault()
       this.submit()
+      this.$nextTick(() => {
+        this.$bvModal.hide('modal-approver')
+      })
+    },
+    cancel (evt) {
+      evt.preventDefault()
+      this.sayno()
       this.$nextTick(() => {
         this.$bvModal.hide('modal-approver')
       })

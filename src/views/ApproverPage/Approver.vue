@@ -21,6 +21,12 @@
     <br>
     <div class="background-gray">
     <b-container fluid>
+      <ApproverForm
+                  :approver="selectedItem"
+                  ref="Approver"
+                  @save="save"
+                  @cancel="cancel"
+                ></ApproverForm>
       <b-row>
       </b-row>
       <b-row>
@@ -34,23 +40,22 @@
                 <th>เวลาเริ่มต้น</th>
                 <th>เวลาสิ้นสุด</th>
                 <th>รหัสห้อง</th>
-                <th>รายละเอียด</th>
+                <th>ชื่อ-สกุล ผู้จอง</th>
                 <th>การจัดการ</th>
-
               </tr>
             </thead>
             <tbody>
               <tr v-for="(apr,idx) in approveRecipes" :key="idx">
                 <td>{{idx+1}}</td>
                 <td>{{apr.user_id.name+' '+apr.user_id.surname}}</td>
-                <td>{{apr.booking_id}}<td>
-                <td>{{booking.start}}</td>
-                <td>booking.stop</td>
-                <td>booking.room_id.code</td>
-                <td><ApproverForm
-                  ref="Approver"
-                  @save="save"
-                ></ApproverForm></td>
+                <td>{{apr.booking_id.date}}</td>
+                <td>{{apr.booking_id.start}}</td>
+                <td>{{apr.booking_id.end}}</td>
+                <td>{{apr.booking_id.room_id.code}}</td>
+                <td>{{apr.booking_id.user_id.name}} {{apr.booking_id.user_id.surname}}</td>
+                <td>
+                <b-button variant="warning" @click="editBooking(apr)">Detail</b-button
+              ></td>
               </tr>
             </tbody>
           </table>
@@ -76,8 +81,8 @@ export default {
   data () {
     return {
       approveRecipes: [],
-      searchString: ''
-
+      searchString: '',
+      selectedItem: null
     }
   },
   methods: {
@@ -89,10 +94,20 @@ export default {
         }
       }).then((response) => {
         console.log(response)
-        self.bookings = response.data
+        self.approveRecipes = response.data
       })
     },
     save (room) {
+      console.log('save')
+    },
+    editBooking (item) {
+      this.selectedItem = JSON.parse(JSON.stringify(item))
+      this.$nextTick(() => {
+        this.$refs.Approver.show()
+      })
+    },
+    cancel (room) {
+      console.log('cancel')
     }
   },
   mounted () {

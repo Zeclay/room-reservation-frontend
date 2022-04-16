@@ -10,6 +10,8 @@
       ok-title="ตกลง"
       ok-variant="success"
       cancel-title="ยกเลิก"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
       @ok="handleOk"
     >
       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
@@ -65,7 +67,9 @@ export default {
         code: ''
 
       },
-      isAddNew: false
+      isAddNew: false,
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light'
     }
   },
   computed: {

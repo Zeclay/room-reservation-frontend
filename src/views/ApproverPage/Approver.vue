@@ -35,24 +35,22 @@
             <thead>
               <tr>
                 <th>ไอดี</th>
-                <th>ชื่อ-สกุล</th>
+                <th>ชื่อ-สกุล ผู้จอง</th>
                 <th>วัน</th>
                 <th>เวลาเริ่มต้น</th>
                 <th>เวลาสิ้นสุด</th>
                 <th>รหัสห้อง</th>
-                <th>ชื่อ-สกุล ผู้จอง</th>
                 <th>การจัดการ</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(apr,idx) in approveRecipes" :key="idx">
                 <td>{{idx+1}}</td>
-                <td>{{apr.user_id.name+' '+apr.user_id.surname}}</td>
+                <td>{{apr.booking_id.user_id.name}} {{apr.booking_id.user_id.surname}}</td>
                 <td>{{apr.booking_id.date}}</td>
                 <td>{{apr.booking_id.start}}</td>
                 <td>{{apr.booking_id.end}}</td>
                 <td>{{apr.booking_id.room_id.code}}</td>
-                <td>{{apr.booking_id.user_id.name}} {{apr.booking_id.user_id.surname}}</td>
                 <td>
                 <b-button variant="warning" @click="editBooking(apr)">Detail</b-button
               ></td>
@@ -99,6 +97,13 @@ export default {
     },
     save (room) {
       console.log('save')
+      axios.post('http://localhost:3000/approveRecipe/pass', { _id: room._id }, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+      })
     },
     editBooking (item) {
       this.selectedItem = JSON.parse(JSON.stringify(item))
@@ -108,6 +113,13 @@ export default {
     },
     cancel (room) {
       console.log('cancel')
+      axios.post('http://localhost:3000/approveRecipe/cancel', { _id: room._id }, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+      })
     }
   },
   mounted () {

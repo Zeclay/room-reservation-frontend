@@ -5,12 +5,15 @@
       id="modal-agency"
       ref="modalAgency"
       title="จัดการหน่วยงาน"
+      header = "test"
+      header-class="justify-content-center"
       @show="showModal"
       @hidden="resetModal"
       ok-title="ตกลง"
       ok-variant="success"
       cancel-title="ยกเลิก"
       @ok="handleOk"
+      hide-header-close
     >
       <b-form @submit.stop.prevent="submit" @reset.prevent="reset">
 

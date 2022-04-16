@@ -1,9 +1,8 @@
 <template>
-  <div class="Menubar">
+  <div class="Menubar" style="background-color:rgba(215, 200, 39, 0.993); padding-bottom: 230%">
     <button class="button" v-if="isUser" @click="$router.push('/')">
       <i class="fa fa-calendar" style="font-size: 30px"></i>&nbsp; การจอง
     </button>
-
     <button class="button" v-if="isUser" @click="$router.push('/History')">
       <i class="fas fa-clipboard-list" style="font-size: 30px"></i>&nbsp;
       ประวัติการจอง

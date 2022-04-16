@@ -106,7 +106,7 @@ export default {
             end: new Date(event.checkOut),
             title: '',
             content: '',
-            class: ''
+            class: 'homework'
           })
         }
         this.events = nEvent
@@ -126,9 +126,7 @@ export default {
           nEvent.push({
             start: new Date(event.checkIn),
             end: new Date(event.checkOut),
-            title: '',
-            content: '',
-            class: ''
+            class: 'homework'
           })
         }
         this.events = nEvent
@@ -230,5 +228,15 @@ table, td, th {
   position: absolute;
   left: 10%;
 }
+.vuecal__now-line {
+  color: #06c;
+}
+.vuecal__event.homework {
+  background-color: rgba(30, 197, 15, 0.9);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.vuecal__event.meeting {background-color: rgba(253, 156, 66, 0.9);border: 1px solid rgb(233, 136, 46);color: rgb(255, 255, 255);}
+.vuecal__event.sport {background-color: rgba(255, 102, 102, 0.9);border: 1px solid rgb(235, 82, 82);color: rgb(255, 255, 255);}
 
 </style>

@@ -12,6 +12,8 @@
       ok-title="ตกลง"
       ok-variant="success"
       cancel-title="ยกเลิก"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
       @ok="handleOk"
        hide-header-close
     >
@@ -116,7 +118,9 @@ export default {
       },
       isAddNew: false,
       options: [],
-      agencys: []
+      agencys: [],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light'
     }
   },
   computed: {

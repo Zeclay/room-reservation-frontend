@@ -187,6 +187,7 @@ export default {
     },
     submit () {
       const approver = JSON.parse(JSON.stringify(this.form))
+      console.log(approver)
       this.$emit('save', approver)
       this.reset()
     },

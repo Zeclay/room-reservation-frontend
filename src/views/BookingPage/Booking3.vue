@@ -82,7 +82,10 @@ export default {
   },
   data () {
     return {
-      rooms: []
+      rooms: [],
+      booking: [],
+      timeTable: [],
+      events: []
 
     }
   },
@@ -96,6 +99,30 @@ export default {
       }).then((response) => {
         console.log(response)
         self.rooms = response.data
+      })
+    },
+    getTimeTable () {
+      const self = this
+      axios.get('http://localhost:3000/timeTable/' + localStorage.getItem('lastRoom'), {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        self.timeTable = response.data
+        const detail = { start: self.timeTable.checkIn, end: self.timeTable.checkOut }
+        const newEvents = res.data.map(function (detail) {
+        return {
+          start: new Date(self.timeTable.checkIn),
+          end: new Date(self.timeTable.checkOut),
+          title: '',
+          content: '',
+          class: ''
+        }
+      })
+      this.events = newEvents
+
+        this.events.push(detail)
       })
     },
     save (booking) {
@@ -125,6 +152,7 @@ export default {
   },
   mounted () {
     this.getRoom()
+    this.getTimeTable()
   }
 }
 

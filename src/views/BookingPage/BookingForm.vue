@@ -5,6 +5,8 @@
       id="modal-booking"
       ref="modalBooking"
       title="ฟอร์มยืนคำร้องการจองห้อง"
+      header = "test"
+      header-class = "justify-content-center"
       @show="showModal"
       @hidden="resetModal"
       ok-title="ตกลง"
@@ -12,6 +14,7 @@
       cancel-title="ยกเลิก"
       cancel-variant="danger"
       @ok="handleOk"
+      hide-header-close
     >
       <table style="border: 0px solid white">
         <tr>

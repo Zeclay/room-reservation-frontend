@@ -49,12 +49,12 @@
                   <td>{{ approve.description }}</td>
                   <td>{{ approve.agencys.name }}</td>
                   <td>
-                    {{ approve.order_Approve[0].name }}
-                    {{ approve.order_Approve[0].surname }}
+                    {{ approve.approver1.name }}
+                    {{ approve.approver1.surname }}
                   </td>
                   <td>
-                    {{ approve.order_Approve[1].name }}
-                    {{ approve.order_Approve[1].surname }}
+                    {{ approve.approver2.name }}
+                    {{ approve.approver2.surname }}
                   </td>
                   <td>
                     <b-button variant="warning" @click="editApprove(approve)"

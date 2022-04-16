@@ -142,7 +142,8 @@ export default {
         timeStart: '',
         timeStop: '',
         user_id: JSON.parse(localStorage.getItem('user'))._id,
-        room_id: localStorage.getItem('lastRoom')
+        room_id: localStorage.getItem('lastRoom'),
+        approve_id: ''
       },
       isAddNew: false
     }
@@ -176,7 +177,9 @@ export default {
         timestart: '',
         timeStop: '',
         user_id: JSON.parse(localStorage.getItem('user'))._id,
-        room_id: localStorage.getItem('lastRoom')
+        room_id: localStorage.getItem('lastRoom'),
+        approve_id: ''
+
       }
     },
     showModal () {

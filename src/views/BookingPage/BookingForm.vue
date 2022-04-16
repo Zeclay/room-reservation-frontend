@@ -143,7 +143,7 @@ export default {
         timeStop: '',
         user_id: JSON.parse(localStorage.getItem('user'))._id,
         room_id: localStorage.getItem('lastRoom'),
-        approve_id: ''
+        approve_id: localStorage.getItem('lastApprove')
       },
       isAddNew: false
     }
@@ -178,7 +178,7 @@ export default {
         timeStop: '',
         user_id: JSON.parse(localStorage.getItem('user'))._id,
         room_id: localStorage.getItem('lastRoom'),
-        approve_id: ''
+        approve_id: localStorage.getItem('lastApprove')
 
       }
     },

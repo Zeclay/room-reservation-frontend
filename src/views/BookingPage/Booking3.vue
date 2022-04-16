@@ -99,7 +99,7 @@ export default {
       })
     },
     save (booking) {
-      console.log(booking)
+      // console.log(booking)
       axios
         .post('http://localhost:3000/booking/addBooking', booking, {
           headers: {

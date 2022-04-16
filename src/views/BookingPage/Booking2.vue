@@ -51,7 +51,7 @@
                 <td>{{Room.approve_id.description}}</td>
                 <td>{{Room.building_id.name_build}}</td>
                 <td>{{Room.agency_id.name}}</td>
-                <td><b-button variant="primary" @click="gotoDetail(Room._id)">ดูรายละเอียด</b-button
+                <td><b-button variant="primary" @click="gotoDetail(Room)">ดูรายละเอียด</b-button
               >
               </td>
               </tr>
@@ -88,12 +88,13 @@ export default {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       }).then((response) => {
-        console.log(response)
         self.Rooms = response.data
       })
     },
     gotoDetail (item) {
-      localStorage.setItem('lastRoom', item) /// /////////////////////////
+      console.log(item)
+      localStorage.setItem('lastRoom', item._id) /// /////////////////////////
+      localStorage.setItem('lastApprove', item.approve_id._id)
       this.$router.push('/booking3')
     }
   },

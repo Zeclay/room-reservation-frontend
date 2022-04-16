@@ -106,14 +106,18 @@ export default {
             Authorization: 'Bearer ' + localStorage.getItem('token')
           }
         })
-        .then(
-
-          axios.post('http://localhost:3000/approveRecipe/addapproveRecipe', booking, {
+        .then((response) => {
+          const id = response.data._id
+          const bookingData = {
+            bookingid: id,
+            booking: booking
+          }
+          axios.post('http://localhost:3000/approveRecipe/addapproveRecipe', bookingData, {
             headers: {
               Authorization: 'Bearer ' + localStorage.getItem('token')
             }
           })
-        )
+        })
         .catch(() => {
         }
         )

@@ -34,15 +34,13 @@ export default {
     return {
       fields: [
         { key: 'RoomCode', label: 'เลขห้อง' },
+        { key: 'Building', label: 'ตึก' },
         { key: 'Date', label: 'วันที่จอง' },
         { key: 'TimeStart', label: 'เวลาเริ่มต้น' },
         { key: 'TimeEnd', label: 'เวลาสิ้นสุด' },
         { key: 'operators', label: 'สถานะ' }
       ],
-      productItems: [
-        { RoomCode: '3C02', Date: 'IF', TimeStart: '13:00', TimeEnd: '15:00' }
-
-      ]
+      booking: []
     }
   }
 }

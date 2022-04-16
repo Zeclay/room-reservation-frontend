@@ -33,7 +33,7 @@
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>ไอดี</th>
+                <th>ลำดับ</th>
                 <th>ชื่อ-นามสกุล</th>
                 <th>ชื่อผู้ใช้</th>
                 <th>อีเมล</th>

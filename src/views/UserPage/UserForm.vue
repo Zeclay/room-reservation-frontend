@@ -5,6 +5,8 @@
       id="modal-users"
       ref="modalusers"
       title="จัดการผู้ใช้งาน"
+      header = "test"
+      header-class = "justify-content-center"
       @show="showModal"
       @hidden="resetModal"
       ok-title="ตกลง"
@@ -13,6 +15,7 @@
       :header-bg-variant="headerBgVariant"
       :header-text-variant="headerTextVariant"
       @ok="handleOk"
+      hide-header-close
     >
       <table style="border: 0px solid white">
         <tr>

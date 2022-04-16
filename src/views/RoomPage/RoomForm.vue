@@ -1,10 +1,12 @@
 <template>
   <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มอาคาร</b-button>
+    <b-button  @click="addNew" variant="success" >เพิ่มห้อง</b-button>
     <b-modal
       id="modal-room"
       ref="modalRoom"
       title="การจัดการอาคาร"
+      header= "test"
+      header-class = "justify-content-center"
       @show="showModal"
       @hidden="resetModal"
       ok-title="ตกลง"
@@ -13,6 +15,7 @@
       :header-bg-variant="headerBgVariant"
       :header-text-variant="headerTextVariant"
       @ok="handleOk"
+      hide-header-close
     >
       <table style="border: 0px solid white">
         <tr>

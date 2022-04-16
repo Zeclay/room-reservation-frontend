@@ -4,6 +4,8 @@
     <b-modal
       id="modal-approve"
       ref="modalApprove"
+      header="test"
+      header-class="justify-content-center"
       title="จัดการผู้พิจารณา"
       @show="showModal"
       @hidden="resetModal"
@@ -11,6 +13,7 @@
       ok-variant="success"
       cancel-title="ยกเลิก"
       @ok="handleOk"
+       hide-header-close
     >
       <table style="border: 0px solid white">
         <tr>

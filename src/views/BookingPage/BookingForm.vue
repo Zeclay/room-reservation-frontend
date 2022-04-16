@@ -5,6 +5,8 @@
       id="modal-booking"
       ref="modalBooking"
       title="ฟอร์มยืนคำร้องการจองห้อง"
+      header = "test"
+      header-class = "justify-content-center"
       @show="showModal"
       @hidden="resetModal"
       ok-title="ตกลง"
@@ -14,6 +16,7 @@
       :header-bg-variant="headerBgVariant"
       :header-text-variant="headerTextVariant"
       @ok="handleOk"
+      hide-header-close
     >
       <table style="border: 0px solid white">
         <tr>
@@ -30,6 +33,7 @@
                   placeholder=""
                   v-model="form.name"
                   autofocus
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -46,6 +50,7 @@
                   id="agency_id"
                   placeholder=""
                   v-model="form.agency_id"
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -81,6 +86,7 @@
                   id="surname"
                   placeholder=""
                   v-model="form.surname"
+                  disabled
                 >
                 </b-form-input>
               </b-form-group>
@@ -129,16 +135,20 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   props: {
     booking: Object
   },
   data () {
     return {
+      name: null,
+      surname: null,
+      agency: null,
       form: {
         _id: '',
-        name: '',
-        surname: '',
+        name: this.name,
+        surname: this.surname,
         agency_id: '',
         date: '',
         timeStart: '',
@@ -174,9 +184,9 @@ export default {
     reset () {
       this.form = {
         _id: '',
-        name: '',
-        surname: '',
-        agency_id: '',
+        name: this.name,
+        surname: this.surname,
+        agency_id: this.agency,
         date: '',
         timestart: '',
         timeStop: '',
@@ -201,7 +211,22 @@ export default {
       this.$nextTick(() => {
         this.$bvModal.hide('modal-booking')
       })
+    },
+    getName () {
+      axios.get('http://localhost:3000/users/' + JSON.parse(localStorage.getItem('user'))._id, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+        this.name = response.data.name
+        this.surname = response.data.surname
+        this.agency = response.data.agency.name
+      })
     }
+  },
+  mounted () {
+    this.getName()
   }
 }
 </script>

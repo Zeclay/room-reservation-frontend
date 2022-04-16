@@ -23,7 +23,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <h4>ห้อง</h4>
+          <h4>เลือกห้อง</h4>
           <br>
           <table class="table table-striped table-bordered">
             <thead>

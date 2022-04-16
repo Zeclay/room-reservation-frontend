@@ -21,6 +21,12 @@
     <br>
     <div class="background-gray">
     <b-container fluid>
+      <ApproverForm
+                  :approver="selectedItem"
+                  ref="Approver"
+                  @save="save"
+                  @cancel="cancel"
+                ></ApproverForm>
       <b-row>
       </b-row>
       <b-row>
@@ -34,23 +40,20 @@
                 <th>เวลาเริ่มต้น</th>
                 <th>เวลาสิ้นสุด</th>
                 <th>รหัสห้อง</th>
-                <th>รายละเอียด</th>
                 <th>การจัดการ</th>
-
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td><td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><ApproverForm
-                  ref="Approver"
-                  @save="save"
-                ></ApproverForm></td>
+              <tr v-for="(apr,idx) in approveRecipes" :key="idx">
+                <td>{{idx+1}}</td>
+                <td>{{apr.booking_id.user_id.name}} {{apr.booking_id.user_id.surname}}</td>
+                <td>{{apr.booking_id.date}}</td>
+                <td>{{apr.booking_id.start}}</td>
+                <td>{{apr.booking_id.end}}</td>
+                <td>{{apr.booking_id.room_id.code}}</td>
+                <td>
+                <b-button variant="warning" @click="editBooking(apr)">Detail</b-button
+              ></td>
               </tr>
             </tbody>
           </table>
@@ -75,28 +78,52 @@ export default {
   },
   data () {
     return {
-      rooms: []
-
+      approveRecipes: [],
+      searchString: '',
+      selectedItem: null
     }
   },
   methods: {
-    getRoom () {
+    getApproveRecipes () {
       const self = this
-      axios.get('http://localhost:3000/rooms/' + localStorage.getItem('lastRoom'), {
+      axios.get('http://localhost:3000/approveRecipe/' + JSON.parse(localStorage.getItem('user'))._id, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       }).then((response) => {
         console.log(response)
-        self.rooms = response.data
+        self.approveRecipes = response.data
       })
     },
     save (room) {
+      console.log('save')
+      axios.post('http://localhost:3000/approveRecipe/pass', { _id: room._id }, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+      })
+    },
+    editBooking (item) {
+      this.selectedItem = JSON.parse(JSON.stringify(item))
+      this.$nextTick(() => {
+        this.$refs.Approver.show()
+      })
+    },
+    cancel (room) {
+      console.log('cancel')
+      axios.post('http://localhost:3000/approveRecipe/cancel', { _id: room._id }, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((response) => {
+        console.log(response)
+      })
     }
   },
   mounted () {
-    this.getRoom()
-    console.log(this.rooms)
+    this.getApproveRecipes()
   }
 }
 

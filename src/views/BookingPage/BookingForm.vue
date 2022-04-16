@@ -13,6 +13,8 @@
       ok-variant="success"
       cancel-title="ยกเลิก"
       cancel-variant="danger"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
       @ok="handleOk"
       hide-header-close
     >
@@ -155,7 +157,9 @@ export default {
         room_id: localStorage.getItem('lastRoom'),
         approve_id: localStorage.getItem('lastApprove')
       },
-      isAddNew: false
+      isAddNew: false,
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light'
     }
   },
   computed: {

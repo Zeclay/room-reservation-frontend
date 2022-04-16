@@ -13,6 +13,8 @@
       ok-variant="success"
       cancel-title = "ไม่อนุมัติการจอง"
       cancel-variant="danger"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
       @ok="handleOk"
       @cancel="cancel"
       hide-header-close
@@ -172,7 +174,9 @@ export default {
         room_id: '',
         description: ''
       },
-      isAddNew: false
+      isAddNew: false,
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light'
     }
   },
   computed: {

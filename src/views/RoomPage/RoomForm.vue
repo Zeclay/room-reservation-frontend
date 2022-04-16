@@ -12,6 +12,8 @@
       ok-title="ตกลง"
       ok-variant="success"
       cancel-title="ยกเลิก"
+      :header-bg-variant="headerBgVariant"
+      :header-text-variant="headerTextVariant"
       @ok="handleOk"
       hide-header-close
     >
@@ -192,7 +194,9 @@ export default {
       approves: [],
       agencys: [],
       buildings: [],
-      type: ['Meeting', 'Lab', 'Lecture', 'Classroom']
+      type: ['Meeting', 'Lab', 'Lecture', 'Classroom'],
+      headerBgVariant: 'dark',
+      headerTextVariant: 'light'
     }
   },
   computed: {

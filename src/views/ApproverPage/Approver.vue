@@ -34,9 +34,9 @@
           <table class="table table-striped table-bordered" style="text-align: center;">
             <thead>
               <tr>
-                <th>ไอดี</th>
-                <th>ชื่อ-สกุล ผู้จอง</th>
-                <th>วัน</th>
+                <th>ลำดับ</th>
+                <th>ชื่อ-สกุล</th>
+                <th>วันเดือนปี</th>
                 <th>เวลาเริ่มต้น</th>
                 <th>เวลาสิ้นสุด</th>
                 <th>รหัสห้อง</th>

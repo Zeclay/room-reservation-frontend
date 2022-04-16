@@ -5,12 +5,15 @@
       id="modal-users"
       ref="modalusers"
       title="จัดการผู้ใช้งาน"
+      header = "test"
+      header-class = "justify-content-center"
       @show="showModal"
       @hidden="resetModal"
       ok-title="ตกลง"
       ok-variant="success"
       cancel-title="ยกเลิก"
       @ok="handleOk"
+      hide-header-close
     >
       <table style="border: 0px solid white">
         <tr>

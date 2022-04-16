@@ -1,10 +1,10 @@
 <template>
   <div >
-    <b-button  @click="addNew" variant="success" >เพิ่มอาคาร</b-button>
+    <b-button  @click="addNew" variant="success" >เพิ่มห้อง</b-button>
     <b-modal
       id="modal-room"
       ref="modalRoom"
-      title="การจัดการอาคาร"
+      title="การจัดห้อง"
       @show="showModal"
       @hidden="resetModal"
       ok-title="ตกลง"

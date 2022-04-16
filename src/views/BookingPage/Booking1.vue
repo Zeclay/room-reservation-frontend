@@ -24,7 +24,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <h4>อาคาร</h4>
+          <h4>เลือกอาคาร</h4>
           <br>
           <table class="table table-striped table-bordered">
             <thead>

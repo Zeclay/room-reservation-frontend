@@ -206,7 +206,7 @@ export default {
     },
     handleOk (evt) {
       evt.preventDefault()
-      console.log('show')
+      alert('ส่งคำร้องการจองห้องเรียบร้อยแล้ว')
       this.submit()
       this.$nextTick(() => {
         this.$bvModal.hide('modal-booking')

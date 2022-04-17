@@ -117,7 +117,7 @@ export default {
         })
     },
     deleteRoom (item) {
-      if (confirm(`คุณต้องการจะลบข้อมูลห้อง ${item.description} หรือไม่`)) {
+      if (confirm(`คุณต้องการจะลบข้อมูลห้อง ${item.code} หรือไม่`)) {
         axios
           .delete('http://localhost:3000/Rooms/' + item._id, {
             headers: {

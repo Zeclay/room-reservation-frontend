@@ -101,6 +101,8 @@
                     v-for="(option, idx) in approves"
                     :key="idx"
                     :value="option._id"
+                    text-field="form.approve_name"
+                    value-field="form.approve_id"
                   >
                     {{ option.description }}
                   </option>
@@ -112,12 +114,15 @@
                 id="form-group-room"
                 label="หน่วยงาน :"
                 label-for="users-agency_id"
+
               >
                 <b-form-select v-model="form.agency_id">
                   <option
                     v-for="(option, idx) in agencys"
                     :key="idx"
                     :value="option._id"
+                    text-field="form.agency_name"
+                    value-field="form.agency_id"
                   >
                     {{ option.name }}
                   </option>
@@ -139,6 +144,8 @@
                     v-for="(option, idx) in buildings"
                     :key="idx"
                     :value="option._id"
+                    text-field="form.building_name"
+                    value-field="form.building_id"
                   >
                     {{ option.name_build }}
                   </option>
@@ -181,8 +188,11 @@ export default {
         seat: '',
         type: '',
         approve_id: '',
+        approve_name: '',
         building_id: '',
-        agency_id: ''
+        building_name: '',
+        agency_id: '',
+        agency_name: ''
       },
       isAddNew: false,
       approves: [],
@@ -227,8 +237,11 @@ export default {
         seat: '',
         type: '',
         approve_id: '',
+        approve_name: '',
         building_id: '',
-        agency_id: ''
+        building_name: '',
+        agency_id: '',
+        agency_name: ''
       }
     },
     showModal () {
@@ -242,9 +255,12 @@ export default {
         this.form.floor = this.room.floor
         this.form.seat = this.room.seat
         this.form.type = this.room.type
-        this.form.approve_id = this.room.approve_id
-        this.form.building_id = this.room.building_id
-        this.form.agency_id = this.room.agency_id
+        this.form.approve_id = this.room.approve_id._id
+        this.form.approve_name = this.room.approve_id.agency_name
+        this.form.building_id = this.room.building_id._id
+        this.form.building_name = this.room.building_id.build_name
+        this.form.agency_id = this.room.agency_id._id
+        this.form.agency_name = this.room.agency_id.name
       }
     },
     resetModal (evt) {

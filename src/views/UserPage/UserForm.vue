@@ -116,6 +116,8 @@
                     v-for="(option, idx) in options"
                     :key="idx"
                     :value="option._id"
+                    text-field="form.agency_name"
+                    value-field="form.agency"
                   >
                     {{ option.name }}
                   </option>
@@ -168,6 +170,7 @@ export default {
         password: '',
         email: '',
         agency: '',
+        agency_name: '',
         position: '',
         rank: ''
       },
@@ -220,6 +223,7 @@ export default {
         password: '',
         email: '',
         agency: '',
+        agency_name: '',
         position: '',
         rank: ''
       }
@@ -236,7 +240,8 @@ export default {
         this.form.username = this.users.username
         this.form.password = this.users.password
         this.form.email = this.users.email
-        this.form.agency = this.users.agency
+        this.form.agency = this.users.agency._id
+        this.form.agency_name = this.users.agency.name
         this.form.position = this.users.position
         this.form.rank = this.users.rank
         this.hidePassword = true

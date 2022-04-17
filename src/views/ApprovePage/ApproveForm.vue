@@ -46,6 +46,8 @@
                     v-for="(option, idx) in options"
                     :key="idx"
                     :value="option._id"
+                    value-field="form.user1"
+                    text-field="form.user1_name"
                   >
                     {{ option.name }}
                   </option>
@@ -66,6 +68,8 @@
                     v-for="(agency, idx) in agencys"
                     :key="idx"
                     :value="agency._id"
+                    value-field="form.agencys"
+                    text-field="form.agencys_name"
                   >
                     {{ agency.name }}
                   </option>
@@ -83,6 +87,8 @@
                     v-for="(option, idx) in options"
                     :key="idx"
                     :value="option._id"
+                    value-field="form.user2"
+                    text-field="form.user2_name"
                   >
                     {{ option.name }}
                   </option>
@@ -106,9 +112,12 @@ export default {
       form: {
         _id: '',
         description: '',
+        agencys_name: '',
         agencys: '',
         user1: '',
-        user2: ''
+        user1_name: '',
+        user2: '',
+        user2_name: ''
       },
       isAddNew: false,
       options: [],
@@ -145,9 +154,12 @@ export default {
       this.form = {
         _id: '',
         description: '',
+        agencys_name: '',
         agencys: '',
         user1: '',
-        user2: ''
+        user1_name: '',
+        user2: '',
+        user2_name: ''
       }
     },
     showModal () {
@@ -157,9 +169,12 @@ export default {
         // Edit
         this.form._id = this.approve._id
         this.form.description = this.approve.description
-        this.form.agencys = this.approve.agencys
-        this.form.user1 = this.approve.user1
-        this.form.user2 = this.approve.user2
+        this.form.agencys_name = this.approve.agencys.name
+        this.form.agencys = this.approve.agencys._id
+        this.form.user1 = this.approve.approver1._id
+        this.form.user1_name = this.approve.approver1.name
+        this.form.user2 = this.approve.approver2._id
+        this.form.user2_name = this.approve.approver2.name
       }
     },
     resetModal (evt) {

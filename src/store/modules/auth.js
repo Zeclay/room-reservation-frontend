@@ -34,6 +34,9 @@ export default {
     logout ({ commit }) {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+      localStorage.removeItem('lastBuilding')
+      localStorage.removeItem('lastRoom')
+      localStorage.removeItem('lastApprove')
       commit(AUTH_LOGOUT)
     }
   },

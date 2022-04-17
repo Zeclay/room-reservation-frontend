@@ -11,6 +11,7 @@
       </b-row>
       <b-row>
         <b-col>
+          <br>
           <table class="table table-striped table-bordered" style="text-align: center;">
             <thead>
               <th>ลำดับ</th>

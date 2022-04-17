@@ -162,12 +162,6 @@
                 </b-form-textarea>
               </b-form-group>
             </b-form>
-      <b-card>
-        <pre>
-        {{ form }}
-      </pre
-        >
-      </b-card>
     </b-modal>
   </div>
 </template>

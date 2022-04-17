@@ -92,12 +92,6 @@
           </td>
         </tr>
       </table>
-      <b-card>
-        <pre>
-        {{ form }}
-      </pre
-        >
-      </b-card>
     </b-modal>
   </div>
 </template>

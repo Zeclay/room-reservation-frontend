@@ -149,12 +149,6 @@
         <input type="radio" name="radio" value="SYSTEM" v-model="form.rank" :disabled="!isSystemAdmin"/>&nbsp;
         <label>System Admin</label>&nbsp;&nbsp;&nbsp;
       </b-form>
-      <b-card>
-        <pre>
-        {{ form }}
-      </pre
-        >
-      </b-card>
     </b-modal>
   </div>
 </template>

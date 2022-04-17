@@ -70,7 +70,7 @@ export default {
   methods: {
     getBuilding () {
       const self = this
-      axios.get('http://localhost:3000/buildings', {
+      axios.get('http://localhost:3000/seeBuilding', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }

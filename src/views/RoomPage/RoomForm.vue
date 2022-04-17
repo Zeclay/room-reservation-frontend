@@ -4,7 +4,7 @@
     <b-modal
       id="modal-room"
       ref="modalRoom"
-      title="การจัดการอาคาร"
+      title="การจัดการห้อง"
       header= "test"
       header-class = "justify-content-center"
       @show="showModal"
